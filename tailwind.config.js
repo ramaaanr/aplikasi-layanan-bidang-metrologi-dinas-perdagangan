@@ -23,12 +23,18 @@ module.exports = {
       'dark-secondary': '#05131B'
     },
     extend: {
-      backgroundImage: {
-        'hero-image': "url('/public/images/hero.jpg)"
-      },
       spacing: {
-      76: '19rem',
-    },
+        76: '19rem',
+      },
+      keyframes: {
+         wiggle: {
+           '0%, 100%': { 'transform': 'translateY(2rem)' },
+           '50%': { 'transform': 'translateY(-0.5rem)' },
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 2s ease-in-out infinite',
+      }
     },
   },
   plugins: [

@@ -22,7 +22,7 @@ Route::controller(LoginController::class)
     });
 
 Route::get('/', function () {
-    return view('user.home');
+    return view('guest.home');
 });
 
 Route::get('/test', function () {
