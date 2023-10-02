@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(LoginController::class)
+    ->group(function () {
+        Route::get('/login', 'login')->name('login');
+        Route::post('/login', 'doLogin')->name('doLogin');
+    });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.home');
 });
+
+Route::get('/test', function () {
+    return view('livewire.test-page');
+});
+
+Route::get('layanan/{layanan}', [LayananController::class, 'render']);

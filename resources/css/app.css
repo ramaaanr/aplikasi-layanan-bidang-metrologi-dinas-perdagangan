@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    @apply text-dark-grey
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-light shadow-md w-full rounded-xl
+  }
+
+  .input {
+    @apply w-full h-fit shadow-md border-2 border-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-4 py-2
+  }
+
+  .button-primary {
+    @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-2
+  }
+}
