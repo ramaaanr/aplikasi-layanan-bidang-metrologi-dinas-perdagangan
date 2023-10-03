@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-    public function render(string $layanan)
+    public function render(string $jenisLayanan, string $tera)
     {
-        
-        return view('guest.layanan', ['layanan' => $layanan]);
+        if ($jenisLayanan == 'data-tera') return view('guest.data-tera', ['layanan' => $jenisLayanan, 'tera' => $tera]);
+        if ($jenisLayanan == 'ajukan-tera') return view('guest.ajukan-tera', ['layanan' => $jenisLayanan, 'tera' => $tera]);
     }
 }

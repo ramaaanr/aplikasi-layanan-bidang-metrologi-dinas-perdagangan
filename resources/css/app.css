@@ -31,4 +31,7 @@
   .button-primary-sm {
     @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-1
   }
+  .form-input {
+    @apply block rounded-lg shadow-md px-4 pb-2 pt-4 w-full text-sm text-dark bg-light  border-2 border-grey appearance-none  focus:outline-none focus:ring-0 focus:border-primary
+  }
 }

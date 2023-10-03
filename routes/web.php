@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PengajuanLayananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,5 @@ Route::get('/', function () {
     return view('guest.home');
 });
 
-Route::get('/test', function () {
-    return view('livewire.test-page');
-});
 
-Route::get('layanan/{layanan}', [LayananController::class, 'render']);
+Route::get('layanan/{jenisLayanan}/{tera}', [LayananController::class, 'render']);

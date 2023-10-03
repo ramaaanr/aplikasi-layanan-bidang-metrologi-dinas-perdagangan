@@ -1,5 +1,5 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
-  <h3 class="text-sm font-semibold md:text-base">Data Pengajuan Tera {{$layanan}}</h3>
+  <h3 class="text-sm font-semibold md:text-base">Data Pengajuan Tera {{$tera}}</h3>
 
   <!-- 🎬 Action Container Start -->
   <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{selectValue: 'Berdasarkan'}">
@@ -44,7 +44,8 @@
 
 
     <!-- ➕ Pengajuan Start -->
-    <button class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
+    <a href="/layanan/ajukan-tera/{{$tera}}"
+      class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
       <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
         <path xmlns="http://www.w3.org/2000/svg"
           d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
@@ -52,7 +53,7 @@
       <span class="text-sm text-light">
         Ajukan Tera
       </span>
-    </button>
+    </a>
     <!-- ➕ Pengajuan End -->
 
   </div>

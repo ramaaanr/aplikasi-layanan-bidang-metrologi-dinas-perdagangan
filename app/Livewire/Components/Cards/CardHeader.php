@@ -6,14 +6,13 @@ use Livewire\Component;
 
 class CardHeader extends Component
 {
-  public $title;
   public $sentenceCaseTitle;
-  public $name;
-  public $page;
+  public $tera;
+  public $layanan;
 
   public function mount()
   {
-    $words = explode('-', $this->title);
+    $words = explode('-', $this->tera);
 
     $sentenceCase = array_map(function ($word) {
       return strtoupper($word);
