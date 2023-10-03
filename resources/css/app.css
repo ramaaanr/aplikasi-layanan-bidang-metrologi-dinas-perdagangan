@@ -14,11 +14,21 @@
     @apply bg-light shadow-md w-full rounded-xl
   }
 
+  .card-sm {
+    @apply bg-light shadow-md w-full rounded-lg
+  }
+
   .input {
     @apply w-full h-fit shadow-md border-2 border-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-4 py-2
+  }
+  .input-sm {
+    @apply w-full h-fit shadow-md border-2 border-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-2 py-1
   }
 
   .button-primary {
     @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-2
+  }
+  .button-primary-sm {
+    @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-1
   }
 }

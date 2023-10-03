@@ -25,6 +25,7 @@ module.exports = {
     extend: {
       spacing: {
         76: '19rem',
+        18: '4.5rem',
       },
       keyframes: {
          wiggle: {

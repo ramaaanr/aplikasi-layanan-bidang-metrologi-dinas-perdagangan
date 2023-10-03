@@ -15,7 +15,6 @@
 <body>
   @yield('content')
   @include('sweetalert::alert')
-  <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
   @livewireScripts
 </body>
 
