@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tera_jenis_1', function (Blueprint $table) {
+        Schema::create('tera_jenis_c', function (Blueprint $table) {
             $table->id();
             $table->string("kode_pengajuan", 20)->nullable(false)->unique();
             $table->string("no_surat", 50)->nullable(true)->unique();
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tera_jenis_1');
+        Schema::dropIfExists('tera_jenis_c');
     }
 };
