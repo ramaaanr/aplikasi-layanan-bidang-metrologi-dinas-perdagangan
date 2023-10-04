@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class CardHeader extends Component
 {
-  public $sentenceCaseTitle;
+  public $upperCaseTitle;
   public $tera;
   public $layanan;
 
@@ -18,7 +18,7 @@ class CardHeader extends Component
       return strtoupper($word);
     }, $words);
 
-    $this->sentenceCaseTitle = implode(' ', $sentenceCase);
+    $this->upperCaseTitle = implode(' ', $sentenceCase);
   }
 
   public function render()

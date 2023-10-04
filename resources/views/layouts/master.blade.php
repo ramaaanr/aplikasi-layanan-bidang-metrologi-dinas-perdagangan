@@ -14,7 +14,6 @@
 
 <body>
   @yield('content')
-  @include('sweetalert::alert')
   @livewireScripts
 </body>
 

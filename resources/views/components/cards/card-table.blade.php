@@ -1,5 +1,5 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
-  <h3 class="text-sm font-semibold md:text-base">Data Pengajuan Tera {{$tera}}</h3>
+  <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{$sentenceCaseTitle}}</h3>
 
   <!-- 🎬 Action Container Start -->
   <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{selectValue: 'Berdasarkan'}">
@@ -7,18 +7,15 @@
     <div class=" input__container relative mb-2 flex flex-wrap flex-col w-full">
       <input type="text " class="input-sm text-sm" placeholder="cari dokumen...">
       <button class="absolute right-2 top-1 fill-grey hover:fill-dark-grey">
-        <svg class="fill-inherit bg-light" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
-          width="12">
-          <path
-            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+        <svg class="fill-inherit bg-light" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="12">
+          <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
         </svg>
       </button>
     </div>
     <!-- 🔍 Input Search End-->
 
     <!-- ⏬ Dropdown Start -->
-    <button id=" dropdownDefaultButton" data-dropdown-toggle="dropdown"
-      class="input-sm bg-white text-sm text-center inline-flex justify-between text-grey" type="button">
+    <button id=" dropdownDefaultButton" data-dropdown-toggle="dropdown" class="input-sm bg-white text-sm text-center inline-flex justify-between text-grey" type="button">
       <p class="text-grey" x-text="selectValue"></p>
       <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="12">
         <path d="M480-371.923 267.692-584.231 296-612.539l184 184 184-184 28.308 28.308L480-371.923Z" />
@@ -36,7 +33,7 @@
         </li>
         <li>
           <button class=" w-full text-left px-4 py-2 hover:bg-light-grey" x-on:click="selectValue = 'Tanggal '">
-            Tanggal </button>
+            Tanggal Pengajuan</button>
         </li>
       </ul>
     </div>
@@ -44,11 +41,9 @@
 
 
     <!-- ➕ Pengajuan Start -->
-    <a href="/layanan/ajukan-tera/{{$tera}}"
-      class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
+    <a href="/layanan/ajukan-tera/{{$tera}}" class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
       <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
-        <path xmlns="http://www.w3.org/2000/svg"
-          d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
+        <path xmlns="http://www.w3.org/2000/svg" d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
       </svg>
       <span class="text-sm text-light">
         Ajukan Tera
@@ -70,41 +65,37 @@
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
               Kode Pengajuan
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
+              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                 </svg></a>
             </div>
           </th>
           <th scope="col" class="p-3 w-12">
             <div class="flex items-center">
               Pemohon
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
+              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                 </svg></a>
             </div>
           </th>
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
-              Tanggal
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
+              Tanggal Pengajuan
+              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                 </svg></a>
             </div>
           </th>
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
               Status
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                </svg></a>
+
+            </div>
+          </th>
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
+              Keterangan
+
             </div>
           </th>
         </tr>
@@ -120,6 +111,7 @@
           <td class="p-3 w-9">
             2 Mei 2023
           </td>
+
           <td class="p-3 w-9">
             <div class="status bg-yellow-300 text-center w-fit rounded-md px-2 py-1 text-light font-semibold">Diajukan
             </div>
@@ -127,34 +119,32 @@
             <!-- Ditolak - Red -->
             <!-- Selesai - Green -->
           </td>
+          <td class="p-3 w-9">
+            Sedang diproses
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="table-pagination__container flex justify-end mt-2 " x-data="{page: 2}">
-    <button class="arrow-before fill-dark-grey hover:bg-light-grey rounded-md"
-      x-bind:class="{ 'fill-grey': page == 1 }">
+    <button class="arrow-before fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'fill-grey': page == 1 }">
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
         <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
       </svg>
     </button>
-    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md"
-      x-bind:class="{ 'bg-light-grey': page == 1 }">
+    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'bg-light-grey': page == 1 }">
       <span>1</span>
     </button>
-    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md"
-      x-bind:class="{ 'bg-light-grey': page == 2 }">
+    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'bg-light-grey': page == 2 }">
       <span>2</span>
     </button>
-    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md"
-      x-bind:class="{ 'bg-light-grey': page == 3 }">
+    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'bg-light-grey': page == 3 }">
       <span>3</span>
     </button>
     <p class="pagination-more px-2 mx-1">
       <span>...</span>
     </p>
-    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md"
-      x-bind:class="{ 'bg-light-grey': page == 10 }">
+    <button class="pagination-index px-2 mx-1 fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'bg-light-grey': page == 10 }">
       <span>10</span>
     </button>
     <button class="arrow-next fill-dark-grey hover:bg-light-grey rounded-md" x-bind:class="{ 'fill-grey': page == 10 }">

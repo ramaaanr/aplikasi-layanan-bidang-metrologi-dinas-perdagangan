@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class Login extends Component
 {

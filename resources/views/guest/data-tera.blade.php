@@ -2,6 +2,6 @@
 
 @section('main-content')
 <div class="card-content-layanan">
-  @include('components.cards.card-table', ['page' => $layanan])
+  @livewire('components.cards.card-table', ['tera' => $tera])
 </div>
 @endsection

@@ -4,11 +4,10 @@ namespace App\Livewire\Components\Cards;
 
 use Livewire\Component;
 
-class CardTable extends Component
+class CardForm extends Component
 {
-  public $tera;
   public $sentenceCaseTitle;
-
+  public $tera;
 
   public function mount()
   {
@@ -18,12 +17,11 @@ class CardTable extends Component
       if ($word == 'bbm') return 'BBM';
       return ucfirst($word);
     }, $words);
-
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
   }
 
   public function render()
   {
-    return view('components.cards.card-table');
+    return view('components.cards.card-form');
   }
 }
