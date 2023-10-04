@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tera_jenis_1', function (Blueprint $table) {
             $table->id();
             $table->string("kode_pengajuan", 20)->nullable(false)->unique();
+            $table->string("no_surat", 50)->nullable(true)->unique();
+            $table->string("jenis_tera", 50)->nullable(false);
             $table->string("nama_pemohon", 100)->nullable(false);
             $table->string("alamat_pemohon", 100)->nullable(false);
             $table->string("nama_skhp", 100)->nullable(false);
@@ -25,8 +27,8 @@ return new class extends Migration
             $table->string("dokumen_surat_permohonan", 100)->nullable(false);
             $table->string("dokumen_skhp_sebelumnya", 100)->nullable(false);
             $table->string("id_dokumen_bukti_pendukung_lainnya", 100)->unique()->nullable(false);
-            $table->string("jumlah_uttp", 20)->nullable(true);
-            $table->string("id_uttp", 20)->nullable(true);
+            $table->string("jumlah_uttp", 20)->nullable(false);
+            $table->string("id_uttp", 20)->nullable(false);
             $table->string("status", 10)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
             $table->date("tanggal_pengujian")->nullable(false);
