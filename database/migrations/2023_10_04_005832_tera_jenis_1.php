@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string("nomor_kontak", 20)->nullable(false);
             $table->string("dokumen_surat_permohonan", 100)->nullable(false);
             $table->string("dokumen_skhp_sebelumnya", 100)->nullable(false);
-            $table->string("id_dokumen_bukti_pendukung_lainnya", 100)->unique()->nullable(false);
+            $table->string("dokumen_bukti_pendukung_lainnya", 100)->nullable(false);
             $table->string("jumlah_uttp", 20)->nullable(false);
             $table->string("id_uttp", 20)->nullable(false);
             $table->string("status", 10)->nullable(false);
