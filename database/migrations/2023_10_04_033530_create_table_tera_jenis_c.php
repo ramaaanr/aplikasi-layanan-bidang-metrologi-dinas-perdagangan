@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string("id_uttp", 20)->nullable(false);
             $table->string("status", 10)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
+            $table->string("id_staff", 100)->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();
         });
