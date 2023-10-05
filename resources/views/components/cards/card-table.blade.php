@@ -1,11 +1,10 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{ $sentenceCaseTitle }}</h3>
-
   <!-- 🎬 Action Container Start -->
   <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
     <!-- 🔍 Input Search Start-->
     <div class=" input__container relative mb-2 flex flex-wrap flex-col w-full">
-      <input type="text " class="input-sm text-sm" placeholder="cari dokumen...">
+      <input wire:model.live="query" type="text " class="input-sm text-sm" placeholder="cari dokumen...">
       <button class="absolute right-2 top-1 fill-grey hover:fill-dark-grey">
         <svg class="fill-inherit bg-light" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="12">
           <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
@@ -14,29 +13,14 @@
     </div>
     <!-- 🔍 Input Search End-->
 
+
     <!-- ⏬ Dropdown Start -->
-    <button id=" dropdownDefaultButton" data-dropdown-toggle="dropdown" class="input-sm bg-white text-sm text-center inline-flex justify-between text-grey" type="button">
-      <p class="text-grey" x-text="selectValue"></p>
-      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="12">
-        <path d="M480-371.923 267.692-584.231 296-612.539l184 184 184-184 28.308 28.308L480-371.923Z" />
-      </svg>
-    </button>
-    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-light-grey rounded-lg shadow w-64 ">
-      <ul class="py-2 text-sm text-grey " aria-labelledby="dropdownDefaultButton">
-        <li>
-          <button class="w-full text-left px-4 py-2 hover:bg-light-grey" x-on:click="selectValue = 'Kode Layanan'">
-            Kode Layanan</button>
-        </li>
-        <li>
-          <button class="w-full text-left px-4 py-2 hover:bg-light-grey" x-on:click="selectValue = 'Pemohon'">
-            Pemohon</button>
-        </li>
-        <li>
-          <button class=" w-full text-left px-4 py-2 hover:bg-light-grey" x-on:click="selectValue = 'Tanggal '">
-            Tanggal Pengajuan</button>
-        </li>
-      </ul>
-    </div>
+    <select wire:model.live="queryCategory" class="input-sm bg-white text-sm text-left inline-flex justify-between text-grey">
+      <option value="kode_pengajuan">Cari Kode Pengajuan</option>
+      <option selected value="nama_pemohon">Cari Pemohon</option>
+      <option value="tanggal_pengajuan">Cari Tanggal Pengajuan</option>
+      <option value="tanggal_pengujian">Cari Tanggal Pengujian</option>
+    </select>
     <!-- ⏬ Dropdown End -->
 
 
@@ -86,6 +70,14 @@
                 </svg></a>
             </div>
           </th>
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
+              Tanggal Pengujian
+              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
+                </svg></a>
+            </div>
+          </th>
           <th scope="col" class="p-3 w-3">
             <div class="flex items-center">
               Status
@@ -112,6 +104,9 @@
           <td class="p-3 w-9">
             {{ $dataPengajuan->tanggal_pengajuan }}
           </td>
+          <td class="p-3 w-9">
+            {{ $dataPengajuan->tanggal_pengujian }}
+          </td>
 
           <td class="p-3 w-3">
             <div x-data="{ status: '{{$dataPengajuan->status}}' }">
@@ -133,17 +128,48 @@
       </tbody>
     </table>
   </div>
-  <div class="table-pagination__container justify-end flex mt-2 " x-data="{ page: 2 }">
-    <button class="button-light mr-2 flex items-center fill-dark-grey"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+  <div class="table-pagination__container flex justify-end mt-2 ">
+    @if ($dataTera->hasPages())
+    <nav class="flex w-fit" role="navigation">
+      @if ($dataTera->onFirstPage())
+      <button disabled class="mr-2 button-light-disabled flex items-center fill-dark-grey"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+          <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
+        </svg>
+        <p class="text-sm">Sebelumnya</p>
+      </button>
+      @else
+      <button wire:click="previousPage" wire:loading.attr="disabled" rel="prev" class="mr-2 button-light flex items-center fill-dark-grey"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+          <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
+        </svg>
+        <p class="text-sm">Sebelumnya</p>
+      </button>
+      @endif
+      </span>
+      <span>
+        @if ($dataTera->onLastPage())
+        <button disabled class="button-light-disabled flex items-center fill-dark-grey">
+          <p class="text-sm">Selanjutnya</p><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+            <path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z" />
+          </svg>
+        </button>
+        @else
+        <button wire:click="nextPage" wire:loading.attr="disabled" rel="next" class="button-light flex items-center fill-dark-grey">
+          <p class="text-sm">Selanjutnya</p><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+            <path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z" />
+          </svg>
+        </button>
+        @endif
+      </span>
+    </nav>
+    @endif
+    <!-- <button wire:click="previousPage" x-bind:disabled="page == 1" x-bind:class="page == 1 ? 'button-light-disabled' : 'button-light'" class="mr-2 flex items-center fill-dark-grey"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
         <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
       </svg>
       <p class="text-sm">Sebelumnya</p>
     </button>
-    <button class="button-light flex items-center fill-dark-grey">
-      <p class="text-sm">Selanjutnya</p><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
-        <path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z" />
-      </svg>
-    </button>
+   
+    <p x-text="page"></p>
+    <p x-text="lastPage"></p> -->
   </div>
 </div>
 
