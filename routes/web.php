@@ -26,5 +26,4 @@ Route::get('/', function () {
     return view('guest.home');
 });
 
-
 Route::get('layanan/{jenisLayanan}/{tera}', [LayananController::class, 'render']);

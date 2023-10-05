@@ -28,6 +28,10 @@
   .button-primary {
     @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-2
   }
+
+  .button-light {
+    @apply shadow-lg border-2 border-grey text-dark-grey font-semibold bg-white hover:ring-4 hover:ring-light-grey rounded-md px-4 py-2
+  }
   .button-primary-sm {
     @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-1
   }
