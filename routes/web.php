@@ -27,3 +27,4 @@ Route::get('/', function () {
 });
 
 Route::get('layanan/{jenisLayanan}/{tera}', [LayananController::class, 'render']);
+Route::post('/layanan', [LayananController::class, 'ajukanTera'])->name('ajukan-tera');

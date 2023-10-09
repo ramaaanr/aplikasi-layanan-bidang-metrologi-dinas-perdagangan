@@ -7,11 +7,26 @@
   * {
     @apply text-dark-grey
   }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
 }
 
 @layer components {
   .card {
     @apply bg-light shadow-md w-full rounded-xl
+  }
+  .card-inside {
+    @apply bg-light border-light-2 shadow-sm w-full rounded-xl p-4
   }
 
   .card-sm {
@@ -21,8 +36,13 @@
   .input {
     @apply w-full h-fit shadow-md border-2 border-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-4 py-2
   }
+
+
   .input-sm {
     @apply w-full h-fit shadow-md border-2 border-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-2 py-1
+  }
+  .input-light-sm {
+    @apply w-full h-fit border-2 border-light-grey hover:ring-2 hover:ring-light-grey focus:ring-primary outline-none rounded-md px-1 py-0.5
   }
 
   .button-primary {
@@ -41,6 +61,9 @@
     @apply shadow-lg border-2 border-grey text-light font-bold bg-primary hover:ring-4 hover:ring-light-grey rounded-md px-4 py-1
   }
   .form-input {
-    @apply block rounded-lg shadow-md px-4 pb-2 pt-4 w-full text-sm text-dark bg-light  border-2 border-grey appearance-none  focus:outline-none focus:ring-0 focus:border-primary
+    @apply block bg-white rounded-lg shadow-md px-4 pb-2 pt-4 w-full text-sm text-dark   border-2 border-grey appearance-none  focus:outline-none focus:ring-0 focus:border-primary
+  }
+  .form-input-danger {
+    @apply block rounded-lg shadow-md px-4 pb-2 pt-4 w-full text-sm text-dark bg-white  border-2 border-secondary appearance-none  focus:outline-none focus:ring-0 focus:border-primary
   }
 }
