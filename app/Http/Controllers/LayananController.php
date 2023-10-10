@@ -13,14 +13,29 @@ class LayananController extends Controller
         ddd($request->input());
     }
 
-    public function render(string $jenisLayanan, string $tera)
+    public function ajukanDataSuccess($tera, $message)
     {
-        if ($jenisLayanan == 'data-tera') return view('guest.data-tera', [
-            'layanan' => $jenisLayanan,
+        ddd("S");
+        // ddd(['tera' => $tera, 'message' => $message]);
+        return view('guest.data-tera', [
             'tera' => $tera,
+            'layanan' => 'data-tera',
             'success' => true,
-            'kodePengajuan' => 'XXXXXX',
+            'message' => $message,
         ]);
-        if ($jenisLayanan == 'ajukan-tera') return view('guest.ajukan-tera', ['layanan' => $jenisLayanan, 'tera' => $tera]);
+    }
+
+    public function showDataTera(string $tera)
+    {
+        return view('guest.data-tera', [
+            'tera' => $tera,
+            'layanan' => 'data-tera'
+        ]);
+    }
+
+    public function showAjukanTera(string $tera)
+    {
+
+        return view('guest.ajukan-tera', ['tera' => $tera, 'layanan' => 'ajukan-tera']);
     }
 }

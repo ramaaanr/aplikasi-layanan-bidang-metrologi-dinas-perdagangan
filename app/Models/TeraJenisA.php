@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class TeraJenisC extends Tera
+class TeraJenisA extends Model
 {
     use HasFactory;
 
-    protected $table = 'tera_jenis_c';
+    protected $table = 'tera_jenis_a';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $incrementing = true;

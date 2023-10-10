@@ -16,7 +16,7 @@ class CardTable extends Component
 
   public function getTeraData()
   {
-    $model = config("tera.$this->tera.model");
+    $model = config("tera.$this->tera.model_tera");
     $data = $model::select('kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
       ->where('jenis_tera', $this->tera)
       ->where("$this->queryCategory", 'LIKE', "%$this->query%")

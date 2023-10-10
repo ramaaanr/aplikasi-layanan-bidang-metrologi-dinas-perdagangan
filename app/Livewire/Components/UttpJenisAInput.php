@@ -14,16 +14,16 @@ class UttpJenisAInput extends Component
   public $index;
 
   #[Rule('required', message: 'Merk UTTP Wajib Diisi!')]
-  public $merkUTTP;
+  public $merkUTTP = 'yamaha';
 
   #[Rule('required', message: 'Tipe/Model UTTP Wajib Diisi!')]
-  public $tipeUTTP;
+  public $tipeUTTP = 'Fire Fly';
 
   #[Rule('required', message: 'Nomor Seri UTTP Wajib Diisi!')]
-  public $nomorSeriUTTP;
+  public $nomorSeriUTTP = "088";
 
   #[Rule('required', message: 'Kapasitas UTTP Wajib Diisi!')]
-  public $kapasitasUTTP;
+  public $kapasitasUTTP = 12;
 
   #[On('ajukan-tera-submited')]
   public function validateInput()

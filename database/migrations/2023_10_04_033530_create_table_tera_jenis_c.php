@@ -28,12 +28,13 @@ return new class extends Migration
             $table->string("dokumen_skhp_sebelumnya", 100)->nullable(false);
             $table->string("dokumen_bukti_pendukung_lainnya", 100)->nullable(false);
             $table->string("jumlah_uttp", 20)->nullable(false);
-            $table->string("id_uttp", 20)->nullable(false);
             $table->string("status", 10)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
             $table->string("id_staff", 100)->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();
+            $table->string("tempat_pengujian", 100)->nullable(false);
+            $table->string("alamat_pengujian", 100)->nullable(false);
         });
     }
 

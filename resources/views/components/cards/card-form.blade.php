@@ -1,28 +1,39 @@
 <div class="card-sm p-4  min-h-[74vh]">
+
+  {{-- Modal --}}
+  <!-- Main modal -->
+  @if (session('success'))
+  @include('components.alert-succes', ['tera' => $tera, 'kode_pengajuan' => session('success')])
+  @endif
+  @if (session('error'))
+  @include('components.alert-error', ['tera' => $tera])
+  @endif
+  {{-- Modal --}}
+
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{ $sentenceCaseTitle }}</h3>
-  <form wire:submit="submit" class="md:grid  md:grid-cols-2 md:gap-x-4 lg:gap-x-8">
+  <form wire:submit='submit' class="md:grid  md:grid-cols-2 md:gap-x-4 lg:gap-x-8">
     @csrf
     <div class="order-1 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Pemohon</p>
       <div class="relative mt-3">
-        <input wire:model.live='form.namaPemohon' name="nama_pemohon" type="text" id="nama_pemohon"
+        <input wire:model.live='form.nama_pemohon' name="nama_pemohon" type="text" id="nama_pemohon"
           class="form-input peer " placeholder=" " />
         <label for="nama_pemohon"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nama
           Pemohon</label>
       </div>
-      @error('form.namaPemohon')
+      @error('form.nama_pemohon')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
 
       <div class="relative mt-3">
-        <input wire:model.live='form.alamatPemohon' name="alamat_pemohon" type="text" id="alamat_pemohon"
+        <input wire:model.live='form.alamat_pemohon' name="alamat_pemohon" type="text" id="alamat_pemohon"
           class="form-input peer" placeholder=" " />
 
         <label for="alamat_pemohon"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>
-      @error('form.alamatPemohon')
+      @error('form.alamat_pemohon')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
     </div>
@@ -30,50 +41,50 @@
     <div class="order-3 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Surat Keterangan Hasil Pengujian (SKHP) Atas Nama</p>
       <div class="relative mt-3">
-        <input wire:model.live='form.namaSKHP' name="nama_skhp" type="text" id="nama_skhp" class="form-input peer"
+        <input wire:model.live='form.nama_skhp' name="nama_skhp" type="text" id="nama_skhp" class="form-input peer"
           placeholder=" " />
         <label for="nama_skhp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nama
         </label>
       </div>
-      @error('form.namaSKHP')
+      @error('form.nama_skhp')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       <div class="relative mt-3">
-        <input wire:model.live='form.alamatSKHP' name="alamat_skhp" type="text" id="alamat_skhp" class="form-input peer"
-          placeholder=" " />
+        <input wire:model.live='form.alamat_skhp' name="alamat_skhp" type="text" id="alamat_skhp"
+          class="form-input peer" placeholder=" " />
         <label for="alamat_skhp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>
-      @error('form.alamatSKHP')
+      @error('form.alamat_skhp')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
 
       <div class="relative mt-3">
-        <input wire:model.live='form.kelurahanSKHP' name="kelurahan_skhp" type="text" id="kelurahan_skhp"
+        <input wire:model.live='form.kelurahan_skhp' name="kelurahan_skhp" type="text" id="kelurahan_skhp"
           class="form-input peer" placeholder=" " />
         <label for="kelurahan_skhp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Kelurahan</label>
       </div>
-      @error('form.kelurahanSKHP')
+      @error('form.kelurahan_skhp')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       <div class="relative mt-3">
-        <input wire:model.live='form.kecamatanSKHP' name="kecamatan_skhp" type="text" id="kecamatan_skhp"
+        <input wire:model.live='form.kecamatan_skhp' name="kecamatan_skhp" type="text" id="kecamatan_skhp"
           class="form-input peer" placeholder=" " />
         <label for="kecamatan_skhp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Kecamatan</label>
       </div>
-      @error('form.kecamatanSKHP')
+      @error('form.kecamatan_skhp')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       <div class="relative mt-3">
-        <input wire:model.live='form.kotaSKHP' name="kota_skhp" type="text" id="kota_skhp"
+        <input wire:model.live='form.kota_skhp' name="kota_skhp" type="text" id="kota_skhp"
           class="form-input peer font-medium" placeholder=" " value="Banjarbaru" readonly />
         <label for="kota_skhp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Kota</label>
       </div>
-      @error('form.kotaSKHP')
+      @error('form.kota_skhp')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
     </div>
@@ -81,13 +92,13 @@
     <div class="order-2 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Nomor Kotak Telp/HP</p>
       <div class="relative mt-3">
-        <input wire:model.live='form.nomorKontak' name="nomor_kontak" type="tel" id="nomor_kontak"
+        <input wire:model.live='form.nomor_kontak' name="nomor_kontak" type="tel" id="nomor_kontak"
           class="form-input peer" placeholder=" " />
         <label for="nomor_kontak"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nomor
           Kotak Telp/HP</label>
       </div>
-      @error('form.nomorKontak')
+      @error('form.nomor_kontak')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
     </div>
@@ -97,71 +108,130 @@
       <p class="text-sm md:text-base font-semibold">Kelengkapan Dokumen</p>
       <div class="mt-3">
         <p class="text-sm">Upload Surat Permohonan</p>
-        <input accept=".pdf" wire:model.live='form.dokumenSuratPermohonan' name="dokumen_surat_permohonan"
+        <input accept=".pdf" wire:model.live='file_dokumen_surat_permohonan' name="dokumen_surat_permohonan"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_surat_permohonan" type="file">
-        <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Format File PDF dengan Maksimal 2MB</p>
-        @error('form.dokumenSuratPermohonan')
+        <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Format File PDF dengan Maksimal 2MB
+        </p>
+        @error('file_dokumen_surat_permohonan')
         <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
         @enderror
       </div>
 
       <div class="mt-3">
         <p class="text-sm">Upload SKHP Sebelumnya</p>
-        <input accept=".pdf" wire:model.live='form.dokumenSkhpSebelumnya' name="dokumen_skhp_sebelumnya"
+        <input accept=".pdf" wire:model.live='file_dokumen_skhp_sebelumnya' name="dokumen_skhp_sebelumnya"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_skhp_sebelumnya" type="file">
         <p class="mt-3 text-sm text-grey" id="dokumen_skhp_sebelumnya">Format File PDF dengan Maksimal 2MB</p>
-        @error('form.dokumenSkhpSebelumnya')
+        @error('file_dokumen_skhp_sebelumnya')
         <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
         @enderror
       </div>
       <div class="mt-3">
         <p class="text-sm">Bukti Pendukung Lainnya</p>
-        <input accept=".pdf" wire:model.live='form.dokumenBuktiPendukungLainnya' name="dokumen_bukti_pendukung_lainnya"
+        <input accept=".pdf" wire:model.live='file_dokumen_bukti_pendukung_lainnya'
+          name="dokumen_bukti_pendukung_lainnya"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_bukti_pendukung" type="file">
         <p class="mt-3 text-sm text-grey" id="dokumen_bukti_pendukung">Format File PDF dengan Maksimal 2MB</p>
-        @error('form.dokumenBuktiPendukungLainnya')
+        @error('file_dokumen_bukti_pendukung_lainnya')
         <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
         @enderror
 
       </div>
     </div>
 
-    @livewire('components.cards.card-form-uttp-table')
+    <div class="table-uttp-container order-5 col-span-2 mb-3">
+
+      <div class=" md:w-1/2 pr-4 form-group-container">
+        <p class="text-sm md:text-base font-semibold">Jumlah UTTP</p>
+        <div class="relative my-3">
+          <input min="1" wire:model.live="form.jumlah_uttp" type="number" id="jumlah-uttp" class="form-input peer"
+            placeholder=" " />
+          <label for="jumlah-uttp"
+            class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Jumlah
+            UTTP/Unit</label>
+        </div>
+      </div>
+      <div class="form-group-container">
+        <p class="text-sm md:text-base font-semibold">Identitas UTTP</p>
+
+        <div class="relative overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-2 border-2 border-grey">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr class="bg-light-2">
+                <th scope="col" class="p-3 w-[5%]">
+                  <div class="flex items-center">
+                    No
+                  </div>
+                </th>
+                <th scope="col" class="p-3 w-9">
+                  <div class="flex items-center">
+                    Merek
+                  </div>
+                </th>
+                <th scope="col" class="p-3 w-9">
+                  <div class="flex items-center">
+                    Tipe/Model
+                  </div>
+                </th>
+                <th scope="col" class="p-3 w-9">
+                  <div class="flex items-center">
+                    Nomor Seri
+                  </div>
+                </th>
+                <th scope="col" class="p-3 w-3">
+                  <div class="flex items-center">
+                    Kapasitas
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach (range(1, $this->form->jumlah_uttp) as $index)
+              @livewire('components.uttp-jenis-a-input', ['index' => $index], key($index))
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
 
     <div class="order-7 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Tanggal Pengujian</p>
       <div class="relative w-full mt-3">
-        <input min="{{$this->getTodayDate()}}" wire:model.live='form.tanggalPengujian' name="tanggal_pengujian"
+        <input min="{{ $this->getTodayDate() }}" wire:model.live='form.tanggal_pengujian' name="tanggal_pengujian"
           type="date" id="tanggal_pengujian" class="form-input peer" placeholder=" " />
       </div>
-      @error('form.tanggalPengujian')
+      @error('form.tanggal_pengujian')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
     </div>
 
-    <div class="order-8 form-group-container my-2" x-data="{ tempatPengujian: 'di_kantor' }">
+    <div class="order-8 form-group-container my-2" x-data="{ tempat_pengujian: 'di_kantor' }">
       <p class="text-sm md:text-base font-semibold">Tempat Pengujian</p>
-      <select wire:model.live='form.tempatPengujian' name="tempat_pengujian" x-model="tempatPengujian"
+      <select wire:model.live='form.tempat_pengujian' name="tempat_pengujian" x-model="tempat_pengujian"
         class="input-sm mt-3 bg-white text-sm text-left inline-flex justify-between text-grey">
         <option selected value="di_kantor">Kantor Dinas Perdagangan</option>
         <option value="di_luar_kantor">Alamat Pemohon</option>
       </select>
-      @error('form.tempatPengujian')
+      @error('form.tempat_pengujian')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
-      <div class="relative mt-3" x-show="tempatPengujian == 'di_luar_kantor'">
-        <input x-bind:value="tempatPengujian == 'di_luar_kantor' ? '' :
+      <div class="relative mt-3" x-show="tempat_pengujian == 'di_luar_kantor'">
+        <input x-bind:value="tempat_pengujian == 'di_luar_kantor' ? '' :
                         'Kantor Dinas Perdagangan Jl. Panglima Batur Barat No . 08 Banjarbaru'"
-          wire:model.live='form.alamatPengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan" type="text"
-          id="alamat_pemohon" class="form-input peer" placeholder=" " />
-        <label for="alamat_pemohon"
+          wire:model.live='form.alamat_pengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan" type="text"
+          id="alamat_pengujian" class="form-input peer" placeholder=" " />
+        <label for="alamat_pengujian"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>
-      @error('form.alamatPengujian')
-      <p x-show="tempatPengujian == 'di_luar_kantor'" class="text-xs mb-2 pl-2 text-secondary">
+      @error('form.alamat_pengujian')
+      <p x-show="tempat_pengujian == 'di_luar_kantor'" class="text-xs mb-2 pl-2 text-secondary">
         {{ $message }}
       </p>
       @enderror
