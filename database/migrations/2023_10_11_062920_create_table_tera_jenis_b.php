@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tera_jenis_c', function (Blueprint $table) {
+        Schema::create('tera_jenis_b', function (Blueprint $table) {
             $table->id();
             $table->string("kode_pengajuan", 20)->nullable(false)->unique();
             $table->string("no_surat", 50)->nullable(true)->unique();
@@ -27,10 +27,11 @@ return new class extends Migration
             $table->string("dokumen_surat_permohonan", 100)->nullable(false);
             $table->string("dokumen_skhp_sebelumnya", 100)->nullable(false);
             $table->string("dokumen_bukti_pendukung_lainnya", 100)->nullable(false);
-            $table->int("jumlah_uttp")->nullable(false);
+            $table->integer("jumlah_uttp")->nullable(false);
+            $table->integer("jumlah_nozzle")->nullable(false);
             $table->string("status", 10)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
-            $table->string("id_staff", 100)->nullable(true);
+            $table->string("staff_id", 100)->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();
             $table->string("tempat_pengujian", 100)->nullable(false);
@@ -43,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tera_jenis_c');
+        Schema::dropIfExists('tera_jenis_b');
     }
 };

@@ -15,6 +15,7 @@
         <p class="text-base  text-gray-500">
           Terjadi kesalahan pada website, silahkan hubungi Customer Service
         </p>
+        <p>{{$e}}</p>
       </div>
       <!-- Modal footer -->
       <div class="flex justify-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">

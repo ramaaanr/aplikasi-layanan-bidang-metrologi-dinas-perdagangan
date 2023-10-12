@@ -9,6 +9,11 @@ class Tera extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
+    public $incrementing = true;
+    public $timestamps = false;
+
     protected $fillable = [
         'kode_pengajuan',
         'jenis_tera',

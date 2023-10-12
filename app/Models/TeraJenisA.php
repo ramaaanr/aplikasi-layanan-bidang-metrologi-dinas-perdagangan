@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeraJenisA extends Model
 {
-    use HasFactory;
 
     protected $table = 'tera_jenis_a';
     protected $primaryKey = 'id';

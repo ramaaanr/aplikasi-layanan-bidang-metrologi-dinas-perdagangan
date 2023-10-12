@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class IdentitasUttpJenisB extends Model
+class IdentitasUttpJenisB extends IdentitasUttp
 {
-    use HasFactory;
+    protected $table = 'identitas_uttp_jenis_b';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->mergeFillable([
+            'tera_jenis_c_id',
+            'kapasitas',
+        ]);
+    }
 }

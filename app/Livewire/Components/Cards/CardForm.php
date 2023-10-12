@@ -5,34 +5,23 @@ namespace App\Livewire\Components\Cards;
 use App\Livewire\Forms\AjukanTeraForm;
 use Carbon\Carbon;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use Ramsey\Uuid\Nonstandard\Uuid;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 
 
 class CardForm extends Component
 {
+
   use WithFileUploads;
 
+  public $isSubmitButtonDisabled = false;
   public $sentenceCaseTitle;
   public $tera;
+  public $jenisUttp;
   public $success = false;
   public $message = null;
 
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen Surat Permohonan Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
-  public $file_dokumen_surat_permohonan;
-
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen SKHP Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
-  public $file_dokumen_skhp_sebelumnya;
-
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
-  public $file_dokumen_bukti_pendukung_lainnya;
 
   public AjukanTeraForm $form;
 
@@ -51,30 +40,32 @@ class CardForm extends Component
     return Carbon::now()->format('Y-m-d');
   }
 
-  public function storeFiles()
-  {
-    $file_path_dokumen_bukti_pendukung_lainnya =
-      $this->file_dokumen_bukti_pendukung_lainnya->store('dokumen_bukti_pendukung_lainnya');
-    $file_path_dokumen_skhp_sebelumnya =
-      $this->file_dokumen_skhp_sebelumnya->store('dokumen_skhp_sebelumnya');
-    $file_path_dokumen_surat_permohonan =
-      $this->file_dokumen_surat_permohonan->store('dokumen_surat_permohonan');
 
-    $this->form->dokumen_bukti_pendukung_lainnya = $file_path_dokumen_bukti_pendukung_lainnya;
-    $this->form->dokumen_skhp_sebelumnya = $file_path_dokumen_skhp_sebelumnya;
-    $this->form->dokumen_surat_permohonan = $file_path_dokumen_surat_permohonan;
+  public function showSuccessAlert()
+  {
+    session()->flash('success', $this->form->kode_pengajuan);
+  }
+
+  #[On('submit-uttp-fail')]
+  public function showErrorAlert($e)
+  {
+    session()->flash('error', $e);
   }
 
   public function submit()
   {
-    $this->dispatch('ajukan-tera-submited');
-    $message = '';
+    $this->isSubmitButtonDisabled = true;
     try {
-      $this->storeFiles();
+      $this->dispatch('validate-uttp');
+      $this->validate();
       $this->form->store();
-      session()->flash('success', $this->form->kode_pengajuan);
-    } catch (\Exception $e) {
-      session()->flash('error');
+      $this->dispatch('submit-uttp');
+      $this->showSuccessAlert();
+    } catch (\Illuminate\Database\QueryException $e) {
+      $this->showErrorAlert($e);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+      $this->isSubmitButtonDisabled = false;
+      $this->validate();
     }
   }
 
@@ -88,6 +79,7 @@ class CardForm extends Component
     }, $words);
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
     $this->form->setProperties($this->getRandomCode(), $this->tera);
+    $this->jenisUttp = config("tera.$this->tera.jenis_uttp");
   }
 
   public function render()

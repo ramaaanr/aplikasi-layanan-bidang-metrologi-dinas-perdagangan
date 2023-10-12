@@ -20,7 +20,7 @@ class CardTable extends Component
     $data = $model::select('kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
       ->where('jenis_tera', $this->tera)
       ->where("$this->queryCategory", 'LIKE', "%$this->query%")
-      ->orderBy('tanggal_pengajuan', 'desc')
+      ->orderBy('id', 'desc')
       ->paginate(5);
     return $data;
   }
