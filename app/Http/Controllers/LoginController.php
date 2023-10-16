@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function doLogin()
-    {
-        return redirect('/tempe');
-    }
 
     public function login()
     {
-        return view('guest.home');
+        return view('guest.login');
     }
 }

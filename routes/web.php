@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\LayananController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PengajuanLayananController;
+use App\Http\Controllers\PengajuanLayananTeraController;
+use App\Http\Controllers\PengelolaanLayananTeraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,16 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::controller(LoginController::class)
     ->group(function () {
         Route::get('/login', 'login')->name('login');
         Route::post('/login', 'doLogin')->name('doLogin');
     });
 
-Route::get('/', function () {
-    return view('guest.home');
+Route::middleware(['only-admin'])->group(function () {
+    Route::get('/pengelolaan-layanan/dashboard', [PengelolaanLayananTeraController::class, 'index'])->name('admin-dashboard');
+    Route::get('/pengelolaan-layanan/data-tera/{tera}', [PengelolaanLayananTeraController::class, 'showDataTera'])->name('admin-data-tera');
 });
 
-Route::get('layanan/data-tera/{tera}', [LayananController::class, 'showDataTera']);
-Route::get('layanan/ajukan-tera/{tera}', [LayananController::class, 'showAjukanTera']);
-Route::post('/layanan', [LayananController::class, 'ajukanTera'])->name('ajukan-tera');
+Route::middleware(['only-guest'])->group(function () {
+    Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
+    Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
+});
+
+Route::middleware(['pengajuan-or-pelayanan'])->group(function () {
+    Route::get('/layanan/data-tera/{tera}');
+});

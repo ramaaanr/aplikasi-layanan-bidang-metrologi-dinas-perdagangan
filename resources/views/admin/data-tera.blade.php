@@ -7,6 +7,6 @@
 
 
 <div class="card-content-layanan">
-  @livewire('components.cards.card-table', ['tera' => $tera, 'lazy' => true])
+  Data {{$tera}}
 </div>
 @endsection

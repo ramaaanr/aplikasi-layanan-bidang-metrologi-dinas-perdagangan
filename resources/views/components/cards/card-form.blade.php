@@ -147,10 +147,8 @@
     </div>
     <div class="order-7 col-span-2 form-group-container">
       <p class="text-sm md:text-base font-semibold">Identitas UTTP</p>
-
       <div class=" relative overflow-x-auto shadow-md rounded-md sm:rounded-lg mt-2 border-2 border-grey">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-
           @include("components.table-head-$this->jenisUttp")
           <tbody>
             @foreach (range(1, $this->form->jumlah_uttp) as $index)

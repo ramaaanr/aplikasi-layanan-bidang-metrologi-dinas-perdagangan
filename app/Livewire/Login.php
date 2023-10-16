@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
+
     public $username;
     public $password;
     public $status = 'success';
@@ -23,7 +25,14 @@ class Login extends Component
                 'required' => ':attribute wajib diisi',
             ],
         );
-        $this->status = 'success';
+        if (Auth::attempt($this->except(['status']))) {
+            // ddd($this->session());
+            // Auth::login($user);
+            // ddd($this->authenticated($this->except(['status']), $user));
+            session()->put('admin', 'udinsedunia');
+            return redirect()->intended('/pengelolaan-layanan');
+        }
+        $this->addError('password', 'Password Tidak Sesuai');
     }
 
     public function updatedUsername()

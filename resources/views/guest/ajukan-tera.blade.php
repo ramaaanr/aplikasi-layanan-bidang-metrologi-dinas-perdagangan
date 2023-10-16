@@ -1,4 +1,4 @@
-@extends('guest.layout-layanan')
+@extends('layouts.layout-layanan')
 
 @section('main-content')
 <div class="card-content-layanan">

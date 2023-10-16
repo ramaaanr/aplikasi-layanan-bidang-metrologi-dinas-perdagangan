@@ -31,7 +31,7 @@
 
 
     <!-- ➕ Pengajuan Start -->
-    <a href="/layanan/ajukan-tera/{{ $tera }}"
+    <a href="/pengajuan-layanan/ajukan-tera/{{$tera}}/"
       class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
       <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
         <path xmlns="http://www.w3.org/2000/svg"
