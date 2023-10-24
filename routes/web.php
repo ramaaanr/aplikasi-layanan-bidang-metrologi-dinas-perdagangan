@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::controller(LoginController::class)
-    ->group(function () {
-        Route::get('/login', 'login')->name('login');
-        Route::post('/login', 'doLogin')->name('doLogin');
-    });
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'doLogin')->name('doLogin');
+});
 
 Route::middleware(['only-admin'])->group(function () {
     Route::get('/pengelolaan-layanan/dashboard', [PengelolaanLayananTeraController::class, 'index'])->name('admin-dashboard');
     Route::get('/pengelolaan-layanan/data-tera/{tera}', [PengelolaanLayananTeraController::class, 'showDataTera'])->name('admin-data-tera');
+    Route::get('/pengelolaan-layanan/update-tera/{tera}', [PengelolaanLayananTeraController::class, 'showUpdateTera'])->name('admin-update-tera');
 });
 
 Route::middleware(['only-guest'])->group(function () {

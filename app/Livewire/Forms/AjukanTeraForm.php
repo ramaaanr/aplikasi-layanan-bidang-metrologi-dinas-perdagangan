@@ -3,72 +3,77 @@
 namespace App\Livewire\Forms;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
 
 class AjukanTeraForm extends Form
 {
+  public $nonSavedProperties = [
+    'nonSavedProperties',
+    'file_dokumen_surat_permohonan',
+    'file_dokumen_skhp_sebelumnya',
+    'file_dokumen_bukti_pendukung_lainnya',
+  ];
 
   public $kode_pengajuan;
   public $jenis_tera;
   public $jumlah_uttp = 1;
   public $jumlah_perlengkapan = 1;
-  public $jumlah_nozzle = 2;
+  public $jumlah_nozzle = 1;
   public $status = "Diajukan";
   public $tanggal_pengajuan;
-  public $keterangan = "Tera anda sedang diajukan dan diproses sistem";
+  public $dokumen_surat_permohonan;
+  public $dokumen_skhp_sebelumnya;
+  public $dokumen_bukti_pendukung_lainnya;
+
+  #[Rule('required', message: 'Keterangan Wajib Diisi!')]
+  public $keterangan = "Tera anda sedang diajukan dan dipross sistem";
 
   #[Rule('required', message: 'Nama Pemohon Wajib Diisi!')]
-  public $nama_pemohon = "Alfi Tesumbalit";
+  public $nama_pemohon = "";
 
   #[Rule('required', message: 'Alamat Pemohon Wajib Diisi!')]
-  public $alamat_pemohon = 'jalan salto';
+  public $alamat_pemohon = '';
 
   #[Rule('required', message: 'SKHP atas Nama Wajib Diisi!')]
-  public $nama_skhp = "Alfi tesumbalit";
+  public $nama_skhp = "";
 
   #[Rule('required', message: 'Alamat dalam SKHP Wajib Diisi!')]
-  public $alamat_skhp = 'Jalan Salto';
+  public $alamat_skhp = '';
 
   #[Rule('required', message: 'Alamat Kelurahan dalam SKHP Wajib Diisi!')]
-  public $kelurahan_skhp = 'Kelurahan Socotra';
+  public $kelurahan_skhp = '';
 
   #[Rule('required', message: 'Alamat Kecamatan dalam SKHP Wajib Diisi!')]
-  public $kecamatan_skhp = 'Kecamatan Pluto';
+  public $kecamatan_skhp = '';
 
   #[Rule('required', message: 'Alamat Kota dalam SKHP Wajib Diisi!')]
   public $kota_skhp = "Banjarbaru";
 
   #[Rule('required', message: 'Nomor Kontak Wajib Diisi!')]
   #[Rule('regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', message: 'Format Nomor Tidak Sesuai')]
-  public $nomor_kontak = '088245672170';
+  public $nomor_kontak = '';
 
-  public $dokumen_surat_permohonan;
-
-  public $dokumen_skhp_sebelumnya;
-
-  public $dokumen_bukti_pendukung_lainnya;
-
-
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen Surat Permohonan Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
+  // #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
+  // #[Rule('required', message: 'Upload Dokumen Surat Permohonan Wajib Diisi!')]
+  // #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
   public $file_dokumen_surat_permohonan;
 
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen SKHP Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
+  // #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
+  // #[Rule('required', message: 'Upload Dokumen SKHP Wajib Diisi!')]
+  // #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
   public $file_dokumen_skhp_sebelumnya;
 
-  #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
-  #[Rule('required', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Diisi!')]
-  #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
+  // #[Rule('mimes:pdf', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Dalam Format PDF!')]
+  // #[Rule('required', message: 'Upload Dokumen Bukti Pendukung Lainnya Wajib Diisi!')]
+  // #[Rule('max:2048', message: 'Upload Dokumen Bukti Pendukung Lainnya Maksimal Dengan Ukuran 2MB')]
   public $file_dokumen_bukti_pendukung_lainnya;
 
 
   #[Rule('required', message: 'Tanggal Pengujian Wajib Diisi!')]
-  public $tanggal_pengujian = '2023-10-15';
+  public $tanggal_pengujian = '';
 
   #[Rule('required', message: 'Tempat Pengujian Wajib Diisi!')]
   public $tempat_pengujian = 'di_kantor';
@@ -76,6 +81,12 @@ class AjukanTeraForm extends Form
   #[Rule('required', message: 'Alamat Pengujian Wajib Diisi!')]
   public $alamat_pengujian = 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru';
 
+
+  public function getModel()
+  {
+    return
+      config("tera.$this->jenis_tera.model_tera");
+  }
 
   public function storeFiles()
   {
@@ -91,6 +102,7 @@ class AjukanTeraForm extends Form
     $this->dokumen_surat_permohonan = $file_path_dokumen_surat_permohonan;
   }
 
+
   public function setProperties($kode_pengajuan, $tera)
   {
     $this->kode_pengajuan = $kode_pengajuan;
@@ -98,35 +110,92 @@ class AjukanTeraForm extends Form
     $this->tanggal_pengajuan = Carbon::now()->format('Y-m-d');
   }
 
-  public function store()
+  public function getTeraAttributes()
   {
-    $file_atribute = [
-      'file_dokumen_surat_permohonan',
-      'file_dokumen_skhp_sebelumnya',
-      'file_dokumen_bukti_pendukung_lainnya',
-    ];
-    $this->storeFiles();
-    $model = config("tera.$this->jenis_tera.model_tera");
     switch (config("tera.$this->jenis_tera.jenis")) {
       case 'tera_jenis_c':
-        $model::create($this->except([
-          ...$file_atribute,
+        return [
+          ...$this->nonSavedProperties,
           'jumlah_perlengkapan',
-        ]));
-        break;
+          'jumlah_nozzle'
+        ];
       case 'tera_jenis_b':
-        $model::create($this->except([
-          ...$file_atribute, 'jumlah_perlengkapan',
-        ]));
-        break;
+        return [
+          ...$this->nonSavedProperties, 'jumlah_perlengkapan',
+        ];
       case 'tera_jenis_d':
-        $model::create($this->except([
-          ...$file_atribute,
-        ]));
-        break;
-      default:
-        # code...
-        break;
+        return [
+          ...$this->nonSavedProperties,
+          'jumlah_nozzle'
+        ];
     }
+  }
+
+  public function setAndGetPropertiesFromTable($id)
+  {
+    $dataTera = $this->getModel()::find($id);
+    $this->kode_pengajuan = $dataTera->kode_pengajuan;
+    $this->jenis_tera = $dataTera->jenis_tera;
+    $this->nama_pemohon = $dataTera->nama_pemohon;
+    $this->alamat_pemohon = $dataTera->alamat_pemohon;
+    $this->nama_skhp = $dataTera->nama_skhp;
+    $this->alamat_skhp = $dataTera->alamat_skhp;
+    $this->kelurahan_skhp = $dataTera->kelurahan_skhp;
+    $this->kecamatan_skhp = $dataTera->kecamatan_skhp;
+    $this->kota_skhp = $dataTera->kota_skhp;
+    $this->nomor_kontak = $dataTera->nomor_kontak;
+    $this->dokumen_surat_permohonan = $dataTera->dokumen_surat_permohonan;
+    $this->dokumen_skhp_sebelumnya = $dataTera->dokumen_skhp_sebelumnya;
+    $this->dokumen_bukti_pendukung_lainnya = $dataTera->dokumen_bukti_pendukung_lainnya;
+
+
+    Storage::copy($this->dokumen_surat_permohonan, "public/$this->dokumen_surat_permohonan");
+    Storage::copy($this->dokumen_skhp_sebelumnya, "public/$this->dokumen_skhp_sebelumnya");
+    Storage::copy($this->dokumen_bukti_pendukung_lainnya, "public/$this->dokumen_bukti_pendukung_lainnya");
+
+    // $this->file_dokumen_surat_permohonan = Storage::get('public/' . $this->dokumen_skhp_sebelumnya);
+
+    $this->jumlah_uttp = $dataTera->jumlah_uttp;
+    if (isset($dataTera->jumlah_nozzle)) {
+      $this->jumlah_nozzle = $dataTera->jumlah_nozzle;
+    }
+    if (isset($dataTera->jumlah_perlengkapan)) {
+      $this->jumlah_perlengkapan = $dataTera->jumlah_perlengkapan;
+    }
+    $this->status = $dataTera->status;
+    $this->keterangan = $dataTera->keterangan;
+    // $this->id_staff = $dataTera->id_staff;
+    $this->tanggal_pengujian = $dataTera->tanggal_pengujian;
+    $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
+    $this->tempat_pengujian = $dataTera->tempat_pengujian;
+    $this->alamat_pengujian = $dataTera->alamat_pengujian;
+    // dd($this->all());
+  }
+
+  public function store()
+  {
+    $this->storeFiles();
+    $this->getModel()::create($this->except([...$this->getTeraAttributes()]));
+  }
+
+  public function update($id)
+  {
+    if ($this->file_dokumen_surat_permohonan != null) {
+      $file_path_dokumen_surat_permohonan =
+        $this->file_dokumen_surat_permohonan->store('dokumen_surat_permohonan');
+      $this->dokumen_surat_permohonan = $file_path_dokumen_surat_permohonan;
+    }
+    if ($this->file_dokumen_bukti_pendukung_lainnya != null) {
+      $file_path_dokumen_bukti_pendukung_lainnya =
+        $this->file_dokumen_bukti_pendukung_lainnya->store('dokumen_bukti_pendukung_lainnya');
+      $this->dokumen_bukti_pendukung_lainnya = $file_path_dokumen_bukti_pendukung_lainnya;
+    }
+    if ($this->file_dokumen_skhp_sebelumnya != null) {
+      $file_path_dokumen_skhp_sebelumnya =
+        $this->file_dokumen_skhp_sebelumnya->store('dokumen_skhp_sebelumnya');
+      $this->dokumen_skhp_sebelumnya = $file_path_dokumen_skhp_sebelumnya;
+    }
+    // dd($this->all());
+    $this->getModel()::where('id', $id)->update($this->except([...$this->getTeraAttributes()]));
   }
 }

@@ -10,8 +10,13 @@ class PengelolaanLayananTeraController extends Controller
     {
         return view('admin.home', ['tera' => 'halaman-utama']);
     }
+
     public function showDataTera(String $tera)
     {
-        return view('admin.data-tera', ['tera' => $tera]);
+        return view('admin.data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);
+    }
+    public function showUpdateTera(String $tera)
+    {
+        return view('admin.update-tera', ['tera' => $tera, 'layanan' => 'update-tera']);
     }
 }

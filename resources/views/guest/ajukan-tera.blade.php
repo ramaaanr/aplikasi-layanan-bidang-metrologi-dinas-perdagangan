@@ -2,6 +2,6 @@
 
 @section('main-content')
 <div class="card-content-layanan">
-  @livewire('components.cards.card-form', ['tera' => $tera])
+  @livewire('components.cards.card-form', ['tera' => $tera, 'isOnUpdate' => false])
 </div>
 @endsection

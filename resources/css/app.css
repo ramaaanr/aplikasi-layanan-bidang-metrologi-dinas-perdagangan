@@ -56,6 +56,9 @@
   .button-light {
     @apply shadow-lg border-2 border-grey text-dark-grey font-semibold bg-white hover:ring-4 hover:ring-light-grey rounded-md px-4 py-2
   }
+  .button-light-sm {
+    @apply shadow-sm border-2 text-sm border-grey text-dark-grey font-semibold bg-white hover:ring-4 hover:ring-light-grey rounded-md px-2 py-1
+  }
 
   .button-light-disabled {
     @apply shadow-lg border-2 border-grey text-dark-grey opacity-70 font-semibold bg-light-2 cursor-not-allowed rounded-md px-4 py-2

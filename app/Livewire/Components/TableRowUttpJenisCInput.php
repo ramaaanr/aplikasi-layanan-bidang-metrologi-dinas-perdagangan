@@ -6,38 +6,23 @@ use App\Models\IdentitasUttpJenisC;
 use App\Models\TeraJenisB;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
-use Livewire\Component;
 
-class TableRowUttpJenisCInput extends Component
+class TableRowUttpJenisCInput extends TableRowUttp
 {
-    public $index;
-    public $kode_pengajuan;
+
     public $tera_jenis_b_id;
 
-    #[Rule('required', message: 'Merk UTTP Wajib Diisi!')]
-    public $merek = "Yamaha";
-
-    #[Rule('required', message: 'Tipe/Model UTTP Wajib Diisi!')]
-    public $tipe = 'Fire Fly';
-
-    #[Rule('required', message: 'Nomor Seri UTTP Wajib Diisi!')]
-    public $nomor_seri = "088";
 
     #[Rule('required', message: 'Debit Maksimal Wajib Diisi!')]
-    public $debit_maksimal = "12";
+    public $debit_maksimal = "";
 
     #[Rule('required', message: 'Media Wajib Diisi!')]
-    public $media = "sctv";
+    public $media = "";
 
     #[Rule('required', message: 'Jumlah Nozzle wajib diisi')]
-    public $jumlah_nozzle = "123";
+    public $jumlah_nozzle = "";
 
 
-    #[On('validate-uttp')]
-    public function validateInput()
-    {
-        $this->validate();
-    }
 
     #[On('submit-uttp')]
     public function submit()
@@ -46,11 +31,35 @@ class TableRowUttpJenisCInput extends Component
         IdentitasUttpJenisC::create(
             $this->except(
                 [
-                    'index',
-                    'kode_pengajuan',
+                    ...$this->exceptProperties
                 ]
             )
         );
+    }
+
+    #[On('update-uttp')]
+    public function update()
+    {
+        $this->tera_jenis_b_id = TeraJenisB::where('kode_pengajuan', $this->kode_pengajuan)->value('id');
+        IdentitasUttpJenisC::where('id', $this->id)->update(
+            $this->except(
+                [
+                    ...$this->exceptProperties
+                ]
+            )
+        );
+    }
+
+
+    public function mount()
+    {
+        if ($this->isOnUpdate) {
+            $modelUttp = parent::mount();
+            $this->debit_maksimal = $modelUttp->debit_maksimal;
+            $this->media = $modelUttp->media;
+            $this->jumlah_nozzle = $modelUttp->jumlah_nozzle;
+            $this->tera_jenis_b_id = $modelUttp->tera_jenis_b_id;
+        }
     }
 
     public function render()

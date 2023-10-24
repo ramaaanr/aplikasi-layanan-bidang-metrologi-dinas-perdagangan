@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string("dokumen_bukti_pendukung_lainnya", 100)->nullable(false);
             $table->integer("jumlah_uttp")->nullable(false);
             $table->integer("jumlah_perlengkapan")->nullable(false);
-            $table->string("status", 10)->nullable(false);
+            $table->string("status", 15)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
             $table->string("staff_id", 100)->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);

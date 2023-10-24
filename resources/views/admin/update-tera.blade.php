@@ -7,6 +7,6 @@
 
 
 <div class="card-content-layanan">
-  @livewire('components.cards.card-table-admin', ['tera' => $tera, 'lazy' => true])
+  @livewire('components.cards.card-form', ['tera' => $tera, 'isOnUpdate' => true])
 </div>
 @endsection

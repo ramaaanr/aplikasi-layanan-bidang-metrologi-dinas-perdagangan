@@ -29,20 +29,6 @@
     </select>
     <!-- ⏬ Dropdown End -->
 
-
-    <!-- ➕ Pengajuan Start -->
-    <a href="/pengajuan-layanan/ajukan-tera/{{$tera}}/"
-      class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
-      <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
-        <path xmlns="http://www.w3.org/2000/svg"
-          d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
-      </svg>
-      <span class="text-sm text-light">
-        Ajukan Tera
-      </span>
-    </a>
-    <!-- ➕ Pengajuan End -->
-
   </div>
   <!-- 🎬 Action Container End -->
 
@@ -105,25 +91,37 @@
               Keterangan
             </div>
           </th>
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
+              Aksi
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
         @foreach ($dataTera as $dataPengajuan)
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <!-- 🧑‍💻 Kode Pengajuan -->
           <th scope="row" class="p-3 w-9 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {{ $dataPengajuan->kode_pengajuan }}
           </th>
+
+          <!-- 🧑 Nama Pemohon -->
           <td class="p-3 w-10">
             {{ $dataPengajuan->nama_pemohon }}
-
           </td>
+
+          <!-- 📅🆙 Tanggal Pengajuan -->
           <td class="p-3 w-9">
             {{ $dataPengajuan->tanggal_pengajuan }}
           </td>
+
+          <!-- 📅✔️ Tanggal Pengujian-->
           <td class="p-3 w-9">
             {{ $dataPengajuan->tanggal_pengujian }}
           </td>
 
+          <!-- 📊 Status -->
           <td class="p-3 w-3">
             <div x-data="{ status: '{{$dataPengajuan->status}}' }">
               <div x-bind:class="{
@@ -139,9 +137,16 @@
           <td class="p-3 w-9">
             {{ $dataPengajuan->keterangan }}
           </td>
+
+          <!-- 🎬 Aksi -->
+          <td class="p-3 w-9">
+            <a class="underline" href="/pengelolaan-layanan/update-tera/{{$tera}}?id={{$dataPengajuan->id}}">Update</a>
+            <a class="underline text-light-grey pointer-events-none" href="">Cetak</a>
+          </td>
         </tr>
         @endforeach
       </tbody>
+
     </table>
   </div>
   <div class="table-pagination__container flex justify-end mt-2 ">
@@ -186,14 +191,6 @@
       </span>
     </nav>
     @endif
-    <!-- <button wire:click="previousPage" x-bind:disabled="page == 1" x-bind:class="page == 1 ? 'button-light-disabled' : 'button-light'" class="mr-2 flex items-center fill-dark-grey"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
-        <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
-      </svg>
-      <p class="text-sm">Sebelumnya</p>
-    </button>
-   
-    <p x-text="page"></p>
-    <p x-text="lastPage"></p> -->
   </div>
 </div>
 

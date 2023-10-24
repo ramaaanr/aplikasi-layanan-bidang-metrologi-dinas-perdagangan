@@ -26,11 +26,8 @@ class Login extends Component
             ],
         );
         if (Auth::attempt($this->except(['status']))) {
-            // ddd($this->session());
-            // Auth::login($user);
-            // ddd($this->authenticated($this->except(['status']), $user));
             session()->put('admin', 'udinsedunia');
-            return redirect()->intended('/pengelolaan-layanan');
+            return redirect()->intended();
         }
         $this->addError('password', 'Password Tidak Sesuai');
     }
