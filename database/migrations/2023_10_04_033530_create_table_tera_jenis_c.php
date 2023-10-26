@@ -30,11 +30,13 @@ return new class extends Migration
             $table->int("jumlah_uttp")->nullable(false);
             $table->string("status", 15)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
-            $table->string("id_staff", 100)->nullable(true);
+            $table->unsignedBigInteger("admin_id")->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();
             $table->string("tempat_pengujian", 100)->nullable(false);
             $table->string("alamat_pengujian", 100)->nullable(false);
+
+            $table->foreign('admin_id')->references('id')->on('admin');
         });
     }
 

@@ -178,6 +178,12 @@ class AjukanTeraForm extends Form
     $this->getModel()::create($this->except([...$this->getTeraAttributes()]));
   }
 
+  private function getAdminId()
+  {
+    $session = session()->get('admin');
+    return $session['id'];
+  }
+
   public function update($id)
   {
     if ($this->file_dokumen_surat_permohonan != null) {
@@ -195,7 +201,7 @@ class AjukanTeraForm extends Form
         $this->file_dokumen_skhp_sebelumnya->store('dokumen_skhp_sebelumnya');
       $this->dokumen_skhp_sebelumnya = $file_path_dokumen_skhp_sebelumnya;
     }
-    // dd($this->all());
-    $this->getModel()::where('id', $id)->update($this->except([...$this->getTeraAttributes()]));
+
+    $this->getModel()::where('id', $id)->update([...$this->except([...$this->getTeraAttributes()]), 'admin_id' => $this->getAdminId()]);
   }
 }

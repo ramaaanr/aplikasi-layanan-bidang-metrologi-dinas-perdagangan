@@ -39,7 +39,6 @@ class CardForm extends Component
     return strtoupper($uuid10Digit);
   }
 
-
   public function getTodayDate()
   {
     return Carbon::now()->format('Y-m-d');
@@ -129,22 +128,22 @@ class CardForm extends Component
   public function update()
   {
     $this->isSubmitButtonDisabled = 'true';
-    // try {
-    $this->dispatch('validate-uttp');
-    $this->validate();
-    $this->validateFileReupload();
-    $this->form->update($this->id);
-    $this->dispatch('update-uttp');
-    Storage::deleteDirectory('public/');
-    $this->showSuccessAlert();
-    // } catch (\Illuminate\Database\QueryException $e) {
-    //   Storage::deleteDirectory('public/');
-    //   $this->showErrorAlert($e);
-    // } catch (\Illuminate\Validation\ValidationException $e) {
-    //   $this->isSubmitButtonDisabled = 'false';
-    //   $this->validateFileReupload();
-    //   $this->validate();
-    // }
+    try {
+      $this->dispatch('validate-uttp');
+      $this->validate();
+      $this->validateFileReupload();
+      $this->form->update($this->id);
+      $this->dispatch('update-uttp');
+      Storage::deleteDirectory('public/');
+      $this->showSuccessAlert();
+    } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
+      $this->showErrorAlert($e);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+      $this->isSubmitButtonDisabled = 'false';
+      $this->validateFileReupload();
+      $this->validate();
+    }
   }
 
   public function mount()
