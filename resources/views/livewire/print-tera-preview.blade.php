@@ -1,7 +1,8 @@
-<div class="preview-container border-dark-grey bg-white">
+<div class="preview-container border-dark-grey bg-white rounded-lg p-4">
 
   <div class="button-cetak-container pr-4 mb-2">
-    <button id="cetak-button" href="/pengelolaan-layanan/cetak-tera/{{$tera}}?id={{$id}}" class="button-primary-sm">Cetak</button>
+    <a id="back-button" href="/pengelolaan-layanan/data-tera/{{$tera}}" class="button-light-sm">Kembali</a>
+    <button id="cetak-button" class="button-primary-sm">Cetak</button>
   </div>
   <div id="ready-to-print" class="mx-4">
     <div class="kop-surat  flex justify-center align-center gap-x-2 border-b-2 pb-4 border-black">

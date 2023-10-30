@@ -10,7 +10,6 @@ window.Alpine = Alpine;
 Alpine.start();
 document.getElementById('cetak-button').addEventListener("click", async () => {
   let doc = new jsPDF();
-  // Source HTMLElement or a string containing HTML.
     var elementHTML = document.querySelector("#ready-to-print");
 
     doc.html(elementHTML, {
