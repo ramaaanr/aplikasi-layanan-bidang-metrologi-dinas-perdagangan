@@ -10,7 +10,8 @@ class PrintTeraPreview extends Component
 {
     public $tera;
     public $id;
-    public $identitasUTTP;
+    public $jenis_uttp;
+    public $identitas_uttp;
     public $kode_pengajuan;
     public $no_surat;
     public $jenis_tera;
@@ -90,6 +91,7 @@ class PrintTeraPreview extends Component
             config("tera.$this->tera.jenis");
     }
 
+
     public function getModel()
     {
         return
@@ -101,19 +103,19 @@ class PrintTeraPreview extends Component
         $dataTera = $this->getModel()::find($id);
         switch (config("tera.$this->tera.jenis_uttp")) {
             case 'uttp-jenis-a':
-                $this->identitasUTTP = $dataTera->identitasUttpJenisA;
+                $this->identitas_uttp = $dataTera->identitasUttpJenisA;
                 break;
             case 'uttp-jenis-b':
-                $this->identitasUTTP = $dataTera->identitasUttpJenisB;
+                $this->identitas_uttp = $dataTera->identitasUttpJenisB;
                 break;
             case 'uttp-jenis-c':
-                $this->identitasUTTP = $dataTera->identitasUttpJenisC;
+                $this->identitas_uttp = $dataTera->identitasUttpJenisC;
                 break;
             case 'uttp-jenis-d':
-                $this->identitasUTTP = $dataTera->identitasUttpJenisD;
+                $this->identitas_uttp = $dataTera->identitasUttpJenisD;
                 break;
             case 'uttp-jenis-e':
-                $this->identitasUTTP = $dataTera->identitasUttpJenisE;
+                $this->identitas_uttp = $dataTera->identitasUttpJenisE;
                 break;
         }
         $this->kode_pengajuan = $dataTera->kode_pengajuan;
@@ -149,6 +151,7 @@ class PrintTeraPreview extends Component
     {
         $id = request()->query('id');
         $this->getProps($id);
+        $this->jenis_uttp = config("tera.$this->tera.jenis_uttp");
         $this->id = request()->query('id');
     }
 
