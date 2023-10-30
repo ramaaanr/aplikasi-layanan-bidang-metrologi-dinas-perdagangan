@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\TeraJenisB;
+use App\Models\TeraJenisC;
+use App\Models\TeraJenisD;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
@@ -17,6 +20,7 @@ class AjukanTeraForm extends Form
     'file_dokumen_bukti_pendukung_lainnya',
   ];
 
+  public $no_surat = null;
   public $kode_pengajuan;
   public $jenis_tera;
   public $jumlah_uttp = 1;
@@ -183,6 +187,17 @@ class AjukanTeraForm extends Form
     $session = session()->get('admin');
     return $session['id'];
   }
+  public function generateCodeForKodePengajuan()
+  {
+    Carbon::setlocale('id');
+    $month = Carbon::now()->isoFormat('MMMM');
+    $year = Carbon::now()->isoFormat('YYYY');
+    $countStatusTeraJenisB = TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    $countStatusTeraJenisC = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    $countStatusTeraJenisD = TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    $noUrut = $countStatusTeraJenisB + $countStatusTeraJenisC + $countStatusTeraJenisD + 1;
+    return "$noUrut/UPT.MET/$month/$year";
+  }
 
   public function update($id)
   {
@@ -201,6 +216,8 @@ class AjukanTeraForm extends Form
         $this->file_dokumen_skhp_sebelumnya->store('dokumen_skhp_sebelumnya');
       $this->dokumen_skhp_sebelumnya = $file_path_dokumen_skhp_sebelumnya;
     }
+
+    $this->no_surat =  $this->status == "Selesai" ? $this->generateCodeForKodePengajuan() : null;
 
     $this->getModel()::where('id', $id)->update([...$this->except([...$this->getTeraAttributes()]), 'admin_id' => $this->getAdminId()]);
   }

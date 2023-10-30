@@ -17,6 +17,7 @@ class Tera extends Model
     protected $fillable = [
         'kode_pengajuan',
         'jenis_tera',
+        'no_surat',
         'jumlah_uttp',
         'status',
         'tanggal_pengajuan',

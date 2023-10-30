@@ -161,7 +161,7 @@ class CardForm extends Component
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
     $this->form->setProperties($this->getRandomCode(), $this->tera);
     $this->jenisUttp = config("tera.$this->tera.jenis_uttp");
-
+    $this->form->generateCodeForKodePengajuan();
     if ($this->isOnUpdate) {
       $id = request()->query('id');
       $this->id = $id;
