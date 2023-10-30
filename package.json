@@ -16,6 +16,7 @@
     "dependencies": {
         "alpinejs": "^3.13.0",
         "flowbite": "^1.8.1",
-        "sweetalert2": "^11.7.28"
+        "html2canvas": "^1.4.1",
+        "jspdf": "^2.5.1"
     }
 }

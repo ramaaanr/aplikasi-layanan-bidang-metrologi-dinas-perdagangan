@@ -137,12 +137,19 @@
           <td class="p-3 w-9">
             {{ $dataPengajuan->keterangan }}
           </td>
-
           <!-- 🎬 Aksi -->
+          @if ($dataPengajuan->status == 'Selesai')
+          <td class="p-3 w-9">
+            <a class="underline text-light-grey pointer-events-none" href="">Update</a>
+            <a class="underline" href="/pengelolaan-layanan/preview-tera/{{$tera}}?id={{$dataPengajuan->id}}">Cetak</a>
+          </td>
+          @else
           <td class="p-3 w-9">
             <a class="underline" href="/pengelolaan-layanan/update-tera/{{$tera}}?id={{$dataPengajuan->id}}">Update</a>
             <a class="underline text-light-grey pointer-events-none" href="">Cetak</a>
           </td>
+          @endif
+
         </tr>
         @endforeach
       </tbody>

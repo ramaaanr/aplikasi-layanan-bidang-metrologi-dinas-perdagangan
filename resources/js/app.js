@@ -1,10 +1,28 @@
 import './bootstrap';
 import 'flowbite';
 import 'flowbite/dist/datepicker';
-import Swal from 'sweetalert2';
-window.Swal = Swal;
-
 import Alpine from 'alpinejs';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 window.Alpine = Alpine;
  
 Alpine.start();
+document.getElementById('cetak-button').addEventListener("click", async () => {
+  let doc = new jsPDF();
+  // Source HTMLElement or a string containing HTML.
+    var elementHTML = document.querySelector("#ready-to-print");
+
+    doc.html(elementHTML, {
+        callback: function(doc) {
+            // Save the PDF
+            doc.save('document-html.pdf');
+        },
+        margin: [10, 10, 10, 10],
+        autoPaging: 'text',
+        x: 0,
+        y: 0,
+        width: 190, //target width in the PDF document
+        windowWidth: 675 //window width in CSS pixels
+    });
+})

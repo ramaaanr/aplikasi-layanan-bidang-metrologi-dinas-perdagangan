@@ -65,7 +65,11 @@ class CardForm extends Component
   #[On('submit-uttp-fail')]
   public function showErrorAlert($e)
   {
-    session()->flash('error', $e);
+    session()->flash('error', [
+      'title' => 'Pengajuan Tera Gagal',
+      'head_content' => 'Terjadi kesalahan pada website, silahkan hubungi Admin',
+      'body_content' => $e,
+    ]);
   }
 
 
