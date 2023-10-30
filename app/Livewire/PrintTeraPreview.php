@@ -10,6 +10,7 @@ class PrintTeraPreview extends Component
 {
     public $tera;
     public $id;
+    public $identitasUTTP;
     public $kode_pengajuan;
     public $no_surat;
     public $jenis_tera;
@@ -98,6 +99,23 @@ class PrintTeraPreview extends Component
     public function getProps($id)
     {
         $dataTera = $this->getModel()::find($id);
+        switch (config("tera.$this->tera.jenis_uttp")) {
+            case 'uttp-jenis-a':
+                $this->identitasUTTP = $dataTera->identitasUttpJenisA;
+                break;
+            case 'uttp-jenis-b':
+                $this->identitasUTTP = $dataTera->identitasUttpJenisB;
+                break;
+            case 'uttp-jenis-c':
+                $this->identitasUTTP = $dataTera->identitasUttpJenisC;
+                break;
+            case 'uttp-jenis-d':
+                $this->identitasUTTP = $dataTera->identitasUttpJenisD;
+                break;
+            case 'uttp-jenis-e':
+                $this->identitasUTTP = $dataTera->identitasUttpJenisE;
+                break;
+        }
         $this->kode_pengajuan = $dataTera->kode_pengajuan;
         $this->no_surat = $dataTera->no_surat;
         $this->jenis_tera = $dataTera->jenis_tera;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TeraJenisD extends Tera
 {
@@ -11,5 +12,10 @@ class TeraJenisD extends Tera
         parent::__construct($attributes);
 
         $this->mergeFillable(['jumlah_perlengkapan']);
+    }
+
+    public function identitasUttpJenisE(): HasMany
+    {
+        return $this->hasMany(IdentitasUttpJenisE::class, 'tera_jenis_d_id', 'id');
     }
 }

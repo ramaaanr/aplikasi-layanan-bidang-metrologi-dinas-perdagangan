@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class IdentitasUttpJenisA extends IdentitasUttp
 {
@@ -16,5 +17,10 @@ class IdentitasUttpJenisA extends IdentitasUttp
             'tera_jenis_c_id',
             'kapasitas',
         ]);
+    }
+
+    public function teraJenisC(): BelongsTo
+    {
+        return $this->belongsTo(TeraJenisC::class, 'tera_jenis_c_id', 'id');
     }
 }
