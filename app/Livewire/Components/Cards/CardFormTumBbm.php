@@ -19,7 +19,7 @@ class CardFormTumBbm extends Component
 
   public $isSubmitButtonDisabled = 'false';
   public $sentenceCaseTitle;
-  public $tera;
+  public $tera = 'tum-bbm';
   public $id;
   public $success = false;
   public $message = null;
@@ -47,7 +47,7 @@ class CardFormTumBbm extends Component
   }
   public function downloadStnk()
   {
-    return Storage::download('public/' . $this->form->dokumen_surat_permohonan, "stnk_$this->id");
+    return Storage::download('public/' . $this->form->dokumen_stnk, "stnk_$this->id");
   }
   public function downloadSkhpSebelumnya()
   {
@@ -82,7 +82,6 @@ class CardFormTumBbm extends Component
     } catch (\Illuminate\Database\QueryException $e) {
       $this->showErrorAlert($e);
     } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->isSubmitButtonDisabled = false;
       $this->validate([
         'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
         'form.file_dokumen_skhp_sebelumnya' => 'required|max:2048|mimes:pdf',
@@ -100,6 +99,14 @@ class CardFormTumBbm extends Component
     if ($this->form->file_dokumen_surat_permohonan != null) {
       $this->validate([
         'form.file_dokumen_surat_permohonan' => 'max:2048|mimes:pdf',
+      ], [
+        'max' => 'File maksimal 2MB',
+        'mimes' => 'File harus PDF',
+      ]);
+    }
+    if ($this->form->file_dokumen_stnk != null) {
+      $this->validate([
+        'form.file_dokumen_stnk' => 'max:2048|mimes:pdf',
       ], [
         'max' => 'File maksimal 2MB',
         'mimes' => 'File harus PDF',
@@ -124,26 +131,25 @@ class CardFormTumBbm extends Component
   }
 
 
-  // public function update()
-  // {
-  //   $this->isSubmitButtonDisabled = 'true';
-  //   try {
-  //     $this->dispatch('validate-uttp');
-  //     $this->validate();
-  //     $this->validateFileReupload();
-  //     $this->form->update($this->id);
-  //     $this->dispatch('update-uttp');
-  //     Storage::deleteDirectory('public/');
-  //     $this->showSuccessAlert();
-  //   } catch (\Illuminate\Database\QueryException $e) {
-  //     Storage::deleteDirectory('public/');
-  //     $this->showErrorAlert($e);
-  //   } catch (\Illuminate\Validation\ValidationException $e) {
-  //     $this->isSubmitButtonDisabled = 'false';
-  //     $this->validateFileReupload();
-  //     $this->validate();
-  //   }
-  // }
+  public function update()
+  {
+    $this->isSubmitButtonDisabled = 'true';
+    try {
+      $this->validate();
+      $this->validateFileReupload();
+      $this->form->update($this->id);
+      Storage::deleteDirectory('public/');
+      $this->showSuccessAlert();
+    } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
+      $this->showErrorAlert($e);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+      $this->validateFileReupload();
+      $this->validate();
+    } finally {
+      $this->isSubmitButtonDisabled = 'false';
+    }
+  }
 
   public function mount()
   {
@@ -154,14 +160,13 @@ class CardFormTumBbm extends Component
       return ucfirst($word);
     }, $words);
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
-    $this->form->setProperties($this->getRandomCode());
-    // $this->form->generateCodeForKodePengajuan();
-    // if ($this->isOnUpdate) {
-    //   $id = request()->query('id');
-    //   $this->id = $id;
-    //   $this->form->setAndGetPropertiesFromTable($id);
-    //   $this->identitasUttp = config("tera.$this->tera.model_uttp")::where(config("tera.$this->tera.jenis") . "_id", $id)->select(['id'])->get();
-    // }
+    if ($this->isOnUpdate) {
+      $id = request()->query('id');
+      $this->id = $id;
+      $this->form->setAndGetPropertiesFromTable($id);
+    } else {
+      $this->form->setProperties($this->getRandomCode());
+    }
   }
 
   public function render()

@@ -159,14 +159,14 @@ class CardForm extends Component
       return ucfirst($word);
     }, $words);
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
-    $this->form->setProperties($this->getRandomCode(), $this->tera);
     $this->jenisUttp = config("tera.$this->tera.jenis_uttp");
-    $this->form->generateCodeForKodePengajuan();
     if ($this->isOnUpdate) {
       $id = request()->query('id');
       $this->id = $id;
       $this->form->setAndGetPropertiesFromTable($id);
       $this->identitasUttp = config("tera.$this->tera.model_uttp")::where(config("tera.$this->tera.jenis") . "_id", $id)->select(['id'])->get();
+    } else {
+      $this->form->setProperties($this->getRandomCode(), $this->tera);
     }
   }
 

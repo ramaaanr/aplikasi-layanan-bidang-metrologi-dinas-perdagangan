@@ -18,12 +18,20 @@ class CardTableAdmin extends Component
   public function getTeraData()
   {
     $model = config("tera.$this->tera.model_tera");
-    $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
-      ->where('jenis_tera', $this->tera)
-      ->where("$this->queryCategory", 'LIKE', "%$this->query%")
-      ->orderBy('id', 'desc')
-      ->paginate(10);
-    return $data;
+    if ($this->tera == 'tum-bbm') {
+      $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
+        ->where("$this->queryCategory", 'LIKE', "%$this->query%")
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+      return $data;
+    } else {
+      $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
+        ->where('jenis_tera', $this->tera)
+        ->where("$this->queryCategory", 'LIKE', "%$this->query%")
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+      return $data;
+    }
   }
 
   public function setSenteceCaseTitle()
