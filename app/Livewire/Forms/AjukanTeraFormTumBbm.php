@@ -171,14 +171,6 @@ class AjukanTeraFormTumBbm extends Form
     $this->dokumen_skhp_sebelumnya = $dataTera->dokumen_skhp_sebelumnya;
     $this->dokumen_bukti_pendukung_lainnya = $dataTera->dokumen_bukti_pendukung_lainnya;
 
-
-
-    Storage::copy($this->dokumen_surat_permohonan, "public/$this->dokumen_surat_permohonan");
-    Storage::copy($this->dokumen_stnk, "public/$this->dokumen_stnk");
-    Storage::copy($this->dokumen_skhp_sebelumnya, "public/$this->dokumen_skhp_sebelumnya");
-    Storage::copy($this->dokumen_bukti_pendukung_lainnya, "public/$this->dokumen_bukti_pendukung_lainnya");
-
-
     $this->status = $dataTera->status;
     $this->keterangan = $dataTera->keterangan;
     $this->tanggal_pengujian = $dataTera->tanggal_pengujian;
@@ -186,6 +178,13 @@ class AjukanTeraFormTumBbm extends Form
     $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
     $this->tempat_pengujian = $dataTera->tempat_pengujian;
     $this->alamat_pengujian = $dataTera->alamat_pengujian;
+
+
+
+    Storage::copy($this->dokumen_surat_permohonan, "public/$this->dokumen_surat_permohonan");
+    Storage::copy($this->dokumen_stnk, "public/$this->dokumen_stnk");
+    Storage::copy($this->dokumen_skhp_sebelumnya, "public/$this->dokumen_skhp_sebelumnya");
+    Storage::copy($this->dokumen_bukti_pendukung_lainnya, "public/$this->dokumen_bukti_pendukung_lainnya");
   }
 
   public function store()
