@@ -2,6 +2,6 @@
 
 @section('main-content')
 <div class="card-content-layanan">
-  ini halaman utama
+  @livewire('components.cards.card-overdate-tera')
 </div>
 @endsection
