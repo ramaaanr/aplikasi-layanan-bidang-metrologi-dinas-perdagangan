@@ -4,8 +4,10 @@ import 'flowbite/dist/datepicker';
 import Alpine from 'alpinejs';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import chart from 'chart.js/auto'
 
 window.Alpine = Alpine;
+window.Chart = chart;
  
 Alpine.start();
 document.getElementById('cetak-button').addEventListener("click", async () => {

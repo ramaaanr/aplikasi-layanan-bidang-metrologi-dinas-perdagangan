@@ -90,13 +90,14 @@ class CardForm extends Component
     } catch (\Illuminate\Database\QueryException $e) {
       $this->showErrorAlert($e);
     } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->isSubmitButtonDisabled = false;
       $this->validate([
         'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
         'form.file_dokumen_skhp_sebelumnya' => 'required|max:2048|mimes:pdf',
         'form.file_dokumen_bukti_pendukung_lainnya' => 'required|max:2048|mimes:pdf',
       ]);
       $this->validate();
+    } finally {
+      $this->isSubmitButtonDisabled = 'false';
     }
   }
 
@@ -131,7 +132,7 @@ class CardForm extends Component
 
   public function update()
   {
-    $this->isSubmitButtonDisabled = 'true';
+    // $this->isSubmitButtonDisabled = 'true';
     try {
       $this->dispatch('validate-uttp');
       $this->validate();
@@ -144,9 +145,10 @@ class CardForm extends Component
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->isSubmitButtonDisabled = 'false';
-      $this->validateFileReupload();
       $this->validate();
+      $this->validateFileReupload();
+    } finally {
+      $this->isSubmitButtonDisabled = 'true';
     }
   }
 
@@ -161,6 +163,7 @@ class CardForm extends Component
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
     $this->jenisUttp = config("tera.$this->tera.jenis_uttp");
     if ($this->isOnUpdate) {
+      $this->form->jenis_tera = $this->tera;
       $id = request()->query('id');
       $this->id = $id;
       $this->form->setAndGetPropertiesFromTable($id);

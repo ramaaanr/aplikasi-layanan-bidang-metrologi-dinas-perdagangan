@@ -3,5 +3,6 @@
 @section('main-content')
 <div class="card-content-layanan">
   @livewire('components.cards.card-overdate-tera')
+  @livewire('components.cards.card-chart-tera')
 </div>
 @endsection
