@@ -2,11 +2,6 @@
 
 namespace App\Livewire\Components\Cards;
 
-use App\Models\TeraJenisA;
-use App\Models\TeraJenisB;
-use App\Models\TeraJenisC;
-use App\Models\TeraJenisD;
-use Carbon\Carbon;
 use Livewire\Component;
 
 class CardOverdateTera extends Component
@@ -26,38 +21,39 @@ class CardOverdateTera extends Component
         "takaran-basah-kering" => 0,
         "meter-kayu" => 0,
     ];
-    // public $jumlahTumBbmTidakUpdate;
-    // public $jumlahTimbanganElektronikKelasTidakUpdate;
-    // public $jumlahTimbanganJembatanTidakUpdate;
-    // public $jumlahTimbanganCepatTidakUpdate;
-    // public $jumlahTimbanganPegasTidakUpdate;
-    // public $jumlahTimbanganMejaTidakUpdate;
-    // public $jumlahTimbanganBobotIngsutTidakUpdate;
-    // public $jumlahTimbanganSentisimalTidakUpdate;
-    // public $jumlahPompaUkurBbmTidakUpdate;
-    // public $jumlahDacinTidakUpdate;
-    // public $jumlahNeracaTidakUpdate;
-    // public $jumlahTakaranBasahKeringTidakUpdate;
-    // public $jumlahMeterKayuTidakUpdate;
+
+    public function formatString($tera)
+    {
+        $formattedString = str_replace('-', ' ', $tera);
+        $formattedString = ucwords($formattedString);
+        if (str_contains($formattedString, 'Bbm')) $formattedString = str_replace('Bbm', 'BBM', $formattedString);
+        return $formattedString;
+    }
 
     public function setJumlahTidakUpdate()
     {
-        $tera = array_keys(config('tera'));
-        foreach ($tera as $jenisTera) {
-            $model = config("tera.$jenisTera.model_tera");
-            if ($jenisTera == 'tum-bbm') {
-                $jumlah = $model::whereDate('tanggal_pengujian', '<', '2023-11-01')
-                    ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
-                    ->count();
-            } else {
-                $jumlah = $model::where('jenis_tera', $jenisTera)
-                    ->whereDate('tanggal_pengujian', '<', '2023-11-01')
-                    ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
-                    ->count();
+        try {
+            $tera = array_keys(config('tera'));
+            foreach ($tera as $jenisTera) {
+                $model = config("tera.$jenisTera.model_tera");
+                if ($jenisTera == 'tum-bbm') {
+                    $jumlah = $model::whereDate('tanggal_pengujian', '<', '2023-11-01')
+                        ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
+                        ->count();
+                } else {
+                    $jumlah = $model::where('jenis_tera', $jenisTera)
+                        ->whereDate('tanggal_pengujian', '<', '2023-11-01')
+                        ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
+                        ->count();
+                }
+                $this->jumlahTidakUpdate[$jenisTera] = $jumlah;
             }
-            $this->jumlahTidakUpdate[$jenisTera] = $jumlah;
+        } catch (\Throwable $th) {
+            dd($th);
         }
     }
+
+
 
     public function mount()
     {
@@ -66,7 +62,7 @@ class CardOverdateTera extends Component
 
     public function placeholder()
     {
-        return view('components.cards.card-overdate-tera', ['loading' => true]);
+        return view('components.cards.card-overdate-tera-loading');
     }
 
     public function render()

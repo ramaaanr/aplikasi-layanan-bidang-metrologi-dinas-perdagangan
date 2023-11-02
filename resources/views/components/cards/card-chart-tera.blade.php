@@ -4,33 +4,64 @@
   </div>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = document.getElementById('myChart').getContext('2d');
 
-    var data = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    const labels = ['Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember'
+    ];
+    const data = {
+      labels: labels,
       datasets: [{
-        label: 'Data Set 1',
-        data: [12, 19, 3, 5, 2],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
+          label: 'Diajukan',
+          data: [10, 20, 30, 12, 14, 15, 1, 17, 14, 15, 1, 17],
+          backgroundColor: '#fde047',
+        },
+        {
+          label: 'Dijadwalkan',
+          data: [10, 20, 30, 12, 14, 15, 1, 17, 14, 15, 1, 17],
+          backgroundColor: '#3b82f6',
+        },
+        {
+          label: 'Selesai',
+          data: [10, 20, 30, 12, 14, 15, 1, 17, 14, 15, 1, 17],
+          backgroundColor: '#22c55e',
+        },
+        {
+          label: 'Dibatalkan',
+          data: [10, 20, 30, 12, 14, 15, 1, 17, 14, 15, 1, 17],
+          backgroundColor: '#ef4444',
+        },
+      ]
     };
-
-    var options = {
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    };
-
-    var myChart = new Chart(ctx, {
+    const config = {
       type: 'bar',
       data: data,
-      options: options
-    });
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Pengajuan dan Pengujian Tera periode 2023'
+          }
+        }
+      },
+    };
+
+    var myChart = new Chart(ctx, config);
   });
   </script>
 
