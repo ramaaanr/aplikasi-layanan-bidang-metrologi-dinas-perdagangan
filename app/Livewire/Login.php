@@ -37,38 +37,8 @@ class Login extends Component
             ]);
             return redirect()->intended();
         }
-        // if ($this->validateAdmin()) {
-        //     session()->put('admin', 'udinsedunia');
-        // }
         $this->addError('password', 'Password Tidak Sesuai');
     }
-
-    // public function updatedUsername()
-    // {
-    //     $this->validate(
-    //         [
-    //             'username' => 'min:3|max:32|required'
-    //         ],
-    //         [
-    //             'min' => ':attribute terlalu pendek',
-    //             'max' => ':attribute terlalu panjang',
-    //             'required' => ':attribute wajib diisi',
-    //         ],
-
-    //     );
-    // }
-    // public function updatedPassword()
-    // {
-    //     $this->validate(
-    //         [
-    //             'password' => 'min:6|required',
-    //         ],
-    //         [
-    //             'min' => ':attribute terlalu pendek',
-    //             'required' => ':attribute wajib diisi',
-    //         ],
-    //     );
-    // }
 
     public function render()
     {

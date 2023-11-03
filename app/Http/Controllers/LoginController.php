@@ -11,4 +11,10 @@ class LoginController extends Controller
     {
         return view('guest.login');
     }
+
+    public function doLogOut(Request $request)
+    {
+        $request->session()->forget('admin');
+        return redirect('/');
+    }
 }

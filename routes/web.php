@@ -23,16 +23,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'doLogin')->name('doLogin');
+    Route::get('/logout', 'doLogOut')->middleware('only-admin')->name('doLogOut');
 });
 
-Route::middleware(['only-admin'])->group(function () {
-    Route::get('/pengelolaan-layanan/dashboard', [PengelolaanLayananTeraController::class, 'index'])->name('admin-dashboard');
-    Route::get('/pengelolaan-layanan/data-tera/{tera}', [PengelolaanLayananTeraController::class, 'showDataTera'])->name('admin-data-tera');
-    Route::get('/pengelolaan-layanan/update-tera/{tera}', [PengelolaanLayananTeraController::class, 'showUpdateTera'])->name('admin-update-tera');
-    Route::get('/pengelolaan-layanan/preview-tera/{tera}', [PengelolaanLayananTeraController::class, 'previewTera'])->name('admin-preview-tera');
-    Route::get('/pengelolaan-layanan/cetak-tera/{tera}', [PengelolaanLayananTeraController::class, 'cetakTera'])->name('admin-cetak-tera');
-    Route::get('/pengelolaan-layanan/data-status/', [PengelolaanLayananTeraController::class, 'getDataStatus'])->name('admin-data-status');
+Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::class)->group(function () {
+    Route::get('/pengelolaan-layanan/dashboard', 'index')->name('admin-dashboard');
+    Route::get('/pengelolaan-layanan/data-tera/{tera}', 'showDataTera')->name('admin-data-tera');
+    Route::get('/pengelolaan-layanan/update-tera/{tera}',  'showUpdateTera')->name('admin-update-tera');
+    Route::get('/pengelolaan-layanan/preview-tera/{tera}', 'previewTera')->name('admin-preview-tera');
+    Route::get('/pengelolaan-layanan/cetak-tera/{tera}', 'cetakTera')->name('admin-cetak-tera');
+    Route::get('/pengelolaan-layanan/data-status/', 'getDataStatus')->name('admin-data-status');
 });
 
 Route::middleware(['only-guest'])->group(function () {
