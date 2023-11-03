@@ -2,11 +2,10 @@
 
 namespace App\Livewire\Components\Cards;
 
+use App\Livewire\Rules\AjukanTeraRules;
 use Illuminate\Support\Facades\Storage;
-
 use App\Livewire\Forms\AjukanTeraForm;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Livewire\Attributes\On;
@@ -75,30 +74,18 @@ class CardForm extends Component
 
   public function submit()
   {
+    $rules = new AjukanTeraRules();
+
     $this->isSubmitButtonDisabled = true;
     try {
       $this->dispatch('validate-uttp');
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
-      $this->validate([
-        'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
-        'form.file_dokumen_skhp_sebelumnya' => 'required|max:2048|mimes:pdf',
-        'form.file_dokumen_bukti_pendukung_lainnya' => 'required|max:2048|mimes:pdf',
-      ]);
-      $this->validate();
+      $this->validate($rules->getRules(), $rules->getMessages(), $rules->getAttributes());
       $this->form->store();
       $this->dispatch('submit-uttp');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
       $this->showErrorAlert($e);
-    } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->validate([
-        'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
-        'form.file_dokumen_skhp_sebelumnya' => 'required|max:2048|mimes:pdf',
-        'form.file_dokumen_bukti_pendukung_lainnya' => 'required|max:2048|mimes:pdf',
-      ], [
-        '*' => 'Dokumen Wajib diisi perhatikan ukuran maksimal 2MB dan format pdf',
-      ]);
-      $this->validate();
     } finally {
       $this->isSubmitButtonDisabled = 'false';
     }
@@ -139,8 +126,8 @@ class CardForm extends Component
     try {
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->dispatch('validate-uttp');
-      $this->validate();
       $this->validateFileReupload();
+      $this->validate();
       $this->form->update($this->id);
       $this->dispatch('update-uttp');
       Storage::deleteDirectory('public/');
@@ -149,8 +136,8 @@ class CardForm extends Component
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->validate();
       $this->validateFileReupload();
+      $this->validate();
     } finally {
       $this->isSubmitButtonDisabled = 'true';
     }
@@ -159,7 +146,6 @@ class CardForm extends Component
   public function mount()
   {
     $words = explode('-', $this->tera);
-
     $sentenceCase = array_map(function ($word) {
       if ($word == 'bbm') return 'BBM';
       return ucfirst($word);

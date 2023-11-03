@@ -158,7 +158,8 @@
           <input accept=".pdf" wire:model.live='form.file_dokumen_surat_permohonan' name="dokumen_surat_permohonan"
             class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
             aria-describedby="file_input_help" placeholder="ikan" id="dokumen_surat_permohonan" type="file">
-          <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Format File PDF dengan
+          <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Dokumen Wajib Diisi Dengan Format File PDF
+            dengan
             Maksimal 2MB
           </p>
           @error('form.file_dokumen_surat_permohonan')
@@ -186,7 +187,8 @@
           <input accept=".pdf" wire:model.live='form.file_dokumen_skhp_sebelumnya' name="dokumen_skhp_sebelumnya"
             class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
             aria-describedby="file_input_help" placeholder="ikan" id="dokumen_skhp_sebelumnya" type="file">
-          <p class="mt-3 text-sm text-grey" id="dokumen_skhp_sebelumnya">Format File PDF dengan Maksimal
+          <p class="mt-3 text-sm text-grey" id="dokumen_skhp_sebelumnya">Dokumen Wajib Diisi Dengan Format File PDF
+            dengan Maksimal
             2MB
           </p>
           @error('form.file_dokumen_skhp_sebelumnya')
@@ -215,7 +217,8 @@
             name="dokumen_bukti_pendukung_lainnya"
             class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
             aria-describedby="file_input_help" placeholder="ikan" id="dokumen_bukti_pendukung_lainnya" type="file">
-          <p class="mt-3 text-sm text-grey" id="dokumen_bukti_pendukung_lainnya">Format File PDF dengan
+          <p class="mt-3 text-sm text-grey" id="dokumen_bukti_pendukung_lainnya">Dokumen Wajib Diisi Dengan Format File
+            PDF dengan
             Maksimal 2MB
           </p>
           @error('form.file_dokumen_bukti_pendukung_lainnya')
@@ -232,7 +235,8 @@
         <input accept=".pdf" wire:model.live='form.file_dokumen_surat_permohonan' name="dokumen_surat_permohonan"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_surat_permohonan" type="file">
-        <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Format File PDF dengan Maksimal
+        <p class="mt-3 text-sm text-grey" id="dokumen_surat_permohonan">Dokumen Wajib Diisi Dengan Format File PDF
+          dengan Maksimal
           2MB
         </p>
         @error('form.file_dokumen_surat_permohonan')
@@ -245,7 +249,8 @@
         <input accept=".pdf" wire:model.live='form.file_dokumen_skhp_sebelumnya' name="dokumen_skhp_sebelumnya"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_skhp_sebelumnya" type="file">
-        <p class="mt-3 text-sm text-grey" id="dokumen_skhp_sebelumnya">Format File PDF dengan Maksimal 2MB
+        <p class="mt-3 text-sm text-grey" id="dokumen_skhp_sebelumnya">Dokumen Wajib Diisi Dengan Format File PDF dengan
+          Maksimal 2MB
         </p>
         @error('form.file_dokumen_skhp_sebelumnya')
         <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
@@ -257,7 +262,8 @@
           name="dokumen_bukti_pendukung_lainnya"
           class="block w-full text-sm text-dark-grey border-2 border-grey rounded-lg cursor-pointer bg-light  focus:outline-none "
           aria-describedby="file_input_help" placeholder="ikan" id="dokumen_bukti_pendukung" type="file">
-        <p class="mt-3 text-sm text-grey" id="dokumen_bukti_pendukung">Format File PDF dengan Maksimal 2MB
+        <p class="mt-3 text-sm text-grey" id="dokumen_bukti_pendukung">Dokumen Wajib Diisi Dengan Format File PDF dengan
+          Maksimal 2MB
         </p>
         @error('form.file_dokumen_bukti_pendukung_lainnya')
         <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
@@ -271,8 +277,13 @@
     <div class="order-5 pr-4 form-group-container">
       <p class="text-sm md:text-base font-semibold">Jumlah UTTP</p>
       <div class="relative my-3">
-        <input x-bind:disabled="{{ $isOnUpdate }}" min="1" wire:model.live="form.jumlah_uttp" type="number"
-          id="jumlah-uttp" class="form-input peer" placeholder=" " />
+        @if ($isOnUpdate)
+        <input disabled min="1" wire:model.live="form.jumlah_uttp" type="number" id="jumlah-uttp"
+          class="form-input peer" placeholder=" " />
+        @else
+        <input min="1" wire:model.live="form.jumlah_uttp" type="number" id="jumlah-uttp" class="form-input peer"
+          placeholder=" " />
+        @endif
         <label for="jumlah-uttp"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Jumlah
           UTTP/Unit</label>
