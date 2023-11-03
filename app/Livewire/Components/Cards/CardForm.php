@@ -95,6 +95,8 @@ class CardForm extends Component
         'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
         'form.file_dokumen_skhp_sebelumnya' => 'required|max:2048|mimes:pdf',
         'form.file_dokumen_bukti_pendukung_lainnya' => 'required|max:2048|mimes:pdf',
+      ], [
+        '*' => 'Dokumen Wajib diisi perhatikan ukuran maksimal 2MB dan format pdf',
       ]);
       $this->validate();
     } finally {
