@@ -69,6 +69,7 @@ class CardFormTumBbm extends Component
   {
     $this->isSubmitButtonDisabled = true;
     try {
+      $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->dispatch('validate-uttp');
       $this->validate([
         'form.file_dokumen_surat_permohonan' => 'required|max:2048|mimes:pdf',
@@ -135,6 +136,7 @@ class CardFormTumBbm extends Component
   {
     $this->isSubmitButtonDisabled = 'true';
     try {
+      $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->validate();
       $this->validateFileReupload();
       $this->form->update($this->id);

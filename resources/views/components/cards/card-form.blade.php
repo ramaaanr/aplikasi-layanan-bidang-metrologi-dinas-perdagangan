@@ -346,10 +346,8 @@
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       <div class="relative mt-3" x-show="tempat_pengujian == 'di_luar_kantor'">
-        <input x-bind:value="tempat_pengujian == 'di_luar_kantor' ? '{{$form->alamat_pengujian}}' :
-                        'Kantor Dinas Perdagangan Jl. Panglima Batur Barat No . 08 Banjarbaru'"
-          wire:model.live='form.alamat_pengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan" type="text"
-          id="alamat_pengujian" class="form-input peer" placeholder=" " />
+        <input wire:model.live='form.alamat_pengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan"
+          type="text" id="alamat_pengujian" class="form-input peer" placeholder=" " />
         <label for="alamat_pengujian"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>

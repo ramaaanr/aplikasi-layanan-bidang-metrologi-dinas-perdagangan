@@ -83,7 +83,7 @@ class AjukanTeraForm extends Form
   public $tempat_pengujian = 'di_kantor';
 
   #[Rule('required', message: 'Alamat Pengujian Wajib Diisi!')]
-  public $alamat_pengujian = 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru';
+  public $alamat_pengujian = '';
 
 
   public function getModel()
