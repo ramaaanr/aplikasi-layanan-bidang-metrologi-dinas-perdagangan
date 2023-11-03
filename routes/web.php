@@ -32,6 +32,7 @@ Route::middleware(['only-admin'])->group(function () {
     Route::get('/pengelolaan-layanan/update-tera/{tera}', [PengelolaanLayananTeraController::class, 'showUpdateTera'])->name('admin-update-tera');
     Route::get('/pengelolaan-layanan/preview-tera/{tera}', [PengelolaanLayananTeraController::class, 'previewTera'])->name('admin-preview-tera');
     Route::get('/pengelolaan-layanan/cetak-tera/{tera}', [PengelolaanLayananTeraController::class, 'cetakTera'])->name('admin-cetak-tera');
+    Route::get('/pengelolaan-layanan/data-status/', [PengelolaanLayananTeraController::class, 'getDataStatus'])->name('admin-data-status');
 });
 
 Route::middleware(['only-guest'])->group(function () {

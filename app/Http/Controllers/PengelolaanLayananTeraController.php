@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PengelolaanLayananTeraController extends Controller
 {
@@ -26,17 +27,14 @@ class PengelolaanLayananTeraController extends Controller
         $dompdf = new Dompdf();
         $html = view('admin.cetak-tera', ['tera' => $tera]);
         $dompdf->loadHtml($html);
-        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4');
 
         $options = $dompdf->getOptions();
         $options->setDefaultFont('Calibri');
         $dompdf->setOptions($options);
 
-        // Render the HTML as PDF
         $dompdf->render();
 
-        // Output the generated PDF to Browser
         $dompdf->stream('Dokumen Tera', ['Attachment' => false]);
     }
     public function previewTera(Request $request, String $tera)
@@ -60,5 +58,36 @@ class PengelolaanLayananTeraController extends Controller
             // return redirect()->route('named_route', ['parameterKey' => 'value']);
             return redirect()->route('error-page', ['statusCode' => 404, 'message' => 'Dokumen tidak ditemukan']);
         }
+    }
+
+    public function getDataStatus(Request $request)
+    {
+        $dataStatus = [
+            'diajukan' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            'dijadwalkan' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            'dibatalkan' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            'selesai' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+        ];
+        $tera = $request->query('tera');
+        $model = config("tera.$tera.model_tera");
+        $data = $model::selectRaw('MONTH(tanggal_pengujian) AS bulan')
+            ->selectRaw('SUM(CASE WHEN Status = "Diajukan" THEN 1 ELSE 0 END) AS diajukan')
+            ->selectRaw('SUM(CASE WHEN Status = "Dijadwalkan" THEN 1 ELSE 0 END) AS dijadwalkan')
+            ->selectRaw('SUM(CASE WHEN Status = "Dibatalkan" THEN 1 ELSE 0 END) AS dibatalkan')
+            ->selectRaw('SUM(CASE WHEN Status = "Selesai" THEN 1 ELSE 0 END) AS selesai')
+            ->selectRaw('COUNT(*) AS jumlah')
+            ->where('jenis_tera', $tera)
+            ->whereYear('tanggal_pengujian', '2023')
+            ->groupBy($model::raw('MONTH(tanggal_pengujian)'))
+            ->orderBy('bulan')
+            ->get();
+        foreach ($data as $value) {
+            $dataStatus['diajukan'][$value->bulan] = $value->diajukan;
+            $dataStatus['dijadwalkan'][$value->bulan] = $value->dijadwalkan;
+            $dataStatus['dibatalkan'][$value->bulan] = $value->dibatalkan;
+            $dataStatus['selesai'][$value->bulan] = $value->selesai;
+        }
+        return response()->json($dataStatus);
     }
 }

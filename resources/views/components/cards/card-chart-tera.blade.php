@@ -1,12 +1,13 @@
 <div class="card my-4 p-4">
   <div>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id=" myChart" width="400" height="400"></canvas>
   </div>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', async function() {
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    const labels = ['Januari',
+    const labels = [
+      'Januari',
       'Februari',
       'Maret',
       'April',
@@ -19,6 +20,7 @@
       'November',
       'Desember'
     ];
+
     const data = {
       labels: labels,
       datasets: [{
@@ -43,6 +45,7 @@
         },
       ]
     };
+
     const config = {
       type: 'bar',
       data: data,
@@ -61,7 +64,7 @@
       },
     };
 
-    var myChart = new Chart(ctx, config);
+    const myChart = new Chart(ctx, config);
   });
   </script>
 

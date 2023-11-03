@@ -2,7 +2,6 @@
 
 @section('main-content')
 <div class="card-content-layanan">
-  @livewire('components.cards.card-chart-tera')
   @livewire('components.cards.card-overdate-tera', ['lazy' => true])
 </div>
 @endsection
