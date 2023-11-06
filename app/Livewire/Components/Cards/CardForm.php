@@ -82,11 +82,13 @@ class CardForm extends Component
       $this->validate($rules->getRules(), $rules->getMessages(), $rules->getAttributes());
       $this->form->store();
       $this->dispatch('submit-uttp');
+      Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } finally {
-      $this->isSubmitButtonDisabled = false;
+      $this->isSubmitButtonDisabled = 'false';
     }
   }
 
@@ -134,12 +136,13 @@ class CardForm extends Component
       );
       $this->form->update($this->id);
       $this->dispatch('update-uttp');
+      Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } finally {
-      Storage::deleteDirectory('public/');
-      $this->isSubmitButtonDisabled = false;
+      $this->isSubmitButtonDisabled = 'false';
     }
   }
 

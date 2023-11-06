@@ -83,11 +83,13 @@ class CardFormTumBbm extends Component
         $rules->getAttributes(),
       );
       $this->form->store();
+      Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } finally {
-      $this->isSubmitButtonDisabled = false;
+      $this->isSubmitButtonDisabled = 'false';
     }
   }
 
@@ -141,12 +143,13 @@ class CardFormTumBbm extends Component
         $rules->getAttributes(),
       );
       $this->form->update($this->id);
+      Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
+      Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
     } finally {
-      Storage::deleteDirectory('public/');
-      $this->isSubmitButtonDisabled = false;
+      $this->isSubmitButtonDisabled = 'false';
     }
   }
 
