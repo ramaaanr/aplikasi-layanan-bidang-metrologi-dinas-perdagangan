@@ -30,6 +30,11 @@ class CardForm extends Component
 
   public AjukanTeraForm $form;
 
+  public function formStatusUpdating()
+  {
+    dd('test');
+  }
+
 
   private function getRandomCode(): string
   {

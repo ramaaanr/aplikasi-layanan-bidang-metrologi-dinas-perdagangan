@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class PengelolaanLayananTeraController extends Controller
 {
@@ -17,8 +16,12 @@ class PengelolaanLayananTeraController extends Controller
     {
         return view('admin.data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);
     }
-    public function showUpdateTera(String $tera)
+    public function showUpdateTera(Request $request, String $tera)
     {
+        $id = $request->query('id');
+        $model = config("tera.$tera.model_tera");
+        $status = $model::find($id)->status;
+        if ($status == 'Selesai') return redirect()->route('admin-data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);
         return view('admin.update-tera', ['tera' => $tera, 'layanan' => 'update-tera']);
     }
 
