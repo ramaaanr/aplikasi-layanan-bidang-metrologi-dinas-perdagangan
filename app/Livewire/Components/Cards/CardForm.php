@@ -75,7 +75,6 @@ class CardForm extends Component
   public function submit()
   {
     $rules = new AjukanTeraRules();
-
     $this->isSubmitButtonDisabled = true;
     try {
       $this->dispatch('validate-uttp');
@@ -87,7 +86,7 @@ class CardForm extends Component
     } catch (\Illuminate\Database\QueryException $e) {
       $this->showErrorAlert($e);
     } finally {
-      $this->isSubmitButtonDisabled = 'false';
+      $this->isSubmitButtonDisabled = false;
     }
   }
 
@@ -122,24 +121,25 @@ class CardForm extends Component
 
   public function update()
   {
-    // $this->isSubmitButtonDisabled = 'true';
+    $this->isSubmitButtonDisabled = true;
+    $rules = new AjukanTeraRules();
     try {
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->dispatch('validate-uttp');
       $this->validateFileReupload();
-      $this->validate();
+      $this->validate(
+        $rules->getRulesWithoutFile(),
+        $rules->getMessages(),
+        $rules->getAttributes(),
+      );
       $this->form->update($this->id);
       $this->dispatch('update-uttp');
-      Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
-      Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
-    } catch (\Illuminate\Validation\ValidationException $e) {
-      $this->validateFileReupload();
-      $this->validate();
     } finally {
-      $this->isSubmitButtonDisabled = 'true';
+      Storage::deleteDirectory('public/');
+      $this->isSubmitButtonDisabled = false;
     }
   }
 

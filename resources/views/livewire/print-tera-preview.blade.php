@@ -272,7 +272,7 @@
       doc.html(elementHTML, {
         callback: function(doc) {
           // Save the PDF
-          doc.save('document-html.pdf');
+          doc.save('surat-tera.pdf');
         },
         margin: [10, 10, 10, 10],
         autoPaging: 'text',

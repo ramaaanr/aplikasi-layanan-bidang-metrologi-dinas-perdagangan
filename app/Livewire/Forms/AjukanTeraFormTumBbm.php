@@ -203,10 +203,7 @@ class AjukanTeraFormTumBbm extends Form
     Carbon::setlocale('id');
     $month = Carbon::now()->isoFormat('MMMM');
     $year = Carbon::now()->isoFormat('YYYY');
-    $countStatusTeraJenisB = TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $countStatusTeraJenisC = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $countStatusTeraJenisD = TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $noUrut = $countStatusTeraJenisB + $countStatusTeraJenisC + $countStatusTeraJenisD + 1;
+    $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + 1;
     return "$noUrut/UPT.MET/$month/$year";
   }
 
