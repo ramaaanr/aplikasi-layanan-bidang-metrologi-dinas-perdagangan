@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Cards;
 use App\Livewire\Rules\AjukanTeraRules;
 use Illuminate\Support\Facades\Storage;
 use App\Livewire\Forms\AjukanTeraForm;
+use App\Models\IdentitasUttpJenisD;
 use Carbon\Carbon;
 use Livewire\Component;
 use Ramsey\Uuid\Nonstandard\Uuid;
