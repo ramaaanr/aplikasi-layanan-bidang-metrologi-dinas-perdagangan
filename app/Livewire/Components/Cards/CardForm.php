@@ -5,7 +5,6 @@ namespace App\Livewire\Components\Cards;
 use App\Livewire\Rules\AjukanTeraRules;
 use Illuminate\Support\Facades\Storage;
 use App\Livewire\Forms\AjukanTeraForm;
-use App\Models\IdentitasUttpJenisD;
 use Carbon\Carbon;
 use Livewire\Component;
 use Ramsey\Uuid\Nonstandard\Uuid;
@@ -29,12 +28,6 @@ class CardForm extends Component
   public $isOnUpdate = false;
 
   public AjukanTeraForm $form;
-
-  public function formStatusUpdating()
-  {
-    dd('test');
-  }
-
 
   private function getRandomCode(): string
   {

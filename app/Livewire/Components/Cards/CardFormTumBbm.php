@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Livewire\WithFileUploads;
+use App\Models\TeraJenisA;
 
 
 class CardFormTumBbm extends Component
@@ -23,9 +24,26 @@ class CardFormTumBbm extends Component
   public $success = false;
   public $message = null;
   public $isOnUpdate = false;
+  public $tanggalPengujian;
+  public $volumesAvaliable;
 
   public AjukanTeraFormTumBbm $form;
 
+  public function updatedTanggalPengujian()
+  {
+    $this->form->volume = 5000;
+    $totalVolume = TeraJenisA::whereDate('tanggal_pengujian', $this->tanggalPengujian)->select(['volume'])->sum('volume');
+    $volumes = [5000, 8000, 10000, 16000, 20000];
+    $volumeRest = 25000 - $totalVolume;
+    $this->volumesAvaliable = [];
+    foreach ($volumes as $volume) {
+      if ($volume > $volumeRest) {
+        $this->volumesAvaliable[] = ['disabled', $volume];
+        continue;
+      }
+      $this->volumesAvaliable[] = ['enable', $volume];
+    }
+  }
 
   private function getRandomCode(): string
   {
@@ -75,6 +93,7 @@ class CardFormTumBbm extends Component
   {
     $rules = new AjukanTeraRulesTumBbm();
     $this->isSubmitButtonDisabled = true;
+    $this->form->tanggal_pengujian = $this->tanggalPengujian;
     try {
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->validate(
@@ -134,6 +153,8 @@ class CardFormTumBbm extends Component
   {
     $rules = new AjukanTeraRulesTumBbm();
     $this->isSubmitButtonDisabled = true;
+    $this->form->tanggal_pengujian = $this->tanggalPengujian;
+
     try {
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->validateFileReupload();
@@ -159,7 +180,10 @@ class CardFormTumBbm extends Component
     if ($this->isOnUpdate) {
       $id = request()->query('id');
       $this->id = $id;
-      $this->form->setAndGetPropertiesFromTable($id);
+      $dataTera = TeraJenisA::find($id);
+      $this->tanggalPengujian = $dataTera->tanggal_pengujian;
+      $this->updatedTanggalPengujian();
+      $this->form->setAndGetPropertiesFromTable($dataTera);
     } else {
       $this->form->setProperties($this->getRandomCode());
     }

@@ -205,17 +205,27 @@
 
     <!-- 🥤 Volume -->
     <div class="order-5 form-group-container my-2">
+      <p class="text-sm md:text-base font-semibold">Volume Nominal TUM BBM</p>
+      <p class="text-xs text-grey">Isi Tanggal Pegujian terlebih dahulu</p>
       <div class="form-group-container my-2">
-        <p class="text-sm md:text-base font-semibold">Volume Nominal TUM BBM</p>
         <div class="relative mt-3">
-          <select wire:model.live="form.volume" id="volume"
+          @if ($tanggalPengujian == null)
+          <select disabled wire:model.live="form.volume" id="volume"
             class="input-sm pt-4 pl-4 bg-white text-sm text-left inline-flex justify-between text-dark-grey">
             <option value="5000">5.000L</option>
-            <option value="8000">8.000L</option>
-            <option value="10000">10.000L</option>
-            <option value="16000">16.000L</option>
-            <option value="20000">20.000L</option>
           </select>
+          @else
+          <select wire:model.live="form.volume" id="volume"
+            class="input-sm pt-4 pl-4 bg-white text-sm text-left inline-flex justify-between text-dark-grey">
+            @foreach ($volumesAvaliable as $volume)
+            @if ($volume == 5000)
+            <option {{$volume[0]}} selected value="{{$volume[1]}}">{{$volume[1]}}L</option>
+            @else
+            <option {{$volume[0]}} value="{{$volume[1]}}">{{$volume[1]}}L</option>
+            @endif
+            @endforeach
+          </select>
+          @endif
           <label for="Volume"
             class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
             Volume</label>
@@ -441,10 +451,10 @@
     <div class="order-9 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Tanggal Pengujian</p>
       <div class="relative w-full mt-3">
-        <input min="{{ $this->getTodayDate() }}" wire:model.live='form.tanggal_pengujian' name="tanggal_pengujian"
-          type="date" id="tanggal_pengujian" class="form-input peer" placeholder=" " />
+        <input min="{{ $this->getTodayDate() }}" wire:model.live='tanggalPengujian' name="tanggal_pengujian" type="date"
+          id="tanggal_pengujian" class="form-input peer" placeholder=" " />
       </div>
-      @error('form.tanggal_pengujian')
+      @error('tanggalPengujian')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
     </div>
@@ -460,10 +470,8 @@
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       <div class="relative mt-3" x-show="tempat_pengujian == 'di_luar_kantor'">
-        <input x-bind:value="tempat_pengujian == 'di_luar_kantor' ? '{{$form->alamat_pengujian}}' :
-                        'Kantor Dinas Perdagangan Jl. Panglima Batur Barat No . 08 Banjarbaru'"
-          wire:model.live='form.alamat_pengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan" type="text"
-          id="alamat_pengujian" class="form-input peer" placeholder=" " />
+        <input wire:model.live='form.alamat_pengujian' name="alamat_pengujian" value="Kantor Dinas Perdagangan"
+          type="text" id="alamat_pengujian" class="form-input peer" placeholder=" " />
         <label for="alamat_pengujian"
           class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>

@@ -25,21 +25,6 @@ class PengelolaanLayananTeraController extends Controller
         return view('admin.update-tera', ['tera' => $tera, 'layanan' => 'update-tera']);
     }
 
-    public function cetakTera(Request $request, String $tera)
-    {
-        $dompdf = new Dompdf();
-        $html = view('admin.cetak-tera', ['tera' => $tera]);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4');
-
-        $options = $dompdf->getOptions();
-        $options->setDefaultFont('Calibri');
-        $dompdf->setOptions($options);
-
-        $dompdf->render();
-
-        $dompdf->stream('Dokumen Tera', ['Attachment' => false]);
-    }
     public function previewTera(Request $request, String $tera)
     {
         try {

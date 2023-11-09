@@ -6,7 +6,6 @@ use App\Http\Controllers\PengajuanLayananTeraController;
 use App\Http\Controllers\PengelolaanLayananTeraController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +30,14 @@ Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::
     Route::get('/pengelolaan-layanan/data-tera/{tera}', 'showDataTera')->name('admin-data-tera');
     Route::get('/pengelolaan-layanan/update-tera/{tera}',  'showUpdateTera')->name('admin-update-tera');
     Route::get('/pengelolaan-layanan/preview-tera/{tera}', 'previewTera')->name('admin-preview-tera');
-    Route::get('/pengelolaan-layanan/cetak-tera/{tera}', 'cetakTera')->name('admin-cetak-tera');
     Route::get('/pengelolaan-layanan/data-status/', 'getDataStatus')->name('admin-data-status');
 });
-
+Route::middleware(['pengajuan-or-pelayanan'])->group(function () {
+    Route::get('/layanan/data-tera/{tera}');
+});
 Route::middleware(['only-guest'])->group(function () {
     Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
     Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
-});
-
-Route::middleware(['pengajuan-or-pelayanan'])->group(function () {
-    Route::get('/layanan/data-tera/{tera}');
 });
 
 Route::get('/error-page', function (Request $request) {

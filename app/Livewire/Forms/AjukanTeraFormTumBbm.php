@@ -3,9 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\TeraJenisA;
-use App\Models\TeraJenisB;
-use App\Models\TeraJenisC;
-use App\Models\TeraJenisD;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
@@ -32,7 +29,7 @@ class AjukanTeraFormTumBbm extends Form
   public $dokumen_bukti_pendukung_lainnya;
 
   #[Rule('required', message: 'Keterangan Wajib Diisi!')]
-  public $keterangan = "";
+  public $keterangan = "Tera anda sedang diajukan dan dipross sistem";
 
   // 🧑 Pemohon
   #[Rule('required', message: 'Nama Pemohon Wajib Diisi!')]
@@ -78,7 +75,7 @@ class AjukanTeraFormTumBbm extends Form
 
   #[Rule('required', message: 'Nomor Kontak Wajib Diisi!')]
   #[Rule('regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', message: 'Format Nomor Tidak Sesuai')]
-  public $nomor_kontak = '';
+  public $nomor_kontak = '088245672170';
 
   public $file_dokumen_surat_permohonan;
   public $file_dokumen_skhp_sebelumnya;
@@ -103,7 +100,7 @@ class AjukanTeraFormTumBbm extends Form
 
   // 📅 Tanggal
   #[Rule('required', message: 'Tanggal Pengujian Wajib Diisi!')]
-  public $tanggal_pengujian = '';
+  public $tanggal_pengujian = '2023-11-11';
 
   #[Rule('required', message: 'Tanggal Cek Fisik Wajib Diisi!')]
   public $tanggal_cek_fisik = '2023-12-12';
@@ -112,7 +109,7 @@ class AjukanTeraFormTumBbm extends Form
   public $tempat_pengujian = 'di_kantor';
 
   #[Rule('required', message: 'Alamat Pengujian Wajib Diisi!')]
-  public $alamat_pengujian = 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru';
+  public $alamat_pengujian = '';
 
 
   public function storeFiles()
@@ -140,9 +137,8 @@ class AjukanTeraFormTumBbm extends Form
   }
 
 
-  public function setAndGetPropertiesFromTable($id)
+  public function setAndGetPropertiesFromTable($dataTera)
   {
-    $dataTera = TeraJenisA::find($id);
     $this->kode_pengajuan = $dataTera->kode_pengajuan;
     $this->nama_pemohon = $dataTera->nama_pemohon;
     $this->alamat_pemohon = $dataTera->alamat_pemohon;
