@@ -75,7 +75,7 @@ class AjukanTeraFormTumBbm extends Form
 
   #[Rule('required', message: 'Nomor Kontak Wajib Diisi!')]
   #[Rule('regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', message: 'Format Nomor Tidak Sesuai')]
-  public $nomor_kontak = '088245672170';
+  public $nomor_kontak = '';
 
   public $file_dokumen_surat_permohonan;
   public $file_dokumen_skhp_sebelumnya;

@@ -25,7 +25,7 @@ class CardForm extends Component
   public $jenisUttp;
   public $success = false;
   public $message = null;
-  public $isOnUpdate = false;
+  public $isOnUpdate = true;
 
   public AjukanTeraForm $form;
 
