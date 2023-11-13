@@ -18,7 +18,7 @@ class CardTable extends Component
   {
     $model = config("tera.$this->tera.model_tera");
     if ($this->tera == 'tum-bbm') {
-      $data = $model::select('kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
+      $data = $model::select('kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'tanggal_cek_fisik', 'status', 'keterangan')
         ->where("$this->queryCategory", 'LIKE', "%$this->query%")
         ->orderBy('id', 'desc')
         ->paginate(5);

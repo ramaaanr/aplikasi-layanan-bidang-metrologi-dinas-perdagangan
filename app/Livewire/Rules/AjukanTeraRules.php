@@ -3,6 +3,8 @@
 namespace App\Livewire\Rules;
 
 
+
+
 class AjukanTeraRules
 {
   private $rules = [
@@ -26,6 +28,7 @@ class AjukanTeraRules
     'form.file_dokumen_bukti_pendukung_lainnya' => 'required|max:2048|mimes:pdf',
   ];
   private $messages = [
+    'form.tanggal_pengujian.*' => 'Tanggal Wajib diisi dan Tanggal yang dipilih jatuh pada hari kerja',
     'form.nomor_kontak.*' => 'Nomor Kontak wajib diisi dan sesuai format (08/+62)',
     'form.file_dokumen_surat_permohonan.*' => ':attribute wajib diisi dan file harus pdf dengan size maksimal 2MB',
     'form.file_dokumen_skhp_sebelumnya.*' => ':attribute wajib diisi dan file harus pdf dengan size maksimal 2MB',

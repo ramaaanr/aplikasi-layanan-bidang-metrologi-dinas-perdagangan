@@ -24,15 +24,15 @@ class CardFormTumBbm extends Component
   public $success = false;
   public $message = null;
   public $isOnUpdate = false;
-  public $tanggalPengujian;
+  public $tanggalCekFisik;
   public $volumesAvaliable;
 
   public AjukanTeraFormTumBbm $form;
 
-  public function updatedTanggalPengujian()
+  public function updatedTanggalCekFisik()
   {
     $this->form->volume = 5000;
-    $totalVolume = TeraJenisA::whereDate('tanggal_pengujian', $this->tanggalPengujian)->select(['volume'])->sum('volume');
+    $totalVolume = TeraJenisA::whereDate('tanggal_cek_fisik', $this->tanggalCekFisik)->select(['volume'])->sum('volume');
     $volumes = [5000, 8000, 10000, 16000, 20000];
     $volumeRest = 25000 - $totalVolume;
     $this->volumesAvaliable = [];
@@ -53,9 +53,9 @@ class CardFormTumBbm extends Component
     return strtoupper($uuid10Digit);
   }
 
-  public function getTodayDate()
+  public function getMinimalCekFisik()
   {
-    return Carbon::now()->format('Y-m-d');
+    return Carbon::now()->addWeekdays(3)->format('Y-m-d');
   }
 
   public function downloadSuratPermohonan()
@@ -93,8 +93,9 @@ class CardFormTumBbm extends Component
   {
     $rules = new AjukanTeraRulesTumBbm();
     $this->isSubmitButtonDisabled = true;
-    $this->form->tanggal_pengujian = $this->tanggalPengujian;
     try {
+      $this->form->tanggal_cek_fisik = $this->tanggalCekFisik;
+      $this->form->tanggal_pengujian = Carbon::parse($this->tanggalCekFisik)->subWeekdays(3)->format('Y-m-d');
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->validate(
         $rules->getRules(),
@@ -153,9 +154,9 @@ class CardFormTumBbm extends Component
   {
     $rules = new AjukanTeraRulesTumBbm();
     $this->isSubmitButtonDisabled = true;
-    $this->form->tanggal_pengujian = $this->tanggalPengujian;
-
     try {
+      $this->form->tanggal_cek_fisik = $this->tanggalCekFisik;
+      $this->form->tanggal_pengujian = Carbon::parse($this->tanggalCekFisik)->subWeekdays(3)->format('Y-m-d');
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
       $this->validateFileReupload();
       $this->validate(
@@ -181,8 +182,8 @@ class CardFormTumBbm extends Component
       $id = request()->query('id');
       $this->id = $id;
       $dataTera = TeraJenisA::find($id);
-      $this->tanggalPengujian = $dataTera->tanggal_pengujian;
-      $this->updatedTanggalPengujian();
+      $this->tanggalCekFisik = $dataTera->tanggal_cek_fisik;
+      $this->updatedTanggalCekFisik();
       $this->form->setAndGetPropertiesFromTable($dataTera);
     } else {
       $this->form->setProperties($this->getRandomCode());
