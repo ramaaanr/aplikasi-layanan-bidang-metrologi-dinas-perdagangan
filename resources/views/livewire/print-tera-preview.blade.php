@@ -7,18 +7,17 @@
   <div id="ready-to-print" class="mx-4">
     <div class="kop-surat  flex justify-center align-center gap-x-2 border-b-2 pb-4 border-black">
       <div class="logo flex h-fit ">
-        <img src="{{ asset('/images/logo-dinas.png') }}" class="w-28 mt-6" alt="">
+        <img src="{{ asset('/images/logo-dinas.png') }}" class="w-20 mt-6" alt="">
       </div>
       <div class="header text-center leading-tight">
         <p class="text-black  font-bold">PEMERINTAH KOTA BANJARBARU</p>
         <p class="text-black font-bold text-2xl">DINAS PERDAGANGAN</p>
-        <p class="text-black font-bold text-2xl">UPT METROLOGI</p>
         <p class="text-black font-bold text-sm">Jl. A. Yani km 2 Kel. Landasan Ulin Barat Kec. Liang Anggang Banjarbaru
           Telp.
           (0511)
           6748343</p>
       </div>
-      <div class="logo-empty-space w-28"></div>
+      <div class="logo-empty-space w-20"></div>
     </div>
 
     <div class="body mx-8">
@@ -251,7 +250,7 @@
         <li class="flex justify-between mt-24">
           <div class="sign-box  w-full ">
             <p class="text-center text-sm text-black">Mengetahui</p>
-            <p class="text-center text-sm text-black">Kepala UPT Metrologi</p>
+            <p class="text-center text-sm text-black">Kepala Dinas Perdagangan</p>
             <div class="mx-10 mt-28 border-b border-dotted border-black"></div>
           </div>
           <div class="sign-box  w-full ">
