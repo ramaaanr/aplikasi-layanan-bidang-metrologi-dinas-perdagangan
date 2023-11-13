@@ -154,6 +154,7 @@ class CardForm extends Component
     }, $words);
     $this->sentenceCaseTitle = implode(' ', $sentenceCase);
     $this->jenisUttp = config("tera.$this->tera.jenis_uttp");
+    if ($this->tera == 'timbangan-jembatan') $this->form->tempat_pengujian = 'di_luar_kantor';
     if ($this->isOnUpdate) {
       $this->form->jenis_tera = $this->tera;
       $id = request()->query('id');
