@@ -28,6 +28,8 @@ Route::controller(LoginController::class)->group(function () {
 Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::class)->group(function () {
     Route::get('/pengelolaan-layanan/dashboard', 'index')->name('admin-dashboard');
     Route::get('/pengelolaan-layanan/data-tera/{tera}', 'showDataTera')->name('admin-data-tera');
+    Route::get('/pengelolaan-layanan/data-kendaraan', 'showDataKendaraan')->name('admin-data-kendaraan');
+    Route::get('/pengelolaan-layanan/data-perusahaan', 'showDataPerusahaan')->name('admin-data-perusahaan');
     Route::get('/pengelolaan-layanan/update-tera/{tera}',  'showUpdateTera')->name('admin-update-tera');
     Route::get('/pengelolaan-layanan/preview-tera/{tera}', 'previewTera')->name('admin-preview-tera');
     Route::get('/pengelolaan-layanan/data-status/', 'getDataStatus')->name('admin-data-status');

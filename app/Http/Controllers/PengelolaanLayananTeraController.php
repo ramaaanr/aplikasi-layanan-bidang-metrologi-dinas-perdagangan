@@ -16,6 +16,14 @@ class PengelolaanLayananTeraController extends Controller
     {
         return view('admin.data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);
     }
+    public function showDataKendaraan()
+    {
+        return view('admin.data-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'data-tera']);
+    }
+    public function showDataPerusahaan()
+    {
+        return view('admin.data-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'data-tera']);
+    }
     public function showUpdateTera(Request $request, String $tera)
     {
         $id = $request->query('id');
