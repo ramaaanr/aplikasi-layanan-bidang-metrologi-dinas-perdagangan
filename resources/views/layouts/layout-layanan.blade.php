@@ -13,7 +13,7 @@
   </button>
 </nav>
 <section id="drawer" class="drawer fixed top-18 left-0 z-40 h-screen w-80 overflow-y-auto transition-transform -translate-x-full">
-  @include('components.drawer', ['tera' => $tera])
+  @include('components.drawer', ['tera' => $tera, 'user' => 'guest'])
 </section>
 <aside class="fixed hidden lg:block top-0 left-0 z-40">
   @include('components.sidebar', ['tera' => $tera, 'user'=> 'guest'])

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perusahaan;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,17 @@ class PengelolaanLayananTeraController extends Controller
     }
     public function showDataPerusahaan()
     {
-        return view('admin.data-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'data-tera']);
+        return view('admin.data-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan']);
+    }
+    public function showAjukanPerusahaan()
+    {
+        return view('admin.ajukan-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan', 'isOnUpdate' => false]);
+    }
+    public function showUpdatePerusahaan(Request $request)
+    {
+        $perusahaan = Perusahaan::find($request->query('id'));
+        if (!$perusahaan) return redirect()->route('error-page');
+        return view('admin.ajukan-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan', 'isOnUpdate' => true]);
     }
     public function showUpdateTera(Request $request, String $tera)
     {

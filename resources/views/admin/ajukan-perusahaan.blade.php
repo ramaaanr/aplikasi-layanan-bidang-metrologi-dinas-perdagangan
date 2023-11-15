@@ -5,6 +5,6 @@
   @include('components.alert-error', ['tera' => $tera, 'message' => session('error')])
   @endif
   <div class="card-content-layanan">
-    @livewire('components.cards.card-table-perusahaan', ['lazy' => true])
+    @livewire('components.cards.card-form-perusahaan', ['isOnUpdate' => $isOnUpdate])
   </div>
   @endsection
