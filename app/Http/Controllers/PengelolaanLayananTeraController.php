@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kendaraan;
 use App\Models\Perusahaan;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class PengelolaanLayananTeraController extends Controller
     }
     public function showDataKendaraan()
     {
-        return view('admin.data-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'data-tera']);
+        return view('admin.data-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'kendaraan']);
     }
     public function showDataPerusahaan()
     {
@@ -28,6 +29,16 @@ class PengelolaanLayananTeraController extends Controller
     public function showAjukanPerusahaan()
     {
         return view('admin.ajukan-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan', 'isOnUpdate' => false]);
+    }
+    public function showAjukanKendaraan()
+    {
+        return view('admin.ajukan-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'kendaraan', 'isOnUpdate' => false]);
+    }
+    public function showUpdateKendaraan(Request $request)
+    {
+        $kendaraan = Kendaraan::find($request->query('id'));
+        if (!$kendaraan) return redirect()->route('error-page');
+        return view('admin.ajukan-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'kendaraan', 'isOnUpdate' => true]);
     }
     public function showUpdatePerusahaan(Request $request)
     {

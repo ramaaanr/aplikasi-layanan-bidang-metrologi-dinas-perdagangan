@@ -27,29 +27,26 @@ class CardFormPerusahaan extends Component
 
     public function submit()
     {
-        $this->tanggal_pengisian = Carbon::now()->format('Y-m-d');
-        $this->validate();
-        Perusahaan::create($this->except(['isOnUpdate, id']));
-        session()->flash('success');
+        try {
+            $this->tanggal_pengisian = Carbon::now()->format('Y-m-d');
+            $this->validate();
+            Perusahaan::create($this->except(['isOnUpdate', 'id']));
+            session()->flash('success');
+        } catch (\Illuminate\Database\QueryException $e) {
+            session()->flash('error');
+        }
     }
 
     public function update()
     {
-        // try {
-        $this->tanggal_pengisian = Carbon::now()->format('Y-m-d');
-        $this->validate();
-        Perusahaan::where('id', $this->id)->update([
-            'nama_perusahaan' => $this->nama_perusahaan,
-            'alamat_skhp' => $this->alamat_skhp,
-            'kelurahan_skhp' => $this->kelurahan_skhp,
-            'kecamatan_skhp' => $this->kecamatan_skhp,
-            'kota_skhp' => $this->kota_skhp,
-            'provinsi_skhp' => $this->provinsi_skhp,
-            'tanggal_pengisian' => $this->tanggal_pengisian,
-        ]);
-        session()->flash('success');
-        // } catch (\Illuminate\Database\QueryException $e) {
-        // }
+        try {
+            $this->tanggal_pengisian = Carbon::now()->format('Y-m-d');
+            $this->validate();
+            Perusahaan::where('id', $this->id)->update($this->except(['isOnUpdate', 'id']));
+            session()->flash('success');
+        } catch (\Illuminate\Database\QueryException $e) {
+            session()->flash('error');
+        }
     }
 
     public function mount()

@@ -2,20 +2,30 @@
 
 namespace App\Livewire\Components\Cards;
 
+use App\Models\Kendaraan;
 use App\Models\Perusahaan;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class CardTablePerusahaan extends Component
+class CardTableKendaraan extends Component
 {
     use WithPagination;
 
     public $query = "";
-    public $queryCategory = "nama_perusahaan";
+    public $queryCategory = "nomor_polisi";
 
-    public function getTeraData()
+    public function getData()
     {
-        $data = Perusahaan::select('id', 'nama_perusahaan', 'alamat_skhp', 'kota_skhp', 'provinsi_skhp', 'tanggal_pengisian',)
+        $data = Kendaraan::select(
+            'id',
+            'merek_kendaraan',
+            'nomor_polisi',
+            'volume',
+            'kompartemen',
+            'pemilik_stnk',
+            'alamat_stnk',
+            'tanggal_pengisian'
+        )
             ->where("$this->queryCategory", 'LIKE', "%$this->query%")
             ->orderBy('id', 'desc')
             ->paginate(20);
@@ -36,13 +46,13 @@ class CardTablePerusahaan extends Component
 
     public function placeholder()
     {
-        return view('components.cards.card-loading-table-perusahaan');
+        return view('components.cards.card-loading-table-kendaraan');
     }
 
 
 
     public function render()
     {
-        return view('components.cards.card-table-perusahaan', ['dataPerusahaan' => $this->getTeraData()]);
+        return view('components.cards.card-table-kendaraan', ['dataKendaraan' => $this->getData()]);
     }
 }
