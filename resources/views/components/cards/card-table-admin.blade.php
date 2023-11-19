@@ -1,10 +1,17 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
-
-
-
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{ $sentenceCaseTitle }}</h3>
   <!-- 🎬 Action Container Start -->
   <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
+    <!-- 💁‍♂️ Jenis Dukungan Button Start -->
+    @if($tera == 'tum-bbm')
+    <select wire:model.live="jenisDukungan"
+      class="input-sm bg-white text-sm text-left inline-flex justify-between text-grey">
+      <option value="subsidi">Subsidi</option>
+      <option value="non-subsidi">Non Subsidi</option>
+    </select>
+    @endif
+    <!-- 💁‍♂️ Jenis Dukungan Button End -->
+
     <!-- 🔍 Input Search Start-->
     <div class=" input__container relative mb-2 flex flex-wrap flex-col w-full">
       <input wire:model.live="query" type="text " class="input-sm text-sm" placeholder="cari dokumen...">
@@ -43,43 +50,35 @@
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
               Kode Pengajuan
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                </svg></a>
+
             </div>
           </th>
           <th scope="col" class="p-3 w-10">
             <div class="flex items-center">
               Pemohon
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                </svg></a>
+
             </div>
           </th>
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
               Tanggal Pengajuan
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                </svg></a>
+
             </div>
           </th>
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
               Tanggal Pengujian
-              <a href="#"><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                </svg></a>
+
             </div>
           </th>
+          @if ($tera == 'tum-bbm')
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
+              Tanggal Cek Fisik
+
+            </div>
+          </th>
+          @endif
           <th scope="col" class="p-3 w-3">
             <div class="flex items-center">
               Status
@@ -140,6 +139,14 @@
             {{ $dataPengajuan->tanggal_pengujian }}
           </td>
 
+          @if ($tera == 'tum-bbm')
+          <!-- 📅✔️ Tanggal Pengujian-->
+          <td class="p-3 w-9">
+            {{ $dataPengajuan->tanggal_cek_fisik }}
+          </td>
+          @endif
+
+
           <!-- 📊 Status -->
           <td class="p-3 w-3">
             <div x-data="{ status: '{{$dataPengajuan->status}}' }">
@@ -157,17 +164,45 @@
             {{ $dataPengajuan->keterangan }}
           </td>
           <!-- 🎬 Aksi -->
-          @if ($dataPengajuan->status == 'Selesai')
           <td class="p-3 w-9">
-            <a class="underline text-light-grey pointer-events-none" href="">Update</a>
-            <a class="underline" href="/pengelolaan-layanan/preview-tera/{{$tera}}?id={{$dataPengajuan->id}}">Cetak</a>
+
+            @if ($dataPengajuan->status == 'Selesai')
+            <a class="pointer-events-none block mb-1" href="">
+              <svg class="w-[24px] h-[24px] bg-light-grey rounded-sm p-1 fill-light" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                <path
+                  d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
+                <path
+                  d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
+              </svg>
+            </a>
+            <a href="/pengelolaan-layanan/preview-tera/{{$tera}}?id={{$dataPengajuan->id}}"><svg
+                class="w-[24px] h-[24px] bg-green-400 rounded-sm p-1 fill-light" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z" />
+                <path
+                  d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z" />
+              </svg></a>
+            @else
+            <a class="block mb-1" href="/pengelolaan-layanan/update-tera/{{$tera}}?id={{$dataPengajuan->id}}">
+              <svg class="w-[24px] h-[24px] bg-blue-600 rounded-sm p-1 fill-light" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                <path
+                  d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
+                <path
+                  d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
+              </svg>
+            </a>
+            <a class="pointer-events-none" href="">
+              <svg class="w-[24px] h-[24px] bg-light-grey rounded-sm p-1 fill-light" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z" />
+                <path
+                  d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z" />
+              </svg>
+            </a>
+            @endif
           </td>
-          @else
-          <td class="p-3 w-9">
-            <a class="underline" href="/pengelolaan-layanan/update-tera/{{$tera}}?id={{$dataPengajuan->id}}">Update</a>
-            <a class="underline text-light-grey pointer-events-none" href="">Cetak</a>
-          </td>
-          @endif
 
         </tr>
         @endforeach

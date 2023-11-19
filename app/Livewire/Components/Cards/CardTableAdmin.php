@@ -13,13 +13,19 @@ class CardTableAdmin extends Component
   public $query = "";
   public $queryCategory = "nama_pemohon";
   public $sentenceCaseTitle;
+  public $jenisDukungan = 'subsidi';
 
+  public function updatedJenisDukungan($jenisDukungan)
+  {
+    $this->resetPage();
+    $this->render();
+  }
 
   public function getTeraData()
   {
     $model = config("tera.$this->tera.model_tera");
     if ($this->tera == 'tum-bbm') {
-      $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'status', 'keterangan')
+      $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'tanggal_cek_fisik', 'status', 'keterangan')
         ->where("$this->queryCategory", 'LIKE', "%$this->query%")
         ->orderBy('id', 'desc')
         ->paginate(10);

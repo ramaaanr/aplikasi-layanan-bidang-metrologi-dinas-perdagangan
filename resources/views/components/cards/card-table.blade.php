@@ -3,8 +3,19 @@
 
 
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{ $sentenceCaseTitle }}</h3>
+
   <!-- 🎬 Action Container Start -->
-  <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
+  <div class="action-container grid grid-cols-3 md:grid-cols-4 gap-x-2">
+    <!-- 💁‍♂️ Jenis Dukungan Button Start -->
+    @if($tera == 'tum-bbm')
+    <select wire:model.live="jenisDukungan"
+      class="input-sm bg-white text-sm text-left inline-flex justify-between text-grey">
+      <option value="subsidi">Subsidi</option>
+      <option value="non-subsidi">Non Subsidi</option>
+    </select>
+    @endif
+    <!-- 💁‍♂️ Jenis Dukungan Button End -->
+
     <!-- 🔍 Input Search Start-->
     <div class=" input__container relative mb-2 flex flex-wrap flex-col w-full">
       <input wire:model.live="query" type="text " class="input-sm text-sm" placeholder="cari dokumen...">
@@ -35,7 +46,7 @@
 
     <!-- ➕ Pengajuan Start -->
     <a href="/pengajuan-layanan/ajukan-tera/{{$tera}}/"
-      class="button-primary-sm w-full h-fit flex justify-center col-span-2 md:col-auto">
+      class="button-primary-sm w-full h-fit flex justify-center col-span-3 md:col-auto">
       <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
         <path xmlns="http://www.w3.org/2000/svg"
           d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
