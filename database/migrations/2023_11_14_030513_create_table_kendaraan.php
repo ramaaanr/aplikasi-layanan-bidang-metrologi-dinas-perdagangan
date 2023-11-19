@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string("alamat_stnk", 100)->nullable(false);
             $table->unsignedBigInteger("perusahaan_id")->nullable(false);
             $table->date("tanggal_pengisian")->nullable(false)->useCurrent();
-
             $table->foreign('perusahaan_id')->references('id')->on('perusahaan');
         });
     }

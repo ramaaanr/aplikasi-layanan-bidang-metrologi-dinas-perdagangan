@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Kendaraan;
+use App\Models\Perusahaan;
 use App\Models\TeraJenisA;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +42,7 @@ class AjukanTeraFormTumBbm extends Form
 
   // 🏭 SKHP
   #[Rule('required', message: 'SKHP atas Nama Wajib Diisi!')]
-  public $nama_skhp = "";
+  public $nama_perusahaan = "";
 
   #[Rule('required', message: 'Alamat dalam SKHP Wajib Diisi!')]
   public $alamat_skhp = '';
@@ -75,11 +77,18 @@ class AjukanTeraFormTumBbm extends Form
 
   #[Rule('required', message: 'Nomor Kontak Wajib Diisi!')]
   #[Rule('regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', message: 'Format Nomor Tidak Sesuai')]
-  public $nomor_kontak = '';
+  public $nomor_kontak = '088245672170';
 
+  #[Rule('required', message: 'Surat Permohonan wajib diisi dan file harus pdf dengan size maksimal 2MB')]
   public $file_dokumen_surat_permohonan;
+
+  #[Rule('required', message: 'SKHP Sebelumnya wajib diisi dan file harus pdf dengan size maksimal 2MB')]
   public $file_dokumen_skhp_sebelumnya;
+
+  #[Rule('required', message: 'STNK wajib diisi dan file harus pdf dengan size maksimal 2MB')]
   public $file_dokumen_stnk;
+
+  #[Rule('required', message: 'Bukti Pendukung Lainnya wajib diisi dan file harus pdf dengan size maksimal 2MB')]
   public $file_dokumen_bukti_pendukung_lainnya;
 
   // 🥤Volume TUM BBM
@@ -100,10 +109,10 @@ class AjukanTeraFormTumBbm extends Form
 
   // 📅 Tanggal
   #[Rule('required', message: 'Tanggal Pengujian Wajib Diisi!')]
-  public $tanggal_pengujian = '2023-11-11';
+  public $tanggal_pengujian = '';
 
   #[Rule('required', message: 'Tanggal Cek Fisik Wajib Diisi!')]
-  public $tanggal_cek_fisik = '2023-12-12';
+  public $tanggal_cek_fisik = '';
 
   #[Rule('required', message: 'Tempat Pengujian Wajib Diisi!')]
   public $tempat_pengujian = 'di_kantor';
@@ -122,7 +131,6 @@ class AjukanTeraFormTumBbm extends Form
       $this->file_dokumen_skhp_sebelumnya->store('dokumen_skhp_sebelumnya');
     $file_path_dokumen_surat_permohonan =
       $this->file_dokumen_surat_permohonan->store('dokumen_surat_permohonan');
-
     $this->dokumen_bukti_pendukung_lainnya = $file_path_dokumen_bukti_pendukung_lainnya;
     $this->dokumen_skhp_sebelumnya = $file_path_dokumen_skhp_sebelumnya;
     $this->dokumen_stnk = $file_path_dokumen_stnk;
@@ -139,28 +147,31 @@ class AjukanTeraFormTumBbm extends Form
 
   public function setAndGetPropertiesFromTable($dataTera)
   {
+    $kendaraan = $dataTera->kendaraan;
+    $perusahaan = $kendaraan->perusahaan;
     $this->kode_pengajuan = $dataTera->kode_pengajuan;
     $this->nama_pemohon = $dataTera->nama_pemohon;
     $this->alamat_pemohon = $dataTera->alamat_pemohon;
-    $this->nama_skhp = $dataTera->nama_skhp;
-    $this->alamat_skhp = $dataTera->alamat_skhp;
-    $this->kelurahan_skhp = $dataTera->kelurahan_skhp;
-    $this->kecamatan_skhp = $dataTera->kecamatan_skhp;
-    $this->kota_skhp = $dataTera->kota_skhp;
-    $this->provinsi_skhp = $dataTera->provinsi_skhp;
     $this->nomor_kontak = $dataTera->nomor_kontak;
 
-    $this->volume = $dataTera->volume;
-    $this->kompartemen = $dataTera->kompartemen;
-    $this->lemping_volume_nominal = $dataTera->lemping_volume_nominal;
-    $this->indeks_tera = $dataTera->indeks_tera;
-    $this->merk_tum_bbm = $dataTera->merk_tum_bbm;
+    $this->nama_perusahaan = $perusahaan->nama_perusahaan;
+    $this->alamat_skhp = $perusahaan->alamat_skhp;
+    $this->kelurahan_skhp = $perusahaan->kelurahan_skhp;
+    $this->kecamatan_skhp = $perusahaan->kecamatan_skhp;
+    $this->kota_skhp = $perusahaan->kota_skhp;
+    $this->provinsi_skhp = $perusahaan->provinsi_skhp;
 
-    $this->merek_kendaraan = $dataTera->merek_kendaraan;
-    $this->nomor_polisi = $dataTera->nomor_polisi;
-    $this->nomor_rangka = $dataTera->nomor_rangka;
-    $this->pemilik_stnk = $dataTera->pemilik_stnk;
-    $this->alamat_stnk = $dataTera->alamat_stnk;
+    $this->lemping_volume_nominal = $dataTera->lemping_volume_nominal == 1 ? true : false;
+    $this->indeks_tera = $dataTera->indeks_tera  == 1 ? true : false;
+    $this->merk_tum_bbm = $dataTera->merk_tum_bbm  == 1 ? true : false;
+
+    $this->merek_kendaraan = $kendaraan->merek_kendaraan;
+    $this->nomor_polisi = $kendaraan->nomor_polisi;
+    $this->nomor_rangka = $kendaraan->nomor_rangka;
+    $this->pemilik_stnk = $kendaraan->pemilik_stnk;
+    $this->alamat_stnk = $kendaraan->alamat_stnk;
+    $this->volume = $kendaraan->volume;
+    $this->kompartemen = $kendaraan->kompartemen;
 
     $this->dokumen_surat_permohonan = $dataTera->dokumen_surat_permohonan;
     $this->dokumen_stnk = $dataTera->dokumen_stnk;
@@ -183,10 +194,55 @@ class AjukanTeraFormTumBbm extends Form
     Storage::copy($this->dokumen_bukti_pendukung_lainnya, "public/$this->dokumen_bukti_pendukung_lainnya");
   }
 
-  public function store()
+  public function store($jenisDukungan, $idKendaraan = null)
   {
-    $this->storeFiles();
-    TeraJenisA::create($this->except([...$this->nonSavedProperties]));
+    // TeraJenisA::create($this->except([...$this->nonSavedProperties]));
+    if ($jenisDukungan == 'non-subsidi') {
+      $perusahaan = new Perusahaan();
+      $perusahaan->nama_perusahaan = $this->nama_perusahaan;
+      $perusahaan->alamat_skhp = $this->alamat_skhp;
+      $perusahaan->kelurahan_skhp = $this->kelurahan_skhp;
+      $perusahaan->kecamatan_skhp = $this->kecamatan_skhp;
+      $perusahaan->kota_skhp = $this->kota_skhp;
+      $perusahaan->provinsi_skhp = $this->provinsi_skhp;
+      $perusahaan->tanggal_pengisian = $this->tanggal_pengajuan;
+      $perusahaan->save();
+      $perusahaanId = $perusahaan->id;
+      $kendaraan = new Kendaraan();
+      $kendaraan->merek_kendaraan = $this->merek_kendaraan;
+      $kendaraan->nomor_polisi = $this->nomor_polisi;
+      $kendaraan->nomor_rangka = $this->nomor_rangka;
+      $kendaraan->volume = $this->volume;
+      $kendaraan->kompartemen = $this->kompartemen;
+      $kendaraan->pemilik_stnk = $this->pemilik_stnk;
+      $kendaraan->alamat_stnk = $this->alamat_stnk;
+      $kendaraan->perusahaan_id = $perusahaanId;
+      $kendaraan->save();
+      $idKendaraan = $kendaraan->id;
+    }
+    $tera = new TeraJenisA();
+    $tera->kode_pengajuan = $this->kode_pengajuan;
+    $tera->no_surat = $this->no_surat;
+    $tera->nama_pemohon = $this->nama_pemohon;
+    $tera->alamat_pemohon = $this->alamat_pemohon;
+    $tera->nomor_kontak = $this->nomor_kontak;
+    $tera->dokumen_surat_permohonan = $this->dokumen_surat_permohonan;
+    $tera->dokumen_stnk = $this->dokumen_stnk;
+    $tera->dokumen_skhp_sebelumnya = $this->dokumen_skhp_sebelumnya;
+    $tera->dokumen_bukti_pendukung_lainnya = $this->dokumen_bukti_pendukung_lainnya;
+    $tera->lemping_volume_nominal = $this->lemping_volume_nominal;
+    $tera->indeks_tera = $this->indeks_tera;
+    $tera->merk_tum_bbm = $this->merk_tum_bbm;
+    $tera->status = $this->status;
+    $tera->jenis_dukungan = $jenisDukungan;
+    $tera->keterangan = $this->keterangan;
+    $tera->kendaraan_id = $idKendaraan;
+    $tera->tanggal_pengujian = $this->tanggal_pengujian;
+    $tera->tanggal_cek_fisik = $this->tanggal_cek_fisik;
+    $tera->tanggal_pengajuan = $this->tanggal_pengajuan;
+    $tera->tempat_pengujian = $this->tempat_pengujian;
+    $tera->alamat_pengujian = $this->alamat_pengujian;
+    $tera->save();
   }
 
   private function getAdminId()
@@ -203,7 +259,7 @@ class AjukanTeraFormTumBbm extends Form
     return "$noUrut/UPT.MET/$month/$year";
   }
 
-  public function update($id)
+  public function update($id, $idKendaraan)
   {
     if ($this->file_dokumen_surat_permohonan != null) {
       $file_path_dokumen_surat_permohonan =
@@ -228,6 +284,29 @@ class AjukanTeraFormTumBbm extends Form
 
     $this->no_surat =  $this->status == "Selesai" ? $this->generateCodeForKodePengajuan() : null;
 
-    TeraJenisA::where('id', $id)->update([...$this->except([...$this->nonSavedProperties]), 'admin_id' => $this->getAdminId()]);
+    $tera = TeraJenisA::find($id);
+    $tera->no_surat = $this->no_surat;
+    $tera->nama_pemohon = $this->nama_pemohon;
+    $tera->alamat_pemohon = $this->alamat_pemohon;
+    $tera->nomor_kontak = $this->nomor_kontak;
+    $tera->dokumen_surat_permohonan = $this->dokumen_surat_permohonan;
+    $tera->dokumen_stnk = $this->dokumen_stnk;
+    $tera->dokumen_skhp_sebelumnya = $this->dokumen_skhp_sebelumnya;
+    $tera->dokumen_bukti_pendukung_lainnya = $this->dokumen_bukti_pendukung_lainnya;
+    $tera->lemping_volume_nominal = $this->lemping_volume_nominal;
+    $tera->indeks_tera = $this->indeks_tera;
+    $tera->merk_tum_bbm = $this->merk_tum_bbm;
+    $tera->status = $this->status;
+    $tera->keterangan = $this->keterangan;
+    $tera->kendaraan_id = $idKendaraan;
+    $tera->tanggal_pengujian = $this->tanggal_pengujian;
+    $tera->tanggal_cek_fisik = $this->tanggal_cek_fisik;
+    $tera->tanggal_pengajuan = $this->tanggal_pengajuan;
+    $tera->tempat_pengujian = $this->tempat_pengujian;
+    $tera->alamat_pengujian = $this->alamat_pengujian;
+    $tera->lemping_volume_nominal = $this->lemping_volume_nominal;
+    $tera->indeks_tera = $this->indeks_tera;
+    $tera->merk_tum_bbm = $this->merk_tum_bbm;
+    $tera->save();
   }
 }
