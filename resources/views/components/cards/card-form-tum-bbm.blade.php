@@ -230,12 +230,10 @@
   @if ($jenisDukungan == 'subsidi')
   <div class="relative mt-3">
     <select wire:loading.attr="disabled" id="select-kendaraan" wire:model.live="idKendaraan" id="kendaraan" class="input-sm pt-4 pl-4 bg-white text-sm text-left inline-flex justify-between text-dark-grey">
-      @foreach ($opsiKendaraan as $kendaraan)
-      @if($loop->index == 0)
       <option wire:target="idKendaraan" selected class="text-grey font-semibold" value="">Pilih Kendaraan
       </option>
-      @endif
-      <option x-bind:disabled="{{$kendaraan->volume > $volumeRest}}" wire:target="idKendaraan" value="{{$loop->index}}">
+      @foreach ($opsiKendaraan as $kendaraan)
+      <option x-bind:disabled="{{$kendaraan->volume > $volumeRest}}" value="{{$loop->index}}">
         {{$kendaraan->nomor_polisi}}
       </option>
       @endforeach

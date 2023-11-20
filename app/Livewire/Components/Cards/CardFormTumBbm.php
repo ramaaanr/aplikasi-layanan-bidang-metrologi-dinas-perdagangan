@@ -85,8 +85,8 @@ class CardFormTumBbm extends Component
       $this->fillKendaraanToEmpty();
     } else {
       $this->jenisDukungan = 'subsidi';
-      $this->fillKendaraanToEmpty();
       $this->idKendaraan = "";
+      $this->fillKendaraanToEmpty();
       $perusahaan = Perusahaan::find($this->idPerusahaan);
       $this->form->alamat_skhp = $perusahaan->alamat_skhp;
       $this->form->kelurahan_skhp = $perusahaan->kelurahan_skhp;

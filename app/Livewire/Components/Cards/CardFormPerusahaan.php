@@ -24,6 +24,7 @@ class CardFormPerusahaan extends Component
     #[Rule('required', message: 'Provinsi Perusahaan Wajib Diisi!')]
     public $provinsi_skhp;
     public $tanggal_pengisian;
+    public $jenis_dukungan = 'subsidi';
 
     public function submit()
     {
