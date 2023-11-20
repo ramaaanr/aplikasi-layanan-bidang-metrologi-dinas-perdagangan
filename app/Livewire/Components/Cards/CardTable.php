@@ -45,6 +45,7 @@ class CardTable extends Component
     }
   }
 
+
   public function setSenteceCaseTitle()
   {
     $words = explode('-', $this->tera);

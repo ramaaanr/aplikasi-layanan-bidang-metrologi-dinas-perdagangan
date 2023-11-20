@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Cards;
 use App\Models\TeraJenisA;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class CardTableAdmin extends Component
 {
@@ -20,6 +21,11 @@ class CardTableAdmin extends Component
   {
     $this->resetPage();
     $this->render();
+  }
+
+  public function isOnDeadline($tanggalCek)
+  {
+    return Carbon::parse($tanggalCek)->isPast();
   }
 
   public function getTeraData()
