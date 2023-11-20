@@ -196,7 +196,7 @@ class AjukanTeraFormTumBbm extends Form
 
   public function store($jenisDukungan, $idKendaraan = null)
   {
-    // TeraJenisA::create($this->except([...$this->nonSavedProperties]));
+    $this->storeFiles();
     if ($jenisDukungan == 'non-subsidi') {
       $perusahaan = new Perusahaan();
       $perusahaan->nama_perusahaan = $this->nama_perusahaan;
@@ -250,6 +250,7 @@ class AjukanTeraFormTumBbm extends Form
     $session = session()->get('admin');
     return $session['id'];
   }
+
   public function generateCodeForKodePengajuan()
   {
     Carbon::setlocale('id');
@@ -307,6 +308,7 @@ class AjukanTeraFormTumBbm extends Form
     $tera->lemping_volume_nominal = $this->lemping_volume_nominal;
     $tera->indeks_tera = $this->indeks_tera;
     $tera->merk_tum_bbm = $this->merk_tum_bbm;
+    $tera->admin_id = $this->getAdminId();
     $tera->save();
   }
 }
