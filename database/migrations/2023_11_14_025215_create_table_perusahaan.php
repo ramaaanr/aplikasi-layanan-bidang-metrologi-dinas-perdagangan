@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("kota_skhp", 100)->nullable(false);
             $table->string("provinsi_skhp", 100)->nullable(false);
             $table->date("tanggal_pengisian")->nullable(false)->useCurrent();
+            $table->string("jenis_dukungan", 15)->nullable(false);
         });
     }
 

@@ -32,7 +32,6 @@ return new class extends Migration
             $table->boolean("merk_tum_bbm")->nullable(false);
 
             $table->string("status", 15)->nullable(false);
-            $table->string("jenis_dukungan", 15)->nullable(false);
             $table->string("keterangan", 100)->nullable(false);
 
             $table->unsignedBigInteger("admin_id")->nullable(true);

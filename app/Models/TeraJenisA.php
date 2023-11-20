@@ -26,7 +26,6 @@ class TeraJenisA extends Tera
         "indeks_tera",
         "merk_tum_bbm",
         "status",
-        "jenis_dukungan",
         "keterangan",
         "admin_id",
         "kendaraan_id",

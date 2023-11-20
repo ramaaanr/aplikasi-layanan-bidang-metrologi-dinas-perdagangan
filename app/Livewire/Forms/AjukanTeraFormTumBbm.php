@@ -206,6 +206,7 @@ class AjukanTeraFormTumBbm extends Form
       $perusahaan->kota_skhp = $this->kota_skhp;
       $perusahaan->provinsi_skhp = $this->provinsi_skhp;
       $perusahaan->tanggal_pengisian = $this->tanggal_pengajuan;
+      $perusahaan->jenis_dukungan = $jenisDukungan;
       $perusahaan->save();
       $perusahaanId = $perusahaan->id;
       $kendaraan = new Kendaraan();
@@ -234,7 +235,6 @@ class AjukanTeraFormTumBbm extends Form
     $tera->indeks_tera = $this->indeks_tera;
     $tera->merk_tum_bbm = $this->merk_tum_bbm;
     $tera->status = $this->status;
-    $tera->jenis_dukungan = $jenisDukungan;
     $tera->keterangan = $this->keterangan;
     $tera->kendaraan_id = $idKendaraan;
     $tera->tanggal_pengujian = $this->tanggal_pengujian;
@@ -242,6 +242,7 @@ class AjukanTeraFormTumBbm extends Form
     $tera->tanggal_pengajuan = $this->tanggal_pengajuan;
     $tera->tempat_pengujian = $this->tempat_pengujian;
     $tera->alamat_pengujian = $this->alamat_pengujian;
+
     $tera->save();
   }
 

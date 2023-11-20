@@ -172,9 +172,14 @@ class CardFormTumBbm extends Component
     return Storage::download('public/' . $this->form->dokumen_bukti_pendukung_lainnya, "bukti_pendukung_lainnya_$this->id");
   }
 
+
   public function showSuccessAlert()
   {
-    session()->flash('success', $this->form->kode_pengajuan);
+    session()->flash('success', [
+      'title' => $this->form->kode_pengajuan,
+      'head_content' => "Tera TUM BBM anda jenis dukungan $this->jenisDukungan",
+      'body_content' => 'Simpan kode pengajuan untuk diserahkan ke petugas. Tunggu dan pantau status pengajuan anda dalam halaman data tera sebelum pengujian tera anda dijadwalkan.',
+    ]);
   }
 
   public function showErrorAlert($e)
@@ -202,6 +207,8 @@ class CardFormTumBbm extends Component
       );
       $this->form->store($this->jenisDukungan, $this->idKendaraan != null ? $this->opsiKendaraan[$this->idKendaraan]->id : null);
       $this->showSuccessAlert();
+    } catch (\Throwable $th) {
+      dd($th);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
@@ -226,7 +233,6 @@ class CardFormTumBbm extends Component
         $rules->getAttributes(),
       );
       $this->form->update($this->id, $this->opsiKendaraan[$this->idKendaraan]->id);
-
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Illuminate\Database\QueryException $e) {
@@ -278,7 +284,18 @@ class CardFormTumBbm extends Component
 
   public function mount()
   {
-    $this->opsiPerusahaan = Perusahaan::select(['id', 'nama_perusahaan'])->has('kendaraan')->orderBy('nama_perusahaan')->get();
+
+    $this->opsiPerusahaan = $this->isOnUpdate
+      ? Perusahaan::select(['id', 'nama_perusahaan'])
+      ->has('kendaraan')
+      ->orderBy('nama_perusahaan')
+      ->get()
+      : Perusahaan::select(['id', 'nama_perusahaan'])
+      ->where('jenis_dukungan', 'subsidi')
+      ->has('kendaraan')
+      ->orderBy('nama_perusahaan')
+      ->get();
+
     $this->sentenceCaseTitle = "TUM BBM";
     if ($this->isOnUpdate) {
       $id = request()->query('id');

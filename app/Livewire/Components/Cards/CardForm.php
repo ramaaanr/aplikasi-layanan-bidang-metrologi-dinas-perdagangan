@@ -57,7 +57,11 @@ class CardForm extends Component
 
   public function showSuccessAlert()
   {
-    session()->flash('success', $this->form->kode_pengajuan);
+    session()->flash('success', [
+      'title' => $this->form->kode_pengajuan,
+      'head_content' => "",
+      'body_content' => 'Simpan kode pengajuan untuk diserahkan ke petugas. Tunggu dan pantau status pengajuan anda dalam halaman data tera sebelum pengujian tera anda dijadwalkan.',
+    ]);
   }
 
   #[On('submit-uttp-fail')]

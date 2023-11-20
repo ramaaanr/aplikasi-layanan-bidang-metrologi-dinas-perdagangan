@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Cards;
 
+use App\Models\TeraJenisA;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -27,6 +28,11 @@ class CardTableAdmin extends Component
     if ($this->tera == 'tum-bbm') {
       $data = $model::select('id', 'kode_pengajuan', 'nama_pemohon', 'tanggal_pengajuan', 'tanggal_pengujian', 'tanggal_cek_fisik', 'status', 'keterangan')
         ->where("$this->queryCategory", 'LIKE', "%$this->query%")
+        ->whereHas('kendaraan', function ($query) {
+          $query->whereHas('perusahaan', function ($innerQuery) {
+            $innerQuery->where('jenis_dukungan', $this->jenisDukungan);
+          });
+        })
         ->orderBy('id', 'desc')
         ->paginate(10);
       return $data;

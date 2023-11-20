@@ -3,7 +3,7 @@
   {{-- Modal --}}
   <!-- Main modal -->
   @if (session('success'))
-  @include('components.alert-succes', ['tera' => $tera, 'kode_pengajuan' => session('success')])
+  @include('components.alert-succes', ['tera' => $tera, 'message' => session('success')])
   @endif
   @if (session('error'))
   @include('components.alert-error', ['tera' => $tera, 'message' => session('error')])

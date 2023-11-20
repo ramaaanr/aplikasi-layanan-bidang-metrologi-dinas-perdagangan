@@ -24,6 +24,7 @@ class Perusahaan extends Model
         'kota_skhp',
         'provinsi_skhp',
         'tanggal_pengisian',
+        "jenis_dukungan",
     ];
 
     public function kendaraan(): HasMany
