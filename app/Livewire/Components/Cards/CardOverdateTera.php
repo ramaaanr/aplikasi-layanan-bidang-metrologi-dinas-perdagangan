@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Cards;
 
+use Carbon\Carbon;
 use Livewire\Component;
 
 class CardOverdateTera extends Component
@@ -32,17 +33,18 @@ class CardOverdateTera extends Component
 
     public function setJumlahTidakUpdate()
     {
+        $tanggalSekarang = Carbon::now()->format('Y-m-d');
         try {
             $tera = array_keys(config('tera'));
             foreach ($tera as $jenisTera) {
                 $model = config("tera.$jenisTera.model_tera");
                 if ($jenisTera == 'tum-bbm') {
-                    $jumlah = $model::whereDate('tanggal_pengujian', '<', '2023-11-01')
+                    $jumlah = $model::whereDate('tanggal_cek_fisik', '<', $tanggalSekarang)
                         ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
                         ->count();
                 } else {
                     $jumlah = $model::where('jenis_tera', $jenisTera)
-                        ->whereDate('tanggal_pengujian', '<', '2023-11-01')
+                        ->whereDate('tanggal_pengujian', '<', $tanggalSekarang)
                         ->whereIn('status', ['Dijadwalkan', 'Diajukan'])
                         ->count();
                 }
