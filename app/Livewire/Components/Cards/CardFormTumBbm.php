@@ -207,8 +207,6 @@ class CardFormTumBbm extends Component
       );
       $this->form->store($this->jenisDukungan, $this->idKendaraan != null ? $this->opsiKendaraan[$this->idKendaraan]->id : null);
       $this->showSuccessAlert();
-    } catch (\Throwable $th) {
-      dd($th);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);

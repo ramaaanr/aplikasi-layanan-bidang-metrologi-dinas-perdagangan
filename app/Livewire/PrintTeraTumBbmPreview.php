@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Carbon\Carbon;
-use Dompdf\Dompdf;
 use Livewire\Component;
 
 class PrintTeraTumBbmPreview extends Component
@@ -14,7 +13,7 @@ class PrintTeraTumBbmPreview extends Component
     public $no_surat;
     public $nama_pemohon;
     public $alamat_pemohon;
-    public $nama_skhp;
+    public $nama_perusahaan;
     public $alamat_skhp;
     public $nomor_kontak;
     public $dokumen_surat_permohonan;
@@ -105,29 +104,30 @@ class PrintTeraTumBbmPreview extends Component
     public function getProps($id)
     {
         $dataTera = $this->getModel()::find($id);
+        $kendaraan = $dataTera->kendaraan;
+        $perusahaan = $kendaraan->perusahaan;
 
         $this->kode_pengajuan = $dataTera->kode_pengajuan;
         $this->no_surat = $dataTera->no_surat;
-        $this->kode_pengajuan = $dataTera->kode_pengajuan;
         $this->nama_pemohon = $dataTera->nama_pemohon;
         $this->alamat_pemohon = $dataTera->alamat_pemohon;
-        $this->nama_skhp = $dataTera->nama_skhp;
-        $this->alamat_skhp = $dataTera->alamat_skhp;
-
-        $this->provinsi_skhp = $dataTera->provinsi_skhp;
         $this->nomor_kontak = $dataTera->nomor_kontak;
 
-        $this->volume = $dataTera->volume;
-        $this->kompartemen = $dataTera->kompartemen;
+        $this->nama_perusahaan = $perusahaan->nama_perusahaan;
+        $this->alamat_skhp = $perusahaan->alamat_skhp;
+        $this->provinsi_skhp = $perusahaan->provinsi_skhp;
+
         $this->lemping_volume_nominal = $dataTera->lemping_volume_nominal;
         $this->indeks_tera = $dataTera->indeks_tera;
         $this->merk_tum_bbm = $dataTera->merk_tum_bbm;
 
-        $this->merek_kendaraan = $dataTera->merek_kendaraan;
-        $this->nomor_polisi = $dataTera->nomor_polisi;
-        $this->nomor_rangka = $dataTera->nomor_rangka;
-        $this->pemilik_stnk = $dataTera->pemilik_stnk;
-        $this->alamat_stnk = $dataTera->alamat_stnk;
+        $this->merek_kendaraan = $kendaraan->merek_kendaraan;
+        $this->nomor_polisi = $kendaraan->nomor_polisi;
+        $this->nomor_rangka = $kendaraan->nomor_rangka;
+        $this->pemilik_stnk = $kendaraan->pemilik_stnk;
+        $this->alamat_stnk = $kendaraan->alamat_stnk;
+        $this->volume = $kendaraan->volume;
+        $this->kompartemen = $kendaraan->kompartemen;
 
         $this->dokumen_surat_permohonan = $dataTera->dokumen_surat_permohonan;
         $this->dokumen_stnk = $dataTera->dokumen_stnk;

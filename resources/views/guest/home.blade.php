@@ -29,11 +29,12 @@
   </section>
   <section class="layanan px-8 sm:px-8 md:px-16 lg:px-44 pb-8 bg-primary">
     <h3 class=" font-semibold text-light text-center md:text-lg">Layanan tera dan tera ulang</h3>
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 my-2">
+    <ul class="grid grid-cols-1 md:grid-cpols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 my-2">
       <li>
         <a class="block text-center bg-light pb-2 rounded-md text-primary font-semibold hover:opacity-80"
           href="/layanan/data-tera/tum-bbm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="211" height="140" viewBox="0 0 211 140" fill="none">
+          <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" width="211" height="140" viewBox="0 0 211 140"
+            fill="none">
             <path
               d="M133.906 68.2808C133.906 72.1766 133.906 72.0903 133.906 79.5189C125.219 94.2956 99.619 106.186 99.619 106.186C99.619 106.186 73.9768 94.43 65.335 79.44C65.335 75.9768 65.335 72.0138 65.335 68.2808C93.222 68.2808 79.7729 68.2808 98.7611 68.2808C117.749 68.2808 98.7611 68.2808 133.906 68.2808Z"
               fill="#F2BE22" />

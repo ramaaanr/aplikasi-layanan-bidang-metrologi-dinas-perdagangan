@@ -33,7 +33,7 @@ class AjukanTeraForm extends Form
   public $dokumen_bukti_pendukung_lainnya;
 
   #[Rule('required', message: 'Keterangan Wajib Diisi!')]
-  public $keterangan = "Tera anda sedang diajukan dan dipross sistem";
+  public $keterangan = "Tera anda sedang diajukan dan diproses sistem";
 
   #[Rule('required', message: 'Nama Pemohon Wajib Diisi!')]
   public $nama_pemohon = "";

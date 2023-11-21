@@ -31,7 +31,7 @@ class AjukanTeraFormTumBbm extends Form
   public $dokumen_bukti_pendukung_lainnya;
 
   #[Rule('required', message: 'Keterangan Wajib Diisi!')]
-  public $keterangan = "Tera anda sedang diajukan dan dipross sistem";
+  public $keterangan = "Tera anda sedang diajukan dan diproses sistem";
 
   // 🧑 Pemohon
   #[Rule('required', message: 'Nama Pemohon Wajib Diisi!')]
@@ -77,7 +77,7 @@ class AjukanTeraFormTumBbm extends Form
 
   #[Rule('required', message: 'Nomor Kontak Wajib Diisi!')]
   #[Rule('regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', message: 'Format Nomor Tidak Sesuai')]
-  public $nomor_kontak = '088245672170';
+  public $nomor_kontak = '';
 
   #[Rule('required', message: 'Surat Permohonan wajib diisi dan file harus pdf dengan size maksimal 2MB')]
   public $file_dokumen_surat_permohonan;

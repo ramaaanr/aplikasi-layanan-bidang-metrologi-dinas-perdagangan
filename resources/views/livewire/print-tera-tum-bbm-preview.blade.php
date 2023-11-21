@@ -66,7 +66,7 @@
                 <div class="point-inside-content  text-black text-sm flex">
                   <p class="atribute w-48 text-black text-sm">Nama Perusahaan</p>
                   <p class="divider mr-2 text-black text-sm">:</p>
-                  <p class="value text-black text-sm">{{$nama_skhp}}</p>
+                  <p class="value text-black text-sm">{{$nama_pemohon}}</p>
                 </div>
               </li>
               <li class="point-body flex">
