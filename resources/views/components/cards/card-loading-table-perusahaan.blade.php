@@ -93,6 +93,10 @@
               Tanggal Pengisian
             </div>
           </th>
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
+              Aksi </div>
+          </th>
         </tr>
       </thead>
       <tbody>
