@@ -316,6 +316,7 @@ class CardFormTumBbm extends Component
       }
       $this->updatedIdKendaraan();
       $this->form->setAndGetPropertiesFromTable($dataTera);
+      dd($this->form->generateCodeForKodePengajuan());
     } else {
       $this->form->setProperties($this->getRandomCode());
     }

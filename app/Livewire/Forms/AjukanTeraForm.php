@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\TeraJenisA;
 use App\Models\TeraJenisB;
 use App\Models\TeraJenisC;
 use App\Models\TeraJenisD;
@@ -233,13 +234,14 @@ class AjukanTeraForm extends Form
   public function generateCodeForKodePengajuan()
   {
     Carbon::setlocale('id');
-    $month = Carbon::now()->isoFormat('mm');
+    $month = $this->getRomanNumber(Carbon::now()->isoFormat('MM'));
     $year = Carbon::now()->isoFormat('YYYY');
-    $countStatusTeraJenisB = TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $countStatusTeraJenisC = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $countStatusTeraJenisD = TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    $noUrut = $countStatusTeraJenisB + $countStatusTeraJenisC + $countStatusTeraJenisD + 1;
-    return "$noUrut/UPT.MET/$month/$year";
+    if ($this->jenis_tera == 'pompa-ukur-bbm') {
+      $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    } else {
+      $noUrut = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    }
+    return "510/$noUrut-MET/MT/TUS/$month/$year";
   }
 
   public function update($id)

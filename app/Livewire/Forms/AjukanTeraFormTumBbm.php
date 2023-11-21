@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Kendaraan;
 use App\Models\Perusahaan;
 use App\Models\TeraJenisA;
+use App\Models\TeraJenisB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
@@ -252,13 +253,56 @@ class AjukanTeraFormTumBbm extends Form
     return $session['id'];
   }
 
+
+  private function getRomanNumber($bulan)
+  {
+    switch ($bulan) {
+      case 1:
+        return "I";
+        break;
+      case 2:
+        return "II";
+        break;
+      case 3:
+        return "III";
+        break;
+      case 4:
+        return "IV";
+        break;
+      case 5:
+        return "V";
+        break;
+      case 6:
+        return "VI";
+        break;
+      case 7:
+        return "VII";
+        break;
+      case 8:
+        return "VIII";
+        break;
+      case 9:
+        return "IX";
+        break;
+      case 10:
+        return "X";
+        break;
+      case 11:
+        return "XI";
+        break;
+      case 12:
+        return "XII";
+        break;
+    }
+  }
+
   public function generateCodeForKodePengajuan()
   {
     Carbon::setlocale('id');
-    $month = Carbon::now()->isoFormat('MMMM');
+    $month = $this->getRomanNumber(Carbon::now()->isoFormat('MM'));
     $year = Carbon::now()->isoFormat('YYYY');
-    $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + 1;
-    return "$noUrut/UPT.MET/$month/$year";
+    $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    return "510/$noUrut-MET/UAPV/TUS/$month/$year";
   }
 
   public function update($id, $idKendaraan)
