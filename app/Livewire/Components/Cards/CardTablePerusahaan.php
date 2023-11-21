@@ -15,7 +15,7 @@ class CardTablePerusahaan extends Component
 
     public function getTeraData()
     {
-        $data = Perusahaan::select('id', 'nama_perusahaan', 'alamat_skhp', 'kota_skhp', 'provinsi_skhp', 'tanggal_pengisian',)
+        $data = Perusahaan::select('id', 'nama_perusahaan', 'alamat_skhp', 'jenis_dukungan', 'kota_skhp', 'provinsi_skhp', 'tanggal_pengisian',)
             ->where("$this->queryCategory", 'LIKE', "%$this->query%")
             ->orderBy('id', 'desc')
             ->paginate(20);

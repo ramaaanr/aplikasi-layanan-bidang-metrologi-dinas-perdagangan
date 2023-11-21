@@ -90,6 +90,12 @@
           </th>
           <th scope="col" class="p-3 w-9">
             <div class="flex items-center">
+              Jenis Dukungan
+
+            </div>
+          </th>
+          <th scope="col" class="p-3 w-9">
+            <div class="flex items-center">
               Tanggal Pengisian
             </div>
           </th>
@@ -151,50 +157,6 @@
               </div>
             </div>
           </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th scope="row" class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </th>
-          <td class="p-3 w-10">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
-          <td class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-
-          </td>
-          <td class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
-
-          <td class="p-3 w-3">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
           <td class="p-3 w-9">
             <div class="loading-bar animate-pulse">
               <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
@@ -248,50 +210,6 @@
             </div>
           </td>
           <td class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th scope="row" class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </th>
-          <td class="p-3 w-10">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
-          <td class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-
-          </td>
-          <td class="p-3 w-9">
-            <div class="loading-bar animate-pulse">
-              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
-              </div>
-              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
-              </div>
-            </div>
-          </td>
-
-          <td class="p-3 w-3">
             <div class="loading-bar animate-pulse">
               <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
               </div>
@@ -359,7 +277,436 @@
               </div>
             </div>
           </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
         </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </th>
+          <td class="p-3 w-10">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+
+          <td class="p-3 w-3">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+          <td class="p-3 w-9">
+            <div class="loading-bar animate-pulse">
+              <div class="loading-bar h-4 w-8 rounded-lg bg-light-2 mb-2">
+              </div>
+              <div class="loading-bar h-3 w-full rounded-lg bg-light-2">
+              </div>
+            </div>
+          </td>
+        </tr>
+
       </tbody>
     </table>
   </div>
