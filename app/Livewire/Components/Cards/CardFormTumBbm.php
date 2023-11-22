@@ -318,7 +318,6 @@ class CardFormTumBbm extends Component
       ->has('kendaraan')
       ->orderBy('nama_perusahaan')
       ->get();
-
     $this->sentenceCaseTitle = "TUM BBM";
     if ($this->isOnUpdate) {
       $id = request()->query('id');
@@ -341,6 +340,7 @@ class CardFormTumBbm extends Component
       }
       $this->updatedIdKendaraan();
       $this->form->setAndGetPropertiesFromTable($dataTera);
+      $this->status = $this->form->status;
     } else {
       $this->form->setProperties($this->getRandomCode());
     }

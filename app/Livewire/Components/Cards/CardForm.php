@@ -190,6 +190,7 @@ class CardForm extends Component
       $id = request()->query('id');
       $this->id = $id;
       $this->form->setAndGetPropertiesFromTable($id);
+      $this->status = $this->form->status;
       $this->identitasUttp = config("tera.$this->tera.model_uttp")::where(config("tera.$this->tera.jenis") . "_id", $id)->select(['id'])->get();
     } else {
       $this->form->setProperties($this->getRandomCode(), $this->tera);
