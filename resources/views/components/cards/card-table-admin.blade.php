@@ -1,7 +1,8 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengelolaan Tera {{ $sentenceCaseTitle }}</h3>
   <!-- 🎬 Action Container Start -->
-  <div class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
+  <div x-bind:class="{ 'grid-cols-3 md:grid-cols-4': '{{$tera}}' === 'tum-bbm' }"
+    class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
     <!-- 💁‍♂️ Jenis Dukungan Button Start -->
     @if($tera == "tum-bbm")
     <select wire:model.live="jenisDukungan"

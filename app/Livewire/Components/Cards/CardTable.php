@@ -72,7 +72,7 @@ class CardTable extends Component
 
   public function placeholder()
   {
-    return view('components.cards.card-loading-table', ['sentenceCaseTitle' => $this->sentenceCaseTitle]);
+    return view('components.cards.card-loading-table', ['sentenceCaseTitle' => $this->sentenceCaseTitle, "tera" => '$this->tera']);
   }
 
   public function mount()

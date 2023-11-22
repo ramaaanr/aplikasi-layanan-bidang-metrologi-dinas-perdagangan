@@ -5,7 +5,8 @@
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Pengajuan Tera {{ $sentenceCaseTitle }}</h3>
 
   <!-- 🎬 Action Container Start -->
-  <div class="action-container grid grid-cols-3 md:grid-cols-4 gap-x-2">
+  <div x-bind:class="{ 'grid-cols-3 md:grid-cols-4': '{{$tera}}' === 'tum-bbm' }" class="action-container grid grid-cols-2 md:grid-cols-3 gap-x-2" x-data="{ selectValue: 'Berdasarkan' }">
+
     <!-- 💁‍♂️ Jenis Dukungan Button Start -->
     @if($tera == 'tum-bbm')
     <select wire:model.live="jenisDukungan" class="input-sm bg-white text-sm text-left inline-flex justify-between text-grey">
@@ -38,6 +39,7 @@
       @endif
     </select>
     <!-- ⏬ Dropdown End -->
+
 
 
     <!-- ➕ Pengajuan Start -->
