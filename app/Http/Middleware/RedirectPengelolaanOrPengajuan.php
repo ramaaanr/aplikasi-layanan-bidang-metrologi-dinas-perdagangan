@@ -18,7 +18,6 @@ class RedirectPengelolaanOrPengajuan
         if ($request->session()->has('admin')) {
             return redirect("/pengelolaan-layanan/data-tera/{$request->tera}");
         }
-
         return redirect("/pengajuan-layanan/data-tera/{$request->tera}");
     }
 }

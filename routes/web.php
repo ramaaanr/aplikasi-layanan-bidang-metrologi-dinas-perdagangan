@@ -43,9 +43,9 @@ Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::
 Route::middleware(['pengajuan-or-pelayanan'])->group(function () {
     Route::get('/layanan/data-tera/{tera}');
 });
+Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
 Route::middleware(['only-guest'])->group(function () {
     Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
-    Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
 });
 
 Route::get('/error-page', function (Request $request) {

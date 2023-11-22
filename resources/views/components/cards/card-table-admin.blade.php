@@ -36,6 +36,21 @@
     </select>
     <!-- ⏬ Dropdown End -->
 
+
+
+    <!-- ➕ Pengajuan Start -->
+    <a href="/pengajuan-layanan/ajukan-tera/{{$tera}}/"
+      class="button-primary-sm w-full h-fit flex justify-center col-span-3 md:col-auto">
+      <svg class="fill-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+        <path xmlns="http://www.w3.org/2000/svg"
+          d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
+      </svg>
+      <span class="text-sm text-light">
+        Ajukan Tera
+      </span>
+    </a>
+    <!-- ➕ Pengajuan End -->
+
   </div>
   <!-- 🎬 Action Container End -->
 
