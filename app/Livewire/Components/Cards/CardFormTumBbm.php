@@ -307,7 +307,6 @@ class CardFormTumBbm extends Component
 
   public function mount()
   {
-
     $this->opsiPerusahaan = $this->isOnUpdate
       ? Perusahaan::select(['id', 'nama_perusahaan'])
       ->has('kendaraan')

@@ -14,6 +14,13 @@ class PengelolaanLayananTeraController extends Controller
         return view('admin.home', ['tera' => null, 'layanan' => 'halaman-utama']);
     }
 
+    public function deletePerusahaan(Request $request)
+    {
+        $id = $request->query('id');
+        Perusahaan::find($id)->delete();
+        return view('admin.data-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan']);
+    }
+
     public function showDataTera(String $tera)
     {
         return view('admin.data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);

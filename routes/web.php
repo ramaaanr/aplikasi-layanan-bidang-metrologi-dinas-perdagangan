@@ -30,10 +30,11 @@ Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::
     Route::get('/pengelolaan-layanan/data-tera/{tera}', 'showDataTera')->name('admin-data-tera');
     Route::get('/pengelolaan-layanan/data-kendaraan', 'showDataKendaraan')->name('admin-data-kendaraan');
     Route::get('/pengelolaan-layanan/ajukan-kendaraan', 'showAjukanKendaraan')->name('admin-ajukan-kendaraan');
+    Route::get('/pengelolaan-layanan/update-kendaraan', 'showUpdateKendaraan')->name('admin-update-kendaraan');
     Route::get('/pengelolaan-layanan/data-perusahaan', 'showDataPerusahaan')->name('admin-data-perusahaan');
     Route::get('/pengelolaan-layanan/ajukan-perusahaan', 'showAjukanPerusahaan')->name('admin-ajukan-perusahaan');
     Route::get('/pengelolaan-layanan/update-perusahaan', 'showUpdatePerusahaan')->name('admin-update-perusahaan');
-    Route::get('/pengelolaan-layanan/update-kendaraan', 'showUpdateKendaraan')->name('admin-update-kendaraan');
+    Route::get('/pengelolaan-layanan/delete-perusahaan', 'deletePerusahaan')->name('admin-delete-perusahaan');
     Route::get('/pengelolaan-layanan/update-tera/{tera}',  'showUpdateTera')->name('admin-update-tera');
     Route::get('/pengelolaan-layanan/preview-tera/{tera}', 'previewTera')->name('admin-preview-tera');
     Route::get('/pengelolaan-layanan/data-status/', 'getDataStatus')->name('admin-data-status');

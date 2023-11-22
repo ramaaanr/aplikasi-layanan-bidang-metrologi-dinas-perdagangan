@@ -12,6 +12,12 @@ class CardTablePerusahaan extends Component
 
     public $query = "";
     public $queryCategory = "nama_perusahaan";
+    public $deletedId;
+
+    public function delete($id)
+    {
+        $this->deletedId = $id;
+    }
 
     public function getTeraData()
     {
