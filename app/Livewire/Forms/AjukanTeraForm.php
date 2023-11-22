@@ -190,7 +190,6 @@ class AjukanTeraForm extends Form
     $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
     $this->tempat_pengujian = $dataTera->tempat_pengujian;
     $this->alamat_pengujian = $dataTera->alamat_pengujian;
-    // dd($this->all());
   }
 
   public function store()
@@ -280,7 +279,6 @@ class AjukanTeraForm extends Form
 
     $this->no_surat =  $this->status == "Selesai" ? $this->generateCodeForKodePengajuan() : null;
     $this->keterangan = $this->keterangan . "    " . $this->keteranganTambahan;
-    dd($this->all());
 
     $this->getModel()::where('id', $id)->update([...$this->except([...$this->getTeraAttributes()]), 'admin_id' => $this->getAdminId()]);
   }

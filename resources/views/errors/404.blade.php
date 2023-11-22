@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-<main class="w-screen h-screen" style="background-image: url('images/hero.jpg')">
-  <div class="hero-gradient__container bg-gradient-to-t from-primary h-full  ">
+<main class="w-screen h-screen bg-cover bg-center" style="background-image: url('images/hero.jpg')">
+  <div class="hero-gradient__container  bg-gradient-to-t from-primary h-full  ">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-full" height="400" viewBox="0 0 1440 400" fill="none">
       <g clip-path="url(#clip0_502_127)">
         <g filter="url(#filter0_d_502_127)">
