@@ -20,27 +20,26 @@
       <p class="text-sm md:text-base font-semibold">Status</p>
       <div class="flex gap-x-6">
         <div class="w-full relative mt-3">
-          <label
-            class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
-            for="status">Ubah Status</label>
-          <select wire:model.live='form.status' id="status"
-            class="bg-white border border-dark-grey text-dark-grey text-sm rounded-lg focus:ring-primary focus:border-grey block w-full p-2.5 pt-4 pl-4 ">
+          <label class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" for="status">Ubah Status</label>
+          <select wire:model.live='status' id="status" class="bg-white border border-dark-grey text-dark-grey text-sm rounded-lg focus:ring-primary focus:border-grey block w-full p-2.5 pt-4 pl-4 ">
             <option value="Diajukan">Diajukan</option>
             <option value="Dijadwalkan">Dijadwalkan</option>
             <option value="Dibatalkan">Dibatalkan</option>
             <option value="Selesai">Selesai</option>
           </select>
         </div>
-        <div class="w-full relative mt-3">
-          <label
-            class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
-            for="keterangan">Status Keterangan</label>
-          <textarea wire:model.live='form.keterangan' id="keterangan" rows="4"
-            class="block p-2.5 pt-4 pl-3 w-full text-sm text-dark-grey bg-white rounded-lg border border-dark-grey focus:ring-primary focus:border-primary "
-            placeholder="Keterangan"></textarea>
-          @error('form.keterangan')
-          <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
-          @enderror
+        <div class="w-full mt-3 flex flex-col gap-y-2 input-keterangan-container">
+          <div class="w-full relative">
+            <label class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" for="keterangan">Status Keterangan</label>
+            <textarea disabled id="keterangan" rows="4" class="shadow-md block p-2.5 pt-4 pl-3 w-full text-sm text-dark-grey bg-light-2 rounded-lg border border-dark-grey focus:ring-primary focus:border-primary ">{{$form->keterangan}}</textarea>
+          </div>
+          <div class="w-full relative">
+            <div class="relative">
+              <textarea wire:model.live="form.keteranganTambahan" name="keteranganTambahan" type="text" id="keteranganTambahan" class="form-input peer " placeholder=" "></textarea>
+              <label for="keteranganTambahan" class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Keterangan
+                Tambahan <span class="text-[10px] text-red-500">*tidak wajib diisi</span></label>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -49,10 +48,8 @@
     <div class="order-1 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Pemohon</p>
       <div class="relative mt-3">
-        <input wire:model.live="form.nama_pemohon" name="nama_pemohon" type="text" id="nama_pemohon"
-          class="form-input peer " placeholder=" " />
-        <label for="nama_pemohon"
-          class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nama
+        <input wire:model.live="form.nama_pemohon" name="nama_pemohon" type="text" id="nama_pemohon" class="form-input peer " placeholder=" " />
+        <label for="nama_pemohon" class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nama
           Pemohon</label>
       </div>
       @error('form.nama_pemohon')
@@ -60,11 +57,9 @@
       @enderror
 
       <div class="relative mt-3">
-        <input wire:model.live='form.alamat_pemohon' name="alamat_pemohon" type="text" id="alamat_pemohon"
-          class="form-input peer" placeholder=" " />
+        <input wire:model.live='form.alamat_pemohon' name="alamat_pemohon" type="text" id="alamat_pemohon" class="form-input peer" placeholder=" " />
 
-        <label for="alamat_pemohon"
-          class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
+        <label for="alamat_pemohon" class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Alamat</label>
       </div>
       @error('form.alamat_pemohon')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
@@ -75,10 +70,8 @@
     <div class="order-2 form-group-container my-2">
       <p class="text-sm md:text-base font-semibold">Nomor Kotak Telp/HP</p>
       <div class="relative mt-3">
-        <input wire:model.live='form.nomor_kontak' name="nomor_kontak" type="tel" id="nomor_kontak"
-          class="form-input peer" placeholder=" " />
-        <label for="nomor_kontak"
-          class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nomor
+        <input wire:model.live='form.nomor_kontak' name="nomor_kontak" type="tel" id="nomor_kontak" class="form-input peer" placeholder=" " />
+        <label for="nomor_kontak" class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Nomor
           Kotak Telp/HP</label>
       </div>
       @error('form.nomor_kontak')
@@ -87,16 +80,13 @@
       <p class="text-sm pt-4 md:text-base font-semibold">Tanggal Cek Fisik</p>
       <p class="text-xs p-1 ">Isi terlebih dahulu sebelum mengisi data perusahaan dan data kendaraan</p>
       <div class="relative w-full mt-1">
-        <input min="{{ $this->getMinimalCekFisik() }}" wire:model.live='tanggalCekFisik' name="tanggal_cek_fisik"
-          type="date" id="tanggal_pengujian" class="form-input peer" placeholder=" " />
+        <input min="{{ $this->getMinimalCekFisik() }}" wire:model.live='tanggalCekFisik' name="tanggal_cek_fisik" type="date" id="tanggal_pengujian" class="form-input peer" placeholder=" " />
       </div>
       @error('tanggalCekFisik')
       <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
       @enderror
       @if ($volumeRest
-      < 5000 && $tanggalCekFisik !=null)<div
-        class="flex items-center p-4  mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-        role="alert">
+      < 5000 && $tanggalCekFisik !=null)<div class="flex items-center p-4  mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
         </svg>

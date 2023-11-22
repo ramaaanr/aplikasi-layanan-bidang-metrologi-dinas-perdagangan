@@ -14,14 +14,8 @@ use Livewire\Form;
 
 class AjukanTeraFormTumBbm extends Form
 {
-  public $nonSavedProperties = [
-    'nonSavedProperties',
-    'file_dokumen_surat_permohonan',
-    'file_dokumen_stnk',
-    'file_dokumen_skhp_sebelumnya',
-    'file_dokumen_bukti_pendukung_lainnya',
-  ];
 
+  public $keteranganTambahan;
   public $no_surat = null;
   public $kode_pengajuan;
   public $status = "Diajukan";
@@ -180,7 +174,8 @@ class AjukanTeraFormTumBbm extends Form
     $this->dokumen_bukti_pendukung_lainnya = $dataTera->dokumen_bukti_pendukung_lainnya;
 
     $this->status = $dataTera->status;
-    $this->keterangan = $dataTera->keterangan;
+    $this->keterangan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_pertama'];
+    $this->keteranganTambahan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_sisa'];
     $this->tanggal_pengujian = $dataTera->tanggal_pengujian;
     $this->tanggal_cek_fisik = $dataTera->tanggal_cek_fisik;
     $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
@@ -305,6 +300,20 @@ class AjukanTeraFormTumBbm extends Form
     return "510/$noUrut-MET/UAPV/TUS/$month/$year";
   }
 
+
+  public function pisahKeterangan($keterangan)
+  {
+    $posisiTitikPertama = strpos($keterangan, '    ');
+    if ($posisiTitikPertama !== false) {
+      $kalimatPertama = substr($keterangan, 0, $posisiTitikPertama + 1);
+      $kalimatSisanya = substr($keterangan, $posisiTitikPertama + 1);
+      $kalimatSisanya = ltrim($kalimatSisanya);
+      return ['kalimat_pertama' => $kalimatPertama, 'kalimat_sisa' => $kalimatSisanya];
+    } else {
+      return ['kalimat_pertama' => $keterangan, 'kalimat_sisa' => ''];
+    }
+  }
+
   public function update($id, $idKendaraan)
   {
     if ($this->file_dokumen_surat_permohonan != null) {
@@ -343,7 +352,7 @@ class AjukanTeraFormTumBbm extends Form
     $tera->indeks_tera = $this->indeks_tera;
     $tera->merk_tum_bbm = $this->merk_tum_bbm;
     $tera->status = $this->status;
-    $tera->keterangan = $this->keterangan;
+    $tera->keterangan = $this->keterangan . "   " . $this->keteranganTambahan;
     $tera->kendaraan_id = $idKendaraan;
     $tera->tanggal_pengujian = $this->tanggal_pengujian;
     $tera->tanggal_cek_fisik = $this->tanggal_cek_fisik;

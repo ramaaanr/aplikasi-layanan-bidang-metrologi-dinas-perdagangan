@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer("jumlah_uttp")->nullable(false);
             $table->integer("jumlah_nozzle")->nullable(false);
             $table->string("status", 15)->nullable(false);
-            $table->string("keterangan", 100)->nullable(false);
+            $table->string("keterangan", 500)->nullable(false);
             $table->unsignedBigInteger("admin_id")->nullable(true);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();

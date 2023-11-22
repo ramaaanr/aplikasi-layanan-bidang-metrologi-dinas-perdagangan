@@ -23,27 +23,33 @@
           <label
             class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             for="status">Ubah Status</label>
-          <select wire:model.live='form.status' id="status"
-            class="bg-white  border border-dark-grey text-dark-grey text-sm rounded-lg focus:ring-primary focus:border-grey block w-full p-2.5 pt-4 pl-4 ">
+          <select wire:model.live='status' id="status"
+            class="shadow-md bg-white  border border-dark-grey text-dark-grey text-sm rounded-lg focus:ring-primary focus:border-grey block w-full p-2.5 pt-4 pl-4 ">
             <option value="Diajukan">Diajukan</option>
             <option value="Dijadwalkan">Dijadwalkan</option>
             <option value="Dibatalkan">Dibatalkan</option>
             <option value="Selesai">Selesai</option>
           </select>
         </div>
-        <div class="w-full relative mt-3">
-          <label
-            class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
-            for="keterangan">Status Keterangan</label>
-          <input wire:model.live='form.keterangan' id="keterangan" rows="4"
-            class="block p-2.5 pt-4 pl-3 w-full text-sm text-dark-grey bg-white rounded-lg border border-dark-grey focus:ring-primary focus:border-primary "
-            placeholder="Keterangan"></input>
-          @error('form.keterangan')
-          <p class="text-xs mb-2 pl-2 text-secondary">{{ $message }}</p>
-          @enderror
+        <div class="w-full mt-3 flex flex-col gap-y-2 input-keterangan-container">
+          <div class="w-full relative">
+            <label
+              class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+              for="keterangan">Status Keterangan</label>
+            <textarea disabled id="keterangan" rows="4"
+              class="shadow-md block p-2.5 pt-4 pl-3 w-full text-sm text-dark-grey bg-light-2 rounded-lg border border-dark-grey focus:ring-primary focus:border-primary ">{{$form->keterangan}}</textarea>
+          </div>
+          <div class="w-full relative">
+            <div class="relative">
+              <textarea wire:model.live="form.keteranganTambahan" name="keteranganTambahan" type="text"
+                id="keteranganTambahan" class="form-input peer " placeholder=" "></textarea>
+              <label for="keteranganTambahan"
+                class="absolute text-sm text-dark-grey duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Keterangan
+                Tambahan <span class="text-[10px] text-red-500">*tidak wajib diisi</span></label>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
     @endif
     <div class="order-1 form-group-container my-2">

@@ -26,8 +26,31 @@ class CardForm extends Component
   public $success = false;
   public $message = null;
   public $isOnUpdate = true;
+  public $status;
 
   public AjukanTeraForm $form;
+
+  public function updatedStatus()
+  {
+
+    switch ($this->status) {
+      case 'Diajukan':
+        $this->form->keterangan = "Tera sedang diajukan dan diproses.";
+        break;
+      case 'Dijadwalkan':
+        Carbon::setlocale('id');
+        $tanggalPengujian = Carbon::parse($this->form->tanggal_pengujian)->isoFormat('dddd, DD MMMM YYYY');
+        $this->form->keterangan = "Pemohon dapat melakukan pengujian tera pada tanggal $tanggalPengujian, bertempat di {$this->form->alamat_pengujian}.";
+        break;
+      case 'Dibatalkan':
+        $this->form->keterangan = "Tera Dibatalkan.";
+        break;
+      case 'Selesai':
+        $this->form->keterangan = "Tera Selesai.";
+        break;
+    }
+    $this->form->status = $this->status;
+  }
 
   private function getRandomCode(): string
   {
@@ -130,6 +153,7 @@ class CardForm extends Component
     $rules = new AjukanTeraRules();
     try {
       $this->form->alamat_pengujian = $this->form->tempat_pengujian == 'di_kantor' ? 'Kantor Dinas Perdagangan Jalan Pangeran Suriansayah No. 05 Lokatabat Utara Banjarbaru' : $this->form->alamat_pengujian;
+      $this->updatedStatus();
       $this->dispatch('validate-uttp');
       $this->validateFileReupload();
       $this->validate(
@@ -141,6 +165,8 @@ class CardForm extends Component
       $this->dispatch('update-uttp');
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
+    } catch (\Throwable $e) {
+      dd($e);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);

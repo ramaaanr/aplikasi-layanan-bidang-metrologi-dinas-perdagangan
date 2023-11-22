@@ -51,8 +51,31 @@ class CardFormTumBbm extends Component
     ['value' => 1, 'text' => '1 (satu)'],
     ['value' => 2, 'text' => '2 (dua)'],
   ];
+  public $status;
 
   public AjukanTeraFormTumBbm $form;
+
+  public function updatedStatus()
+  {
+
+    switch ($this->status) {
+      case 'Diajukan':
+        $this->form->keterangan = "Tera sedang diajukan dan diproses.";
+        break;
+      case 'Dijadwalkan':
+        Carbon::setlocale('id');
+        $tanggalCekFisik = Carbon::parse($this->form->tanggal_cek_fisik)->isoFormat('dddd, DD MMMM YYYY');
+        $this->form->keterangan = "Pemohon dapat melakukan pengujian Cek Fisik TUM BMM pada tanggal $tanggalCekFisik, bertempat di {$this->form->alamat_pengujian}.";
+        break;
+      case 'Dibatalkan':
+        $this->form->keterangan = "Tera Dibatalkan.";
+        break;
+      case 'Selesai':
+        $this->form->keterangan = "Tera Selesai.";
+        break;
+    }
+    $this->form->status = $this->status;
+  }
 
   public function fillKendaraanToEmpty()
   {
@@ -233,6 +256,8 @@ class CardFormTumBbm extends Component
       $this->form->update($this->id, $this->opsiKendaraan[$this->idKendaraan]->id);
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
+    } catch (\Throwable $e) {
+      dd($e);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
@@ -316,7 +341,6 @@ class CardFormTumBbm extends Component
       }
       $this->updatedIdKendaraan();
       $this->form->setAndGetPropertiesFromTable($dataTera);
-      dd($this->form->generateCodeForKodePengajuan());
     } else {
       $this->form->setProperties($this->getRandomCode());
     }

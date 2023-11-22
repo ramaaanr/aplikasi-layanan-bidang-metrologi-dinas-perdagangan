@@ -19,6 +19,7 @@ class AjukanTeraForm extends Form
     'file_dokumen_surat_permohonan',
     'file_dokumen_skhp_sebelumnya',
     'file_dokumen_bukti_pendukung_lainnya',
+    'keteranganTambahan',
   ];
 
   public $no_surat = null;
@@ -32,6 +33,7 @@ class AjukanTeraForm extends Form
   public $dokumen_surat_permohonan;
   public $dokumen_skhp_sebelumnya;
   public $dokumen_bukti_pendukung_lainnya;
+  public $keteranganTambahan;
 
   #[Rule('required', message: 'Keterangan Wajib Diisi!')]
   public $keterangan = "Tera anda sedang diajukan dan diproses sistem";
@@ -136,6 +138,19 @@ class AjukanTeraForm extends Form
     }
   }
 
+  public function pisahKeterangan($keterangan)
+  {
+    $posisiTitikPertama = strpos($keterangan, "    ");
+    if ($posisiTitikPertama !== false) {
+      $kalimatPertama = substr($keterangan, 0, $posisiTitikPertama + 1);
+      $kalimatSisanya = substr($keterangan, $posisiTitikPertama + 1);
+      $kalimatSisanya = ltrim($kalimatSisanya);
+      return ['kalimat_pertama' => $kalimatPertama, 'kalimat_sisa' => $kalimatSisanya];
+    } else {
+      return ['kalimat_pertama' => $keterangan, 'kalimat_sisa' => ''];
+    }
+  }
+
   public function setAndGetPropertiesFromTable($id)
   {
     $dataTera = $this->getModel()::find($id);
@@ -168,7 +183,8 @@ class AjukanTeraForm extends Form
       $this->jumlah_perlengkapan = $dataTera->jumlah_perlengkapan;
     }
     $this->status = $dataTera->status;
-    $this->keterangan = $dataTera->keterangan;
+    $this->keterangan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_pertama'];
+    $this->keteranganTambahan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_sisa'];
     // $this->id_staff = $dataTera->id_staff;
     $this->tanggal_pengujian = $dataTera->tanggal_pengujian;
     $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
@@ -263,6 +279,8 @@ class AjukanTeraForm extends Form
     }
 
     $this->no_surat =  $this->status == "Selesai" ? $this->generateCodeForKodePengajuan() : null;
+    $this->keterangan = $this->keterangan . "    " . $this->keteranganTambahan;
+    dd($this->all());
 
     $this->getModel()::where('id', $id)->update([...$this->except([...$this->getTeraAttributes()]), 'admin_id' => $this->getAdminId()]);
   }
