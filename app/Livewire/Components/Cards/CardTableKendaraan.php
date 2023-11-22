@@ -15,6 +15,12 @@ class CardTableKendaraan extends Component
     public $queryCategory = "nomor_polisi";
     public $perusahaan = "";
     public $opsiPerusahaan;
+    public $deletedId;
+
+    public function delete($id)
+    {
+        $this->deletedId = $id;
+    }
 
     public function updatedPerusahaan()
     {
@@ -37,7 +43,7 @@ class CardTableKendaraan extends Component
             )
                 ->where("$this->queryCategory", 'LIKE', "%$this->query%")
                 ->orderBy('id', 'desc')
-                ->paginate(20);
+                ->paginate(10);
         } else {
             $data = Kendaraan::select(
                 'id',
@@ -52,7 +58,7 @@ class CardTableKendaraan extends Component
                 ->where("$this->queryCategory", 'LIKE', "%$this->query%")
                 ->where("perusahaan_id", $this->perusahaan)
                 ->orderBy('id', 'desc')
-                ->paginate(20);
+                ->paginate(10);
         }
 
         return $data;

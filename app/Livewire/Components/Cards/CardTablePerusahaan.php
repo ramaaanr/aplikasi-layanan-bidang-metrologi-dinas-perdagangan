@@ -24,7 +24,7 @@ class CardTablePerusahaan extends Component
         $data = Perusahaan::select('id', 'nama_perusahaan', 'alamat_skhp', 'jenis_dukungan', 'kota_skhp', 'provinsi_skhp', 'tanggal_pengisian',)
             ->where("$this->queryCategory", 'LIKE', "%$this->query%")
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(10);
         return $data;
     }
 

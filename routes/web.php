@@ -31,6 +31,7 @@ Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::
     Route::get('/pengelolaan-layanan/data-kendaraan', 'showDataKendaraan')->name('admin-data-kendaraan');
     Route::get('/pengelolaan-layanan/ajukan-kendaraan', 'showAjukanKendaraan')->name('admin-ajukan-kendaraan');
     Route::get('/pengelolaan-layanan/update-kendaraan', 'showUpdateKendaraan')->name('admin-update-kendaraan');
+    Route::get('/pengelolaan-layanan/delete-kendaraan', 'deleteKendaraan')->name('admin-delete-kendaraan');
     Route::get('/pengelolaan-layanan/data-perusahaan', 'showDataPerusahaan')->name('admin-data-perusahaan');
     Route::get('/pengelolaan-layanan/ajukan-perusahaan', 'showAjukanPerusahaan')->name('admin-ajukan-perusahaan');
     Route::get('/pengelolaan-layanan/update-perusahaan', 'showUpdatePerusahaan')->name('admin-update-perusahaan');

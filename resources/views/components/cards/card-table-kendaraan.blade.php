@@ -1,6 +1,26 @@
 <div class="card-sm p-4 min-h-[74vh] flex flex-col justify-start">
 
 
+  @if ($deletedId)
+  <div id="popup-modal" tabindex="-1" class="flex bg-dark bg-opacity-80  content-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-full max-h-full">
+    <div class="relative p-4  w-full max-w-md max-h-full">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="p-4 md:p-5 text-center">
+          <svg class="w-[36px] h-[36px] mx-auto text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z" />
+          </svg>
+          <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yaking ingin menghapus
+            data kendaraan?</h3>
+          <a href="/pengelolaan-layanan/delete-kendaraan/?id={{$deletedId}}" class="text-white bg-red-400 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
+            Hapus Data
+          </a><a href="/pengelolaan-layanan/data-kendaraan" class="text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
+            Batal
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
 
   <h3 class="md:col-span-2 text-base font-bold md:text-lg mb-2">Tabel Data Kendaraan</h3>
   <!-- 🎬 Action Container Start -->
@@ -143,6 +163,8 @@
           </td>
           <td class="p-3 w-9">
             <a href="/pengelolaan-layanan/update-kendaraan/?id={{$kendaraan->id}}" class="underline">Edit</a>
+            <button wire:click="delete({{$kendaraan->id}})" class="underline">Hapus</button>
+
           </td>
         </tr>
         @endforeach

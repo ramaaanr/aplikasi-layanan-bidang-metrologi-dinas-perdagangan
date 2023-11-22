@@ -21,6 +21,13 @@ class PengelolaanLayananTeraController extends Controller
         return view('admin.data-perusahaan', ['tera' => 'data-perusahaan', 'layanan' => 'perusahaan']);
     }
 
+    public function deleteKendaraan(Request $request)
+    {
+        $id = $request->query('id');
+        Kendaraan::find($id)->delete();
+        return view('admin.data-kendaraan', ['tera' => 'data-kendaraan', 'layanan' => 'kendaraan']);
+    }
+
     public function showDataTera(String $tera)
     {
         return view('admin.data-tera', ['tera' => $tera, 'layanan' => 'data-tera']);
