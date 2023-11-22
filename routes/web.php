@@ -47,7 +47,3 @@ Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraControl
 Route::middleware(['only-guest'])->group(function () {
     Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
 });
-
-Route::get('/error-page', function (Request $request) {
-    return "$request->statusCode, $request->message";
-})->name('error-page');
