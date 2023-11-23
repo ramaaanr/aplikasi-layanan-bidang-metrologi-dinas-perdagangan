@@ -297,7 +297,7 @@ class AjukanTeraFormTumBbm extends Form
     $month = $this->getRomanNumber(Carbon::now()->isoFormat('MM'));
     $year = Carbon::now()->isoFormat('YYYY');
     $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
-    return "510/$noUrut-MET/UAPV/TUS/$month/$year";
+    return "500.2.3.15/$noUrut-MET/UAPV/TUS/$month/$year";
   }
 
 

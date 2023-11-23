@@ -47,3 +47,6 @@ Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraControl
 Route::middleware(['only-guest'])->group(function () {
     Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
 });
+Route::get('/errors/500', function () {
+    return view('errors.500');
+})->name('errors.500');

@@ -256,7 +256,7 @@ class AjukanTeraForm extends Form
     } else {
       $noUrut = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
     }
-    return "510/$noUrut-MET/MT/TUS/$month/$year";
+    return "500.2.3.15/$noUrut-MET/MT/TUS/$month/$year";
   }
 
   public function update($id)

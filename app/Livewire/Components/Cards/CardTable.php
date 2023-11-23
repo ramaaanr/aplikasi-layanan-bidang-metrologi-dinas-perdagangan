@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Components\Cards;
 
+use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Livewire\Component;
 use Livewire\WithPagination;
 
