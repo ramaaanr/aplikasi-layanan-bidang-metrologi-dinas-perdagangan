@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tera_jenis_b', function (Blueprint $table) {
+        Schema::create('tera_jenis_d', function (Blueprint $table) {
             $table->id();
             $table->string("kode_pengajuan", 20)->nullable(false)->unique();
             $table->string("no_surat", 50)->nullable(true)->unique();
             $table->string("jenis_tera", 50)->nullable(false);
             $table->string("nama_pemohon", 100)->nullable(false);
-            $table->string("alamat_pemohon", 100)->nullable(false);
+            $table->text("alamat_pemohon")->nullable(false);
             $table->string("nama_skhp", 100)->nullable(false);
-            $table->string("alamat_skhp", 100)->nullable(false);
+            $table->text("alamat_skhp")->nullable(false);
             $table->string("kelurahan_skhp", 100)->nullable(false);
             $table->string("kecamatan_skhp", 100)->nullable(false);
             $table->string("kota_skhp", 100)->nullable(false);
@@ -28,15 +28,15 @@ return new class extends Migration
             $table->string("dokumen_skhp_sebelumnya", 100)->nullable(false);
             $table->string("dokumen_bukti_pendukung_lainnya", 100)->nullable(false);
             $table->integer("jumlah_uttp")->nullable(false);
-            $table->integer("jumlah_nozzle")->nullable(false);
+            $table->integer("jumlah_perlengkapan")->nullable(false);
             $table->string("status", 15)->nullable(false);
-            $table->string("keterangan", 500)->nullable(false);
-            $table->unsignedBigInteger("admin_id")->nullable(true);
+            $table->text("keterangan", 500)->nullable(false);
             $table->date("tanggal_pengujian")->nullable(false);
             $table->date("tanggal_pengajuan")->nullable(false)->useCurrent();
             $table->string("tempat_pengujian", 100)->nullable(false);
-            $table->string("alamat_pengujian", 100)->nullable(false);
+            $table->text("alamat_pengujian")->nullable(false);
 
+            $table->unsignedBigInteger("admin_id")->nullable(true);
             $table->foreign('admin_id')->references('id')->on('admin');
         });
     }
@@ -46,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tera_jenis_b');
+        Schema::dropIfExists('tera_jenis_d');
     }
 };
