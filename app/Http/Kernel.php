@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\OnlyAdmin;
 use App\Http\Middleware\OnlyGuest;
 use App\Http\Middleware\RedirectPengelolaanOrPengajuan;
+use App\Http\Middleware\UseDatabase;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -56,6 +57,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'use-db' => UseDatabase::class,
         'only-admin' => OnlyAdmin::class,
         'only-guest' => OnlyGuest::class,
         'pengajuan-or-pelayanan' => RedirectPengelolaanOrPengajuan::class,

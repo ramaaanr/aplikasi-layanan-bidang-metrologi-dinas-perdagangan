@@ -25,7 +25,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/logout', 'doLogOut')->middleware('only-admin')->name('doLogOut');
 });
 
-Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::class)->group(function () {
+Route::middleware(['use-db', 'only-admin',])->controller(PengelolaanLayananTeraController::class)->group(function () {
     Route::get('/pengelolaan-layanan/dashboard', 'index')->name('admin-dashboard');
     Route::get('/pengelolaan-layanan/data-tera/{tera}', 'showDataTera')->name('admin-data-tera');
     Route::get('/pengelolaan-layanan/data-kendaraan', 'showDataKendaraan')->name('admin-data-kendaraan');
@@ -43,10 +43,12 @@ Route::middleware(['only-admin'])->controller(PengelolaanLayananTeraController::
 Route::middleware(['pengajuan-or-pelayanan'])->group(function () {
     Route::get('/layanan/data-tera/{tera}');
 });
-Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
-Route::middleware(['only-guest'])->group(function () {
+Route::middleware(['use-db'])->group(function () {
+    Route::get('/pengajuan-layanan/ajukan-tera/{tera}', [PengajuanLayananTeraController::class, 'showAjukanTera'])->name('guest-ajukan-tera');
+});
+Route::middleware(['use-db', 'only-guest'])->group(function () {
     Route::get('/pengajuan-layanan/data-tera/{tera}', [PengajuanLayananTeraController::class, 'showDataTera'])->name('guest-data-tera');
 });
-Route::get('/errors/500', function () {
+Route::get('/internal-server-error', function () {
     return view('errors.500');
 })->name('errors.500');
