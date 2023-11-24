@@ -173,7 +173,6 @@ class AjukanTeraForm extends Form
     Storage::copy($this->dokumen_skhp_sebelumnya, "public/$this->dokumen_skhp_sebelumnya");
     Storage::copy($this->dokumen_bukti_pendukung_lainnya, "public/$this->dokumen_bukti_pendukung_lainnya");
 
-    // $this->file_dokumen_surat_permohonan = Storage::get('public/' . $this->dokumen_skhp_sebelumnya);
 
     $this->jumlah_uttp = $dataTera->jumlah_uttp;
     if (isset($dataTera->jumlah_nozzle)) {
@@ -185,7 +184,6 @@ class AjukanTeraForm extends Form
     $this->status = $dataTera->status;
     $this->keterangan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_pertama'];
     $this->keteranganTambahan = $this->pisahKeterangan($dataTera->keterangan)['kalimat_sisa'];
-    // $this->id_staff = $dataTera->id_staff;
     $this->tanggal_pengujian = $dataTera->tanggal_pengujian;
     $this->tanggal_pengajuan = $dataTera->tanggal_pengajuan;
     $this->tempat_pengujian = $dataTera->tempat_pengujian;
