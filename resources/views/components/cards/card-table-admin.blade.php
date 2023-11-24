@@ -118,7 +118,7 @@
         <tr>
           <td colspan="6">
             <div
-              class="flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
+              class="flex content-center justify-center items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
               role="alert">
               <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
@@ -127,7 +127,7 @@
               </svg>
               <span class="sr-only">Info</span>
               <div>
-                <span class="font-medium">Dokumen Kosong!</span> Tera masih belum ada yang melakukan pengisian.
+                <span class="font-medium">Dokumen Kosong!</span>
               </div>
             </div>
           </td>
