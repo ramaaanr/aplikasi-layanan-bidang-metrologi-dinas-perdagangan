@@ -2,38 +2,28 @@
 
 namespace App\Livewire;
 
-use App\Models\Admin;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
+use App\Services\AdminService;
 use Livewire\Component;
 
 class Login extends Component
 {
+    private AdminService $adminService;
+
+    public function boot(AdminService $adminService)
+    {
+        $this->adminService = $adminService;
+    }
 
     public $username = 'admin';
     public $password = 'admin';
-    public $status = 'success';
-
-    private function validateAdmin()
-    {
-        $admin = Admin::where('username', $this->username)->first();
-        return $admin != null ? (Hash::check($this->password, $admin->password) ? $admin : false) : false;
-    }
-
-    private function storeRememberToken($id)
-    {
-        $token = Str::uuid()->toString();
-        Admin::where('id', $id)->update(['remember_token' => $token]);
-        return $token;
-    }
 
     public function doLogin()
     {
-        $admin = $this->validateAdmin();
+        $admin = $this->adminService->login($this->username, $this->password);
         if ($admin) {
             session()->put('admin', [
                 'id' => $admin->id,
-                'remember_token' => $this->storeRememberToken($admin->id),
+                'remember_token' => $this->adminService->storeRememberToken($admin->id),
             ]);
             return redirect()->intended();
         }
