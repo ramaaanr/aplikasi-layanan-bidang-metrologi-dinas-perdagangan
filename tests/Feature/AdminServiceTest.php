@@ -40,4 +40,11 @@ class AdminServiceTest extends TestCase
         $admin = $this->adminService->login($this->trueAccount['username'], $this->trueAccount['password']);
         self::assertEquals('1', $admin->id);
     }
+
+    public function testStoreRememberTokenSuccess()
+    {
+        $admin = $this->adminService->login($this->trueAccount['username'], $this->trueAccount['password']);
+        $token = $this->adminService->storeRememberToken($admin->id);
+        self::assertIsString($token);
+    }
 }

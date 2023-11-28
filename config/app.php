@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\TeraServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -169,7 +170,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\AdminServiceProvider::class,
-
     ])->toArray(),
 
     /*
