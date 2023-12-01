@@ -110,8 +110,6 @@ class CardForm extends Component
       $this->dispatch('submit-uttp');
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
-    } catch (\Throwable $e) {
-      dd($e);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
@@ -168,7 +166,7 @@ class CardForm extends Component
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Throwable $e) {
-      dd($e);
+      $this->showErrorAlert($e);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);

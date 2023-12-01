@@ -86,7 +86,7 @@ class CardTableKendaraan extends Component
         try {
             $this->opsiPerusahaan = Perusahaan::select('id', 'nama_perusahaan')->get();
         } catch (\Throwable $th) {
-            dd('server error');
+            return redirect()->intended();
         }
     }
 

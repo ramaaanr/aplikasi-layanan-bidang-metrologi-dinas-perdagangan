@@ -296,7 +296,7 @@ class AjukanTeraFormTumBbm extends Form
     Carbon::setlocale('id');
     $month = $this->getRomanNumber(Carbon::now()->isoFormat('MM'));
     $year = Carbon::now()->isoFormat('YYYY');
-    $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+    $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + 1;
     return "500.2.3.15/$noUrut-MET/UAPV/TUS/$month/$year";
   }
 

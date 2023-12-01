@@ -250,9 +250,9 @@ class AjukanTeraForm extends Form
     $month = $this->getRomanNumber(Carbon::now()->isoFormat('MM'));
     $year = Carbon::now()->isoFormat('YYYY');
     if ($this->jenis_tera == 'pompa-ukur-bbm') {
-      $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+      $noUrut = TeraJenisA::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisB::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + 1;
     } else {
-      $noUrut = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count();
+      $noUrut = TeraJenisC::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + TeraJenisD::where('status', 'Selesai')->whereYear('tanggal_pengujian', $year)->count() + 1;
     }
     return "500.2.3.15/$noUrut-MET/MT/TUS/$month/$year";
   }

@@ -257,7 +257,7 @@ class CardFormTumBbm extends Component
       Storage::deleteDirectory('public/');
       $this->showSuccessAlert();
     } catch (\Throwable $e) {
-      dd($e);
+      $this->showErrorAlert($e);
     } catch (\Illuminate\Database\QueryException $e) {
       Storage::deleteDirectory('public/');
       $this->showErrorAlert($e);
